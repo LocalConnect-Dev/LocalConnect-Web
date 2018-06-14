@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Migu";
+    font-weight: normal;
+    src: url("../fonts/migu-1p-regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Migu";
+    font-weight: bold;
+    src: url("../fonts/migu-1p-bold.ttf") format("truetype");
+}
+
+body {
+    background-color: #eee;
+    font-family: "Migu", sans-serif;
+}

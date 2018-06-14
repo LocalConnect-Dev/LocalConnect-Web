@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Local Connect</title>
+    <link rel="stylesheet" href="semantic/dist/semantic.css">
+    <link rel="stylesheet" href="css/local-connect.css">
+  </head>
+  <body>
+    <header>
+      <img class="ui image centered" src="img/logo.png" width="512">
+    </header>
+    <nav>
+      <ul class="nav-menu">
+        <li>電子回覧板</li>
+        <li>イベント</li>
+        <li>投稿</li>
+        <li>マイページ</li>
+      </ul>
+    </nav>
+    <main class="ui container">
+      <div class="ui breadcrumb">
+        <a class="section"><i class="home icon"></i> ホーム</a>
+        <i class="right angle icon divider"></i>
+        <a class="section">電子回覧板</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">回覧板一覧</div>
+      </div>
+      <article class="ui fluid card">
+        <div class="content">
+          <div class="header">〇〇について</div>
+          <div class="meta">2 日前</div>
+          <div class="description">
+            <p>△月□日、☆☆広場で〇〇イベントが開催されます。</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="icon list"></i>
+            詳細を見る
+          </a>
+        </div>
+      </article>
+      <div class="centered">
+        <button class="ui basic button">
+          <i class="up angle icon"></i>
+          一番上へ戻る
+        </button>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="semantic/dist/semantic.js"></script>
+    <script src="js/local-connect.js"></script>
+  </body>
+</html>
