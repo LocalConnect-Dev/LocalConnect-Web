@@ -17,6 +17,14 @@ main > article.ui.card {
     padding: 10px 15px;
 }
 
+.nav-grid-left {
+    border-left: 1px solid #fff;
+}
+
+.nav-grid-right {
+    border-right: 1px solid #fff;
+}
+
 .nav-column {
     border: solid #fff;
     border-width: 0 1px;
@@ -34,10 +42,12 @@ main > article.ui.card {
 
 @media (max-width: 768px) {
     .nav-grid-left {
+        border-left: none;
         border-bottom: 1px solid #fff;
     }
 
     .nav-grid-right {
+        border-right: none;
         border-top: 1px solid #fff;
     }
 }
