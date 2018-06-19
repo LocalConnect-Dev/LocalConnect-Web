@@ -9,32 +9,19 @@ header {
 
 nav {
     background-color: #48c0c0;
-}
-
-nav > ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
-}
-
-nav > ul > li {
-    border: #41afaf solid;
-    border-width: 0 1px;
-    color: #fff;
-    padding: 10px 11px;
-    margin-left: -1px;
-    transition: all 0.2s ease;
-}
-
-nav > ul > li:hover {
-    background-color: #41afaf;
-    transition: all 0.2s ease;
+    margin: 25px 0 40px;
 }
 
 main > article.ui.card {
     background-color: #fff;
     padding: 10px 15px;
+}
+
+.nav-column {
+    border: solid #fff;
+    border-width: 0 1px;
+    color: #fff;
+    text-align: center;
 }
 
 .ui.breadcrumb {
@@ -43,4 +30,14 @@ main > article.ui.card {
 
 .ui.cards > .card > .content > .header, .ui.card > .content > .header {
     font-family: inherit;
+}
+
+@media (max-width: 768px) {
+    .nav-grid-left {
+        border-bottom: 1px solid #fff;
+    }
+
+    .nav-grid-right {
+        border-top: 1px solid #fff;
+    }
 }
