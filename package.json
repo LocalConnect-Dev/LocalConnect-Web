@@ -1,0 +1,21 @@
+{
+  "name": "localconnect-web",
+  "version": "1.0.0",
+  "description": "Web interface of LocalConnect.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^4.0.0",
+    "semantic-ui": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.local-connect.ga:LocalConnect-Dev/LocalConnect-Web.git"
+  },
+  "author": "LocalConnect-Dev",
+  "license": "ISC"
+}
