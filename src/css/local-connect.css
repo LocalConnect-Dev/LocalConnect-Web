@@ -18,15 +18,15 @@ main > article.ui.card {
 }
 
 .nav-grid-left {
-    border-left: 1px solid #fff;
+    border-left: 1px solid #eee;
 }
 
 .nav-grid-right {
-    border-right: 1px solid #fff;
+    border-right: 1px solid #eee;
 }
 
 .nav-column {
-    border: solid #fff;
+    border: solid #eee;
     border-width: 0 1px;
     color: #fff;
     text-align: center;
@@ -43,11 +43,11 @@ main > article.ui.card {
 @media (max-width: 768px) {
     .nav-grid-left {
         border-left: none;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #eee;
     }
 
     .nav-grid-right {
         border-right: none;
-        border-top: 1px solid #fff;
+        border-top: 1px solid #eee;
     }
 }
