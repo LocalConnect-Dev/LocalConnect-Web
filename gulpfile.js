@@ -1,11 +1,18 @@
 let gulp = require("gulp");
 let browserSync = require("browser-sync").create();
+let connectSsi = require("connect-ssi");
 
 gulp.task("browser-sync", () => {
     browserSync.init({
         server: {
             baseDir: "src",
-            index: "index.html"
+            index: "index.html",
+            middleware: [
+                connectSsi({
+                    baseDir: "src",
+                    ext: ".html"
+                })
+            ]
         }
     });
 });
