@@ -40,6 +40,20 @@ main > article.ui.card {
     font-family: inherit;
 }
 
+.form.login {
+    padding: 20px 0 0;
+}
+
+.keyboard {
+    padding: 20px;
+}
+
+.keyboard > .button {
+    font-size: 24px;
+    padding: 10px;
+    margin: 5px;
+}
+
 @media (max-width: 768px) {
     .nav-grid-left {
         border-left: none;
