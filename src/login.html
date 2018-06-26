@@ -1,74 +1,89 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1">
-  <title>ログイン - Local Connect</title>
-  <link rel="stylesheet" href="semantic/dist/semantic.css">
-  <link rel="stylesheet" href="css/local-connect.css">
-</head>
-<body>
-<!--#include file="inc/header.html" -->
-<main class="ui container">
-  <div class="ui breadcrumb">
-    <a class="section"><i class="home icon"></i> ホーム</a>
-    <i class="right angle icon divider"></i>
-    <div class="active section"><i class="sign in alternate icon"></i> ログイン</div>
-  </div>
-  <br>
-  <form class="ui form login">
-    <div class="field">
-      <div class="ui action large input">
-        <input type="text" id="token" placeholder="トークン">
-        <button class="ui positive large button">ログイン</button>
-      </div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>ログイン - Local Connect</title>
+    <link rel="stylesheet" href="semantic/dist/semantic.css">
+    <link rel="stylesheet" href="css/local-connect.css">
+  </head>
+  <body>
+    <div class="ui page dimmer" id="loader">
+      <div class="ui text loader">しばらくお待ちください</div>
     </div>
-  </form>
-  <div class="keyboard">
-    <button class="ui primary button">あ</button>
-    <button class="ui primary button">い</button>
-    <button class="ui primary button">う</button>
-    <button class="ui primary button">え</button>
-    <button class="ui primary button">お</button>
-    <button class="ui primary button">か</button>
-    <button class="ui primary button">き</button>
-    <button class="ui primary button">く</button>
-    <button class="ui primary button">け</button>
-    <button class="ui primary button">こ</button>
-    <button class="ui primary button">さ</button>
-    <button class="ui primary button">し</button>
-    <button class="ui primary button">す</button>
-    <button class="ui primary button">せ</button>
-    <button class="ui primary button">そ</button>
-    <button class="ui primary button">た</button>
-    <button class="ui primary button">ち</button>
-    <button class="ui primary button">つ</button>
-    <button class="ui primary button">て</button>
-    <button class="ui primary button">と</button>
-    <button class="ui primary button">な</button>
-    <button class="ui primary button">に</button>
-    <button class="ui primary button">ぬ</button>
-    <button class="ui primary button">ね</button>
-    <button class="ui primary button">の</button>
-    <button class="ui primary button">は</button>
-    <button class="ui primary button">ひ</button>
-    <button class="ui primary button">ふ</button>
-    <button class="ui primary button">へ</button>
-    <button class="ui primary button">ほ</button>
-    <button class="ui primary button">ま</button>
-    <button class="ui primary button">み</button>
-    <button class="ui primary button">む</button>
-    <button class="ui primary button">め</button>
-    <button class="ui primary button">も</button>
-    <button class="ui primary button">や</button>
-  </div>
-  <div class="centered">
-    <button class="ui basic button">
-      <i class="up angle icon"></i>
-      一番上へ戻る
-    </button>
-  </div>
-</main>
+<!--#include file="inc/header.html" -->
+    <main class="ui container">
+      <div class="ui breadcrumb">
+        <a class="section"><i class="home icon"></i> ホーム</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section"><i class="sign in alternate icon"></i> ログイン</div>
+      </div>
+      <br>
+      <form class="ui form login">
+        <div class="field">
+          <div class="ui action large input">
+            <textarea id="token" placeholder="トークン"></textarea>
+          </div>
+        </div>
+      </form>
+      <br>
+      <div class="ui two column stackable grid">
+        <div class="column">
+          <button class="ui negative fluid large button" id="backspace">
+            <i class="left angle icon"></i> 一文字消す
+          </button>
+        </div>
+        <div class="column">
+          <button class="ui positive fluid large button">
+            ログイン <i class="right angle icon"></i>
+          </button>
+        </div>
+      </div>
+      <div class="keyboard">
+        <button class="ui primary button">あ</button>
+        <button class="ui primary button">い</button>
+        <button class="ui primary button">う</button>
+        <button class="ui primary button">え</button>
+        <button class="ui primary button">お</button>
+        <button class="ui primary button">か</button>
+        <button class="ui primary button">き</button>
+        <button class="ui primary button">く</button>
+        <button class="ui primary button">け</button>
+        <button class="ui primary button">こ</button>
+        <button class="ui primary button">さ</button>
+        <button class="ui primary button">し</button>
+        <button class="ui primary button">す</button>
+        <button class="ui primary button">せ</button>
+        <button class="ui primary button">そ</button>
+        <button class="ui primary button">た</button>
+        <button class="ui primary button">ち</button>
+        <button class="ui primary button">つ</button>
+        <button class="ui primary button">て</button>
+        <button class="ui primary button">と</button>
+        <button class="ui primary button">な</button>
+        <button class="ui primary button">に</button>
+        <button class="ui primary button">ぬ</button>
+        <button class="ui primary button">ね</button>
+        <button class="ui primary button">の</button>
+        <button class="ui primary button">は</button>
+        <button class="ui primary button">ひ</button>
+        <button class="ui primary button">ふ</button>
+        <button class="ui primary button">へ</button>
+        <button class="ui primary button">ほ</button>
+        <button class="ui primary button">ま</button>
+        <button class="ui primary button">み</button>
+        <button class="ui primary button">む</button>
+        <button class="ui primary button">め</button>
+        <button class="ui primary button">も</button>
+        <button class="ui primary button">や</button>
+      </div>
+      <div class="centered">
+        <button class="ui basic button">
+          <i class="up angle icon"></i>
+          一番上へ戻る
+        </button>
+      </div>
+    </main>
 <!--#include file="inc/footer.html" -->
-</body>
+  </body>
 </html>

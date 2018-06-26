@@ -11,3 +11,8 @@ $(".keyboard > .button").click((e) => {
     const token = $("#token");
     token.val(token.val() + e.currentTarget.innerText);
 });
+
+$("#backspace").click(() => {
+    const textarea = $("#token");
+    textarea.val(textarea.val().substring(0, textarea.val().length - 1));
+});
