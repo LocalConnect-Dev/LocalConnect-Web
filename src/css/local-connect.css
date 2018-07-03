@@ -12,9 +12,21 @@ nav {
     margin: 25px 0 40px;
 }
 
-main > article.ui.card {
+main .ui.card {
     background-color: #fff;
     padding: 10px 15px;
+}
+
+section {
+    padding: 15px 0 5px;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+#posts .column {
+    padding: 7px;
 }
 
 .nav-grid-left {
