@@ -18,7 +18,7 @@ $("#backspace").click(() => {
 });
 
 $("#login").click(() => {
-    const token = $("token");
+    const token = $("#token");
 
     fetch("https://api.local-connect.ga/sessions/create", {
         body: "token=" + token.val(),
