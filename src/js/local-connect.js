@@ -23,7 +23,10 @@ $("#login").click(() => {
     fetch("https://api.local-connect.ga/sessions/create", {
         body: "token=" + token.val(),
         method: "POST",
-        mode: "cors"
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+        }
     })
         .then(response => response.json())
         .then(json => {
