@@ -5,6 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "browser-sync": "^2.24.4",
+    "connect-ssi": "^1.1.1",
     "gulp": "^3.9.1",
     "semantic-ui": "^2.3.2"
   },
