@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="css/local-connect.css">
   </head>
   <body>
-    <!--#include file="inc/header.html" -->
+    <div class="ui page dimmer" id="loader">
+      <div class="ui text loader">しばらくお待ちください</div>
+    </div>
+<!--#include file="inc/header.html" -->
     <main class="ui container">
       <div class="ui breadcrumb">
         <a class="section"><i class="home icon"></i> ホーム</a>
@@ -21,13 +24,13 @@
         <article class="ui fluid card">
           <div class="content">
             <div class="header">
-              <img class="ui avatar image" src="img/siketyan.jpg"> Siketyan
+              <img class="ui avatar image" src="img/siketyan.jpg"> {{ user.name }}
             </div>
             <div class="description">
               <ul class="ui list">
-                <li>趣味: リズムゲーム</li>
-                <li>好物: キャラグッズ</li>
-                <li>座右の銘: 有言実行</li>
+                <li>趣味: {{ hobbies }}</li>
+                <li>好物: {{ favorites }}</li>
+                <li>座右の銘: {{ mottoes }}</li>
               </ul>
             </div>
           </div>
@@ -82,6 +85,7 @@
         </button>
       </div>
     </main>
-    <!--#include file="inc/footer.html" -->
+<!--#include file="inc/footer.html" -->
+    <script src="js/mypage.js"></script>
   </body>
 </html>
