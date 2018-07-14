@@ -55,4 +55,13 @@ $(() => {
         console.log(result);
         return result;
     };
+
+    window.fetchError = error => {
+        new Vue({
+            el: "#error",
+            data: error
+        });
+
+        $("#error").modal("show");
+    }
 });

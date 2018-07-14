@@ -12,12 +12,16 @@ $(() => {
     })
         .then(response => response.json())
         .then(json => {
-            console.log(json);
+            console.log(json.error);
 
-            new Vue({
-                el: "#profile",
-                data: json
-            });
+            if (json.error) {
+                fetchError(json);
+            } else {
+                new Vue({
+                    el: "#profile",
+                    data: json
+                });
+            }
 
             loader.removeClass("active");
         })
