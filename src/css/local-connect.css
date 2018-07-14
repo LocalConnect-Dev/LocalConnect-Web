@@ -1,5 +1,5 @@
 body {
-    background-color: #eee;
+    background-color: #dcdcdc;
 }
 
 header {
@@ -8,7 +8,7 @@ header {
 }
 
 nav {
-    background-color: #48c0c0;
+    background-color: #228b22;
     margin: 25px 0 40px;
 }
 
@@ -30,15 +30,15 @@ h3 {
 }
 
 .nav-grid-left {
-    border-left: 1px solid #eee;
+    border-left: 1px solid #dcdcdc;
 }
 
 .nav-grid-right {
-    border-right: 1px solid #eee;
+    border-right: 1px solid #dcdcdc;
 }
 
 .nav-column {
-    border: solid #eee;
+    border: solid #dcdcdc;
     border-width: 0 1px;
     color: #fff;
     text-align: center;
@@ -69,11 +69,11 @@ h3 {
 @media (max-width: 768px) {
     .nav-grid-left {
         border-left: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #dcdcdc;
     }
 
     .nav-grid-right {
         border-right: none;
-        border-top: 1px solid #eee;
+        border-top: 1px solid #dcdcdc;
     }
 }
