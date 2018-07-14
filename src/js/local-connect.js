@@ -5,34 +5,54 @@ $(() => {
         console.log("Not Windows, applying Migu font CSS");
         $('head').append('<link rel="stylesheet" href="css/migu.css">');
     }
-});
 
-$(".keyboard > .button").click((e) => {
-    const token = $("#token");
-    token.val(token.val() + e.currentTarget.innerText);
-});
+    const kanaDb = {
+        "あ": "0",
+        "い": "1",
+        "う": "2",
+        "え": "3",
+        "お": "4",
+        "か": "5",
+        "き": "6",
+        "く": "7",
+        "け": "8",
+        "こ": "9",
+        "さ": "a",
+        "し": "b",
+        "す": "c",
+        "せ": "d",
+        "そ": "e",
+        "た": "f",
+        "ち": "g",
+        "つ": "h",
+        "て": "i",
+        "と": "j",
+        "な": "k",
+        "に": "l",
+        "ぬ": "m",
+        "ね": "n",
+        "の": "o",
+        "は": "p",
+        "ひ": "q",
+        "ふ": "r",
+        "へ": "s",
+        "ほ": "t",
+        "ま": "u",
+        "み": "v",
+        "む": "w",
+        "め": "x",
+        "も": "y",
+        "や": "z",
+    };
 
-$("#backspace").click(() => {
-    const token = $("#token");
-    token.val(token.val().substring(0, token.val().length - 1));
-});
+    window.encodeToken = token => {
+        let result = "";
 
-$("#login").click(() => {
-    const token = $("#token");
-
-    fetch("https://api.local-connect.ga/sessions/create", {
-        body: "token=" + token.val(),
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-        }
-    })
-        .then(response => response.json())
-        .then(json => {
-            console.log(json);
-        })
-        .catch(error => {
-            console.error(error);
+        [].forEach.call(token, ch => {
+            result = result.concat(kanaDb[ch]);
         });
+
+        console.log(result);
+        return result;
+    };
 });
