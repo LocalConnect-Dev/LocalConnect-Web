@@ -1,4 +1,7 @@
 # Directories
 /.idea
 /node_modules
-/src/semantic
+/src/semantic/dist
+
+# Files
+package-lock.json
