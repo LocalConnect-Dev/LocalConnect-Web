@@ -52,6 +52,10 @@ h3 {
     font-family: inherit;
 }
 
+.post-card h4 {
+    margin: 10px 0 5px;
+}
+
 .form.login {
     padding: 20px 0 0;
 }

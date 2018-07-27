@@ -25,7 +25,7 @@ $("#login").click(() => {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            Cookies.set("LocalConnect-Session", json.id);
+            Cookies.set("LocalConnect-Session", json.secret);
 
             location.href = "./mypage.html";
         })
