@@ -2,7 +2,7 @@ $(() => {
     const loader = $("#loader");
     loader.addClass("active");
 
-    fetch("https://api.local-connect.ga/profiles/me", {
+    fetch("https://api.local-connect.ga/profiles/mine", {
         method: "GET",
         mode: "cors",
         headers: {
