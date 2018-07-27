@@ -12,6 +12,15 @@ nav {
     margin: 25px 0 40px;
 }
 
+nav a {
+    transition: color .2s;
+}
+
+nav a:hover {
+    color: #ffc042;
+    transition: color .2s;
+}
+
 main .ui.card {
     background-color: #fff;
     padding: 10px 15px;
