@@ -65,3 +65,7 @@ $(() => {
         $("#error").modal("show");
     }
 });
+
+$("a").click(() => {
+    $("#loader").addClass("active");
+});
