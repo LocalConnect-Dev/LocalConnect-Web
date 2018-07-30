@@ -66,9 +66,35 @@ $(() => {
         });
 
         $("#error").modal("show");
-    }
+    };
+
+    loadView(URI(location.href));
 });
 
-$("a").click(() => {
-    $("#loader").addClass("active");
+$("a").click(e => {
+    e.preventDefault();
+
+    const path = $(e.currentTarget).attr("href");
+    const uri = URI(path, location.href);
+    showLoader();
+    loadView(uri);
+    window.history.pushState(null, null, uri.toString());
+
+    return false;
 });
+
+function loadView(uri) {
+    console.log("Loading view");
+    if (uri.suffix() === "view") {
+        const name = uri.filename().split(".")[0];
+        $.getScript("/js/" + name + ".js");
+    }
+}
+
+function showLoader() {
+    $("#loader").addClass("active");
+}
+
+function hideLoader() {
+    $("#loader").removeClass("active");
+}

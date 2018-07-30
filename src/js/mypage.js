@@ -1,6 +1,6 @@
 $(() => {
-    const loader = $("#loader");
-    loader.addClass("active");
+    console.log("Loading template of mypage");
+    $("#wrapper").load("view/mypage.html");
 
     fetch("https://api.local-connect.ga/profiles/mine", {
         method: "GET",
@@ -23,7 +23,7 @@ $(() => {
                 });
             }
 
-            loader.removeClass("active");
+            hideLoader();
         })
         .catch(error => {
             console.error(error);

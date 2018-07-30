@@ -8,30 +8,60 @@
     <link rel="stylesheet" href="css/local-connect.css">
   </head>
   <body>
-<!--#include file="inc/header.html" -->
-    <main class="ui container">
-      <div class="ui breadcrumb">
-        <a class="section"><i class="home icon"></i> ホーム</a>
-        <i class="right angle icon divider"></i>
-        <a class="section">電子回覧板</a>
-        <i class="right angle icon divider"></i>
-        <div class="active section">回覧板一覧</div>
+    <div class="ui page dimmer" id="loader">
+      <div class="ui text loader">しばらくお待ちください</div>
+    </div>
+    <div class="ui basic modal" id="error">
+      <div class="ui icon header">
+        <i class="exclamation circle icon"></i>
+        エラーが発生しました
       </div>
-      <article class="ui fluid card">
-        <div class="content">
-          <div class="header">〇〇について</div>
-          <div class="meta">2 日前</div>
-          <div class="description">
-            <p>△月□日、☆☆広場で〇〇イベントが開催されます。</p>
+      <div class="content">
+        <p>{{ error }}</p>
+      </div>
+      <div class="actions">
+        <div class="ui red ok inverted button">
+          <i class="checkmark icon"></i>
+          OK
+        </div>
+      </div>
+    </div>
+    <header>
+      <img class="ui image centered" src="img/logo.png">
+    </header>
+    <nav>
+      <div class="ui container">
+        <div class="ui stackable two column grid">
+          <div class="column">
+            <div class="ui two column grid nav-grid-left">
+              <a href="boards.view" class="column nav-column">
+                <h1><i class="clipboard icon"></i></h1>
+                <p>電子回覧板を見る</p>
+              </a>
+              <a href="events.view" class="column nav-column">
+                <h1><i class="calendar alternate icon"></i></h1>
+                <p>イベントを見る・催す</p>
+              </a>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui two column grid nav-grid-right">
+              <a href="posts.view" class="column nav-column">
+                <h1><i class="comments icon"></i></h1>
+                <p>掲示板を見る・書く</p>
+              </a>
+              <a href="mypage.view" class="column nav-column">
+                <h1><i class="address card icon"></i></h1>
+                <p>マイページを見る</p>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="extra content">
-          <a>
-            <i class="icon list"></i>
-            詳細を見る
-          </a>
-        </div>
-      </article>
+      </div>
+    </nav>
+    <main class="ui container">
+      <div id="wrapper"></div>
+      <br>
       <div class="centered">
         <button class="ui basic button">
           <i class="up angle icon"></i>
@@ -39,6 +69,12 @@
         </button>
       </div>
     </main>
-<!--#include file="inc/footer.html" -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="semantic/dist/semantic.js"></script>
+    <script src="js/js.cookie.js"></script>
+    <script src="js/URI.js"></script>
+    <script src="js/local-connect.js"></script>
   </body>
 </html>

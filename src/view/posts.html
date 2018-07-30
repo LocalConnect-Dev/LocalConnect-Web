@@ -1,0 +1,26 @@
+<div class="ui breadcrumb">
+  <a class="section"><i class="home icon"></i> ホーム</a>
+  <i class="right angle icon divider"></i>
+  <a class="section"><i class="comments icon"></i> 掲示板</a>
+  <i class="right angle icon divider"></i>
+  <div class="active section">投稿一覧</div>
+</div>
+<h3>最近の投稿</h3>
+<section id="posts">
+  <div class="ui stackable two column grid">
+    <div class="column" v-for="post in posts">
+      <article class="ui fluid card post-card">
+        <div class="content">
+          <div class="header">
+            <img class="ui avatar image" src="img/siketyan.jpg"> {{ post.author.name }}
+          </div>
+          <div class="description">
+            <h4>{{ post.document.title }}</h4>
+            <p>{{ post.document.content }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+</div>

@@ -1,3 +1,10 @@
+$(() => {
+    console.log("Loading template of login");
+    $("#wrapper").load("view/login.html");
+
+    hideLoader();
+});
+
 $(".keyboard > .button").click((e) => {
     const token = $("#token");
     token.val(token.val() + e.currentTarget.innerText);
@@ -8,14 +15,11 @@ $("#backspace").click(() => {
     token.val(token.val().substring(0, token.val().length - 1));
 });
 
-$("#login").click(() => {
-    const loader = $("#loader");
-    const token = $("#token");
-
-    loader.addClass("active");
+$("body").on("click", "#login", () => {
+    showLoader();
 
     fetch("https://api.local-connect.ga/sessions/create", {
-        body: "token=" + window.encodeToken(token.val()),
+        body: "token=" + window.encodeToken($("#token").val()),
         method: "POST",
         mode: "cors",
         headers: {
@@ -27,7 +31,7 @@ $("#login").click(() => {
             console.log(json);
             Cookies.set("LocalConnect-Session", json.secret);
 
-            location.href = "./mypage.html";
+            location.href = "./mypage.view";
         })
         .catch(error => {
             console.error(error);

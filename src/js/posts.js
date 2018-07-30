@@ -1,6 +1,6 @@
 $(() => {
-    const loader = $("#loader");
-    loader.addClass("active");
+    console.log("Loading template of login");
+    $("#wrapper").load("view/posts.html");
 
     fetch("https://api.local-connect.ga/posts/list_group", {
         method: "GET",
@@ -25,7 +25,7 @@ $(() => {
                 });
             }
 
-            loader.removeClass("active");
+            hideLoader();
         })
         .catch(error => {
             console.error(error);
