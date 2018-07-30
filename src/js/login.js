@@ -1,8 +1,8 @@
 $(() => {
     console.log("Loading template of login");
-    $("#wrapper").load("view/login.html");
-
-    hideLoader();
+    $("#wrapper").load("view/login.html", () => {
+        hideLoader();
+    });
 });
 
 $(".keyboard > .button").click((e) => {
