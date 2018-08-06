@@ -70,7 +70,7 @@ $(() => {
 
     showLoader();
 
-    if (Cookies.get("X-LocalConnect-Session")) {
+    if (Cookies.get("LocalConnect-Session")) {
         loadView(URI(location.href));
     } else {
         const uri = URI("/login.view", location.href);
@@ -83,7 +83,7 @@ $("a").click(e => {
     e.preventDefault();
 
     let uri;
-    if (Cookies.get("X-LocalConnect-Session")) {
+    if (Cookies.get("LocalConnect-Session")) {
         const path = $(e.currentTarget).attr("href");
         uri = URI(path, location.href);
     } else {
