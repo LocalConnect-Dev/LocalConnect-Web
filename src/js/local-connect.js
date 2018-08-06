@@ -68,7 +68,15 @@ $(() => {
         $("#error").modal("show");
     };
 
-    loadView(URI(location.href));
+    showLoader();
+
+    if (Cookies.get("X-LocalConnect-Session")) {
+        loadView(URI(location.href));
+    } else {
+        const uri = URI("/login.view", location.href);
+        loadView(uri);
+        window.history.pushState(null, null, uri.toString());
+    }
 });
 
 $("a").click(e => {
