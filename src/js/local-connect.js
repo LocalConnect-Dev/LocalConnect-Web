@@ -73,9 +73,7 @@ $(() => {
     if (Cookies.get("LocalConnect-Session")) {
         loadView(URI(location.href));
     } else {
-        const uri = URI("/login.view", location.href);
-        loadView(uri);
-        window.history.pushState(null, null, uri.toString());
+        move(URI("/login.view", location.href));
     }
 });
 
@@ -91,8 +89,7 @@ $("a").click(e => {
     }
 
     showLoader();
-    loadView(uri);
-    window.history.pushState(null, null, uri.toString());
+    move(uri);
 
     return false;
 });
@@ -103,6 +100,11 @@ function loadView(uri) {
         const name = uri.filename().split(".")[0];
         $.getScript("/js/" + name + ".js");
     }
+}
+
+function move(uri) {
+    loadView(uri);
+    window.history.pushState(null, null, uri.toString());
 }
 
 function showLoader() {
