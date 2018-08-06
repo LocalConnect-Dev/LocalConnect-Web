@@ -31,7 +31,7 @@ $("body").on("click", "#login", () => {
             console.log(json);
             Cookies.set("LocalConnect-Session", json.secret, { expires: 9999999 });
 
-            location.href = "./mypage.view";
+            loadView(URI("/mypage.view", location.href));
         })
         .catch(error => {
             console.error(error);
