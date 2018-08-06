@@ -82,8 +82,14 @@ $(() => {
 $("a").click(e => {
     e.preventDefault();
 
-    const path = $(e.currentTarget).attr("href");
-    const uri = URI(path, location.href);
+    let uri;
+    if (Cookies.get("X-LocalConnect-Session")) {
+        const path = $(e.currentTarget).attr("href");
+        uri = URI(path, location.href);
+    } else {
+        uri = URI("/login.view", location.href);
+    }
+
     showLoader();
     loadView(uri);
     window.history.pushState(null, null, uri.toString());
