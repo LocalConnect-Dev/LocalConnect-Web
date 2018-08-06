@@ -29,7 +29,7 @@ $("body").on("click", "#login", () => {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            Cookies.set("LocalConnect-Session", json.secret);
+            Cookies.set("LocalConnect-Session", json.secret, { expires: 9999999 });
 
             location.href = "./mypage.view";
         })
