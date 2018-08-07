@@ -1,3 +1,10 @@
+$(document).ajaxError(() => {
+    hideLoader();
+    fetchError({
+        error: "ページを読み込めませんでした"
+    });
+});
+
 $(() => {
     console.log("Hello, Local Connect!");
 
