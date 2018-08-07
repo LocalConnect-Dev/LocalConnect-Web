@@ -6,20 +6,24 @@
   <div class="active section"><i class="user icon"></i> Siketyan</div>
 </div>
 <section id="profile">
-  <article class="ui fluid card">
-    <div class="content">
-      <div class="header">
-        <img class="ui avatar image" src="img/siketyan.jpg"> {{ user.name }}
-      </div>
-      <div class="description">
-        <ul class="ui list">
-          <li>趣味: {{ hobbies }}</li>
-          <li>好物: {{ favorites }}</li>
-          <li>座右の銘: {{ mottoes }}</li>
-        </ul>
-      </div>
+  <div class="ui stackable one column grid">
+    <div class="column">
+      <article class="ui fluid card">
+        <div class="content">
+          <div class="header">
+            <img class="ui avatar image" src="img/siketyan.jpg"> {{ user.name }}
+          </div>
+          <div class="description">
+            <ul class="ui list">
+              <li>趣味: {{ hobbies }}</li>
+              <li>好物: {{ favorites }}</li>
+              <li>座右の銘: {{ mottoes }}</li>
+            </ul>
+          </div>
+        </div>
+      </article>
     </div>
-  </article>
+  </div>
 </section>
 <h3>Siketyan さんの投稿</h3>
 <section id="posts">
