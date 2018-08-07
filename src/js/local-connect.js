@@ -94,6 +94,10 @@ $("a").click(e => {
     return false;
 });
 
+$("#go-top").click(() => {
+    $("html, body").animate({ scrollTop: 0 }, "ease");
+});
+
 function loadView(uri) {
     console.log("Loading view");
     if (uri.suffix() === "view") {
