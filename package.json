@@ -4,9 +4,10 @@
   "description": "Web interface of LocalConnect.",
   "main": "gulpfile.js",
   "dependencies": {
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.6",
     "connect-ssi": "^1.1.1",
-    "gulp": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-help": "^1.6.1",
     "semantic-ui": "^2.3.2"
   },
   "devDependencies": {},
