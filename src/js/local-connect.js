@@ -66,14 +66,25 @@ class APICall {
 }
 
 const fetchError = error => {
+    $("#error").clone().prop("id", "error-instance").appendTo("body");
+
+    const selector = "#error-instance";
     new Vue({
-        el: "#error",
+        el: selector,
         data: {
             error: error
         }
     });
 
-    $("#error").modal("show");
+    const element = $(selector);
+    element.modal({
+            closable: false,
+            onHidden: () => {
+                $("body > div:last-child").remove();
+            }
+        })
+        .modal("show");
+
     hideLoader();
 };
 
