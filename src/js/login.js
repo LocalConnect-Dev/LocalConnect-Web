@@ -1,25 +1,33 @@
+const body = $("body");
+
 $(() => {
     console.log("Loading template of login");
     $("#wrapper").load("view/login.html", () => {
         hideLoader();
+        new Vue({
+            el: "#keyboard",
+            data: {
+                kanaDb: kanaDb
+            }
+        })
     });
 });
 
-$(".keyboard > .button").click((e) => {
+body.on("click", "#keyboard > .button", e => {
     const token = $("#token");
     token.val(token.val() + e.currentTarget.innerText);
 });
 
-$("#backspace").click(() => {
+body.on("click", "#backspace", () => {
     const token = $("#token");
     token.val(token.val().substring(0, token.val().length - 1));
 });
 
-$("body").on("click", "#login", () => {
+body.on("click", "#login", () => {
     showLoader();
 
     fetch("https://api.local-connect.ga/sessions/create", {
-        body: "token=" + window.encodeToken($("#token").val()),
+        body: "token=" + encodeToken($("#token").val()),
         method: "POST",
         mode: "cors",
         headers: {
@@ -37,3 +45,14 @@ $("body").on("click", "#login", () => {
             console.error(error);
         });
 });
+
+function encodeToken(token) {
+    let result = "";
+
+    [].forEach.call(token, ch => {
+        result = result.concat(window.kanaDb[ch]);
+    });
+
+    console.log(result);
+    return result;
+}

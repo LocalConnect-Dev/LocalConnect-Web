@@ -24,41 +24,6 @@
     </button>
   </div>
 </div>
-<div class="keyboard">
-  <button class="ui primary button">あ</button>
-  <button class="ui primary button">い</button>
-  <button class="ui primary button">う</button>
-  <button class="ui primary button">え</button>
-  <button class="ui primary button">お</button>
-  <button class="ui primary button">か</button>
-  <button class="ui primary button">き</button>
-  <button class="ui primary button">く</button>
-  <button class="ui primary button">け</button>
-  <button class="ui primary button">こ</button>
-  <button class="ui primary button">さ</button>
-  <button class="ui primary button">し</button>
-  <button class="ui primary button">す</button>
-  <button class="ui primary button">せ</button>
-  <button class="ui primary button">そ</button>
-  <button class="ui primary button">た</button>
-  <button class="ui primary button">ち</button>
-  <button class="ui primary button">つ</button>
-  <button class="ui primary button">て</button>
-  <button class="ui primary button">と</button>
-  <button class="ui primary button">な</button>
-  <button class="ui primary button">に</button>
-  <button class="ui primary button">ぬ</button>
-  <button class="ui primary button">ね</button>
-  <button class="ui primary button">の</button>
-  <button class="ui primary button">は</button>
-  <button class="ui primary button">ひ</button>
-  <button class="ui primary button">ふ</button>
-  <button class="ui primary button">へ</button>
-  <button class="ui primary button">ほ</button>
-  <button class="ui primary button">ま</button>
-  <button class="ui primary button">み</button>
-  <button class="ui primary button">む</button>
-  <button class="ui primary button">め</button>
-  <button class="ui primary button">も</button>
-  <button class="ui primary button">や</button>
+<div id="keyboard">
+  <button class="ui button" v-for="(alphabet, kana) in kanaDb">{{ kana }}</button>
 </div>
