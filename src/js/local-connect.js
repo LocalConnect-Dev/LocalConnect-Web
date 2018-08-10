@@ -61,9 +61,6 @@ class APICall {
                 }
 
                 this.callback(obj);
-            })
-            .catch(error => {
-                console.error(error);
             });
     }
 }
