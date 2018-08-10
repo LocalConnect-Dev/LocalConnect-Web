@@ -26,6 +26,29 @@
         </div>
       </div>
     </div>
+    <div id="created-post" class="ui mini modal">
+      <div class="header">
+        投稿が完了しました
+      </div>
+      <div class="content">
+        <div class="description">
+          <div class="header">
+            <h3>
+              <img class="ui avatar image" src="img/siketyan.jpg">
+              {{ document.author.name }}
+            </h3>
+          </div>
+          <h4>{{ document.title }}</h4>
+          <p>{{ document.content }}</p>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui positive left labeled icon button">
+          <i class="backward icon"></i>
+          掲示板に戻る
+        </div>
+      </div>
+    </div>
     <header>
       <img class="ui image centered" src="img/logo.png">
     </header>

@@ -31,3 +31,8 @@ $(() => {
             });
     });
 });
+
+$("body").on("click", "#create", () => {
+    showLoader();
+    move(URI("/create-post.view", location.href));
+});
