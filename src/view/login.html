@@ -25,5 +25,9 @@
   </div>
 </div>
 <div id="keyboard">
-  <button class="ui button" v-for="(alphabet, kana) in kanaDb">{{ kana }}</button>
+  <div class="ui stackable centered grid">
+      <div class="eight wide tablet four wide computer column" v-for="block in blocks">
+        <button class="ui button" v-for="(alphabet, kana) in block">{{ kana }}</button>
+      </div>
+  </div>
 </div>

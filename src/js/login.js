@@ -12,13 +12,30 @@ const encodeToken = token => {
 $(() => {
     console.log("Loading template of login");
     $("#wrapper").load("view/login.html", () => {
-        hideLoader();
+        let blocks = [];
+        const count = 5;
+        const length = Object.keys(kanaDb).length;
+        for (let i = 0; i < length + count; i += count) {
+            let block = {};
+            for (let j = 0; j < count && i + j < length; j++) {
+                const key = Object.keys(kanaDb)[i + j];
+                console.log(kanaDb[key]);
+                block[key] = kanaDb[key];
+            }
+
+            blocks.push(block);
+        }
+
+        console.log(blocks);
+
         new Vue({
             el: "#keyboard",
             data: {
-                kanaDb: kanaDb
+                blocks: blocks
             }
-        })
+        });
+
+        hideLoader();
     });
 });
 
