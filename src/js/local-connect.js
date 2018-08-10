@@ -16,6 +16,9 @@ $(() => {
         }).appendTo("head");
     }
 
+    console.log("Loading modals");
+    $("#modals").load("view/modals.html");
+
     const kanaDb = {
         "あ": "0",
         "い": "1",
