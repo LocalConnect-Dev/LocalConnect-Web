@@ -1,8 +1,6 @@
 $(document).ajaxError(() => {
     hideLoader();
-    fetchError({
-        error: "ページを読み込めませんでした"
-    });
+    fetchError("ページを読み込めませんでした");
 });
 
 $(() => {
@@ -32,10 +30,13 @@ $(() => {
     window.fetchError = error => {
         new Vue({
             el: "#error",
-            data: error
+            data: {
+                error: error
+            }
         });
 
         $("#error").modal("show");
+        hideLoader();
     };
 
     showLoader();
@@ -87,4 +88,70 @@ function showLoader() {
 
 function hideLoader() {
     $("#loader").removeClass("active");
+}
+
+class APICall {
+    static get BASE_URI() {
+        return "https://api.local-connect.ga/";
+    }
+
+    constructor(path) {
+        this.path = path;
+        this.options = {
+            mode: "cors",
+            headers: {}
+        };
+    }
+
+    authorize() {
+        this.options.headers["X-LocalConnect-Session"] = Cookies.get("LocalConnect-Session");
+
+        return this;
+    }
+
+    post() {
+        this.options.method = "POST";
+        this.options.headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8";
+
+        return this;
+    }
+
+    body(body) {
+        this.options.body = body;
+
+        return this;
+    }
+
+    params(params) {
+        this.body(
+            Object
+                .keys(params)
+                .map(key => key + "=" + encodeURIComponent(params[key]))
+                .join("&")
+        );
+
+        return this;
+    }
+
+    onSuccess(callback) {
+        this.callback = callback;
+
+        return this;
+    }
+
+    execute() {
+        return fetch(APICall.BASE_URI + this.path, this.options)
+            .then(response => response.json())
+            .then(obj => {
+                if (obj.error) {
+                    fetchError(obj.error);
+                    return;
+                }
+
+                this.callback(obj);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 }
