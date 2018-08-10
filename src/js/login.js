@@ -19,11 +19,10 @@ $(() => {
             let block = {};
             for (let j = 0; j < count && i + j < length; j++) {
                 const key = Object.keys(kanaDb)[i + j];
-                console.log(kanaDb[key]);
                 block[key] = kanaDb[key];
             }
 
-            blocks.push(block);
+            if (Object.keys(block).length !== 0) blocks.push(block);
         }
 
         console.log(blocks);
@@ -35,11 +34,21 @@ $(() => {
             }
         });
 
+        $("<button>", {
+            "class": "ui button",
+            id: "backspace",
+            text: "一字消す"
+        }).appendTo("#keyboard > .grid > .column:last-child");
+
+        $("<div>", {
+            "class": "column"
+        }).appendTo("#keyboard > .grid");
+
         hideLoader();
     });
 });
 
-onClick("#keyboard > .button", e => {
+onClick("#keyboard .button:not(#backspace)", e => {
     const token = $("#token");
     token.val(token.val() + e.currentTarget.innerText);
 });

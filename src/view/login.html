@@ -12,21 +12,19 @@
   </div>
 </form>
 <br>
-<div class="ui two column stackable grid">
+<div class="ui grid">
   <div class="column">
-    <button class="ui negative fluid large button" id="backspace">
-      <i class="left angle icon"></i> 一文字消す
-    </button>
-  </div>
-  <div class="column">
-    <button class="ui positive fluid large button" id="login">
-      ログイン <i class="right angle icon"></i>
+    <button class="ui right floated positive right labeled icon button" id="login">
+      ログイン
+      <i class="right angle icon"></i>
     </button>
   </div>
 </div>
+<br>
+<br>
 <div id="keyboard">
   <div class="ui stackable centered grid">
-      <div class="eight wide tablet four wide computer column" v-for="block in blocks">
+      <div class="column" v-for="block in blocks">
         <button class="ui button" v-for="(alphabet, kana) in block">{{ kana }}</button>
       </div>
   </div>

@@ -67,8 +67,13 @@ h3 {
     height: 50px;
 }
 
-#keyboard > .button:hover {
+#keyboard .button:hover {
     background-color: #FFF;
+}
+
+#backspace {
+    border: 1px solid #F00 !important;
+    width: 197px !important;
 }
 
 #go-top {
