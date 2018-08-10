@@ -31,12 +31,16 @@ class APICall {
     }
 
     params(params) {
-        this.body(
-            Object
-                .keys(params)
-                .map(key => key + "=" + encodeURIComponent(params[key]))
-                .join("&")
-        );
+        const str = Object
+            .keys(params)
+            .map(key => key + "=" + encodeURIComponent(params[key]))
+            .join("&");
+
+        if (this.options.method === "POST") {
+            this.body(str);
+        } else {
+            this.path += str;
+        }
 
         return this;
     }
