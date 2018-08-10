@@ -80,6 +80,27 @@ const onClick = (selector, callback) => {
     $("body").on("click", selector, callback);
 };
 
+const loadView = uri => {
+    console.log("Loading view");
+    if (uri.suffix() === "view") {
+        const name = uri.filename().split(".")[0];
+        $.getScript("/js/" + name + ".js");
+    }
+};
+
+const move = uri => {
+    loadView(uri);
+    window.history.pushState(null, null, uri.toString());
+};
+
+const showLoader = () => {
+    $("#loader").addClass("active");
+};
+
+const hideLoader = () => {
+    $("#loader").removeClass("active");
+};
+
 $(document).ajaxError(() => {
     hideLoader();
     fetchError("ページを読み込めませんでした");
@@ -138,24 +159,3 @@ onClick("a", e => {
 onClick("#go-top", () => {
     $("html, body").animate({ scrollTop: 0 }, "ease");
 });
-
-function loadView(uri) {
-    console.log("Loading view");
-    if (uri.suffix() === "view") {
-        const name = uri.filename().split(".")[0];
-        $.getScript("/js/" + name + ".js");
-    }
-}
-
-function move(uri) {
-    loadView(uri);
-    window.history.pushState(null, null, uri.toString());
-}
-
-function showLoader() {
-    $("#loader").addClass("active");
-}
-
-function hideLoader() {
-    $("#loader").removeClass("active");
-}

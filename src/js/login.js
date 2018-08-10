@@ -1,3 +1,14 @@
+const encodeToken = token => {
+    let result = "";
+
+    [].forEach.call(token, ch => {
+        result = result.concat(window.kanaDb[ch]);
+    });
+
+    console.log(result);
+    return result;
+};
+
 $(() => {
     console.log("Loading template of login");
     $("#wrapper").load("view/login.html", () => {
@@ -33,14 +44,3 @@ onClick("#login", () => {
         })
         .execute();
 });
-
-function encodeToken(token) {
-    let result = "";
-
-    [].forEach.call(token, ch => {
-        result = result.concat(window.kanaDb[ch]);
-    });
-
-    console.log(result);
-    return result;
-}
