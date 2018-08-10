@@ -5,7 +5,7 @@ $(() => {
     });
 });
 
-$("body").on("click", "#submit", () => {
+onClick("#submit", () => {
     showLoader();
 
     const title = $("#title").val();

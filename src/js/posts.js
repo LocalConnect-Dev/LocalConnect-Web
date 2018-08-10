@@ -17,7 +17,7 @@ $(() => {
     });
 });
 
-$("body").on("click", "#create", () => {
+onClick("#create", () => {
     showLoader();
     move(URI("/create-post.view", location.href));
 });

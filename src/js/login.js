@@ -1,5 +1,3 @@
-const body = $("body");
-
 $(() => {
     console.log("Loading template of login");
     $("#wrapper").load("view/login.html", () => {
@@ -13,17 +11,17 @@ $(() => {
     });
 });
 
-body.on("click", "#keyboard > .button", e => {
+onClick("#keyboard > .button", e => {
     const token = $("#token");
     token.val(token.val() + e.currentTarget.innerText);
 });
 
-body.on("click", "#backspace", () => {
+onClick("#backspace", () => {
     const token = $("#token");
     token.val(token.val().substring(0, token.val().length - 1));
 });
 
-body.on("click", "#login", () => {
+onClick("#login", () => {
     showLoader();
 
     new APICall("sessions/create")
