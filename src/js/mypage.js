@@ -4,12 +4,20 @@ $(() => {
         new APICall("profiles/mine")
             .authorize()
             .onSuccess(profile => {
-                new Vue({
-                    el: "#profile",
-                    data: profile
-                });
+                new APICall("posts/list_user")
+                    .authorize()
+                    .onSuccess(posts => {
+                        new Vue({
+                            el: "#wrapper",
+                            data: {
+                                profile: profile,
+                                posts: posts
+                            }
+                        });
 
-                hideLoader();
+                        hideLoader();
+                    })
+                    .execute();
             })
             .execute();
     });
