@@ -5,18 +5,23 @@
   <i class="right angle icon divider"></i>
   <div class="active section"><i class="list icon"></i> 回覧板一覧</div>
 </div>
-<article class="ui fluid card">
-  <div class="content">
-    <div class="header">〇〇について</div>
-    <div class="meta">2 日前</div>
-    <div class="description">
-      <p>△月□日、☆☆広場で〇〇イベントが開催されます。</p>
+<section id="boards">
+  <article class="ui fluid card" v-for="board in boards">
+    <div class="content">
+      <div class="header">{{ board.document.title }}</div>
+      <div class="meta">
+        <i class="clock outline icon"></i>
+        {{ board.created_at | moment }}
+      </div>
+      <div class="description">
+        <p>{{ board.document.content }}</p>
+      </div>
     </div>
-  </div>
-  <div class="extra content">
-    <a>
-      <i class="icon list"></i>
-      詳細を見る
-    </a>
-  </div>
-</article>
+    <div class="extra content">
+      <a>
+        <i class="book icon"></i>
+        読む
+      </a>
+    </div>
+  </article>
+</section>
