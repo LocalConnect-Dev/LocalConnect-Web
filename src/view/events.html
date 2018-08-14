@@ -1,0 +1,37 @@
+<div class="ui breadcrumb">
+  <a class="section"><i class="home icon"></i> ホーム</a>
+  <i class="right angle icon divider"></i>
+  <a class="section"><i class="calendar alternate icon"></i> イベント</a>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="list icon"></i> イベント一覧</div>
+</div>
+<section id="events">
+  <article class="ui fluid card event-card" v-for="event in events">
+    <div class="content">
+      <div class="ui stackable grid">
+        <div class="three wide column event-date">
+          <p>{{ event.date | year }} 年</p>
+          <h1>
+            {{ event.date | month }}
+            <small>月</small>
+            {{ event.date | day }}
+            <small>日</small>
+          </h1>
+          <p>({{ event.date | dayOfWeek }}) {{ event.date | time }}～</p>
+        </div>
+        <div class="thirteen wide column">
+          <div class="header">
+            <h3>{{ event.document.title }}</h3>
+          </div>
+          <div class="description">
+            <p>{{ event.document.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <a href="#" class="ui positive button">参加登録する</a>
+      <a href="#" class="ui button">詳細を見る</a>
+    </div>
+  </article>
+</section>
