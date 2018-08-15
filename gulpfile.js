@@ -8,7 +8,7 @@ gulp.task("browser-sync", () => {
             index: "index.html",
             middleware: [
                 (req, res, next) => {
-                    if (/^([0-9A-z\-/]+).view$/g.test(req.url)) {
+                    if (/^([0-9A-z\-/]+).view/g.test(req.url)) {
                         req.url = "/index.html";
                     }
 
