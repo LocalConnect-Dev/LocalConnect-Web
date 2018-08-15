@@ -22,3 +22,8 @@ $(() => {
             .execute();
     });
 });
+
+onClick("#create", () => {
+    showLoader();
+    move(URI("/create-profile.view", location.href));
+});

@@ -1,0 +1,32 @@
+<div class="ui breadcrumb">
+  <a class="section"><i class="home icon"></i> ホーム</a>
+  <i class="right angle icon divider"></i>
+  <a class="section"><i class="address card icon"></i> マイページ</a>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="pencil icon"></i> プロフィールの作成と編集</div>
+</div>
+<h3>プロフィールの作成と編集</h3>
+<section id="create-profile">
+  <div class="ui stackable one column grid">
+    <div class="column">
+      <form class="ui form">
+        <div class="field">
+          <label>趣味</label>
+          <input id="hobbies" type="text" placeholder="クリックまたはタップして入力" :value="hobbies">
+        </div>
+        <div class="field">
+          <label>好物</label>
+          <input id="favorites" type="text" placeholder="クリックまたはタップして入力" :value="favorites">
+        </div>
+        <div class="field">
+          <label>座右の銘</label>
+          <input id="mottoes" type="text" placeholder="クリックまたはタップして入力" :value="mottoes">
+        </div>
+        <button id="submit" class="ui positive left labeled icon button" type="button">
+          <i class="send icon"></i>
+          投稿する
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
