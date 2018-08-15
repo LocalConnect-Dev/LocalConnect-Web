@@ -39,7 +39,7 @@ class APICall {
         if (this.options.method === "POST") {
             this.body(str);
         } else {
-            this.path += str;
+            this.path += "?" + str;
         }
 
         return this;
