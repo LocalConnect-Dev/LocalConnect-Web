@@ -145,7 +145,11 @@ $(() => {
     showLoader();
 
     if (Cookies.get("LocalConnect-Session")) {
-        loadView(URI(location.href));
+        if (location.href.endsWith("/")) {
+            move(URI("/boards.view", location.href));
+        } else {
+            loadView(URI(location.href));
+        }
     } else {
         move(URI("/login.view", location.href));
     }
