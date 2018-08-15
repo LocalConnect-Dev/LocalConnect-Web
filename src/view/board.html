@@ -1,0 +1,23 @@
+<div class="ui breadcrumb">
+  <a class="section"><i class="home icon"></i> ホーム</a>
+  <i class="right angle icon divider"></i>
+  <a class="section"><i class="clipboard icon"></i> 電子回覧板</a>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="book icon"></i> 回覧板の詳細</div>
+</div>
+<section id="board">
+  <article class="ui fluid card">
+    <div class="content">
+      <div class="header">{{ document.title }}</div>
+      <div class="meta">
+        <i class="user icon"></i>
+        {{ document.author.name }},
+        <i class="clock outline icon"></i>
+        {{ created_at | moment }}
+      </div>
+      <div class="description">
+        <p>{{ document.content }}</p>
+      </div>
+    </div>
+  </article>
+</section>
