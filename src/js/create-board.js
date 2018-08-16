@@ -38,6 +38,7 @@ onClick("#submit", () => {
 
                     hideLoader();
                 })
+                .execute();
         })
         .execute();
 });
