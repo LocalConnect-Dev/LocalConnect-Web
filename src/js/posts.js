@@ -16,8 +16,3 @@ $(() => {
             .execute();
     });
 });
-
-onClick("#create", () => {
-    showLoader();
-    move(URI("/create-post.view", location.href));
-});

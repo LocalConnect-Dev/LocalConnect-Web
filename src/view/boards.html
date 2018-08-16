@@ -7,10 +7,10 @@
 </div>
 <br>
 <br>
-<button id="create" class="ui positive left labeled icon button">
+<a href="/create-board.view" class="ui positive left labeled icon button">
   <i class="plus icon"></i>
   新しい回覧板を作成する
-</button>
+</a>
 <section id="boards">
   <article class="ui fluid card" v-for="board in boards">
     <div class="content">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="extra content">
-      <a class="ui button" :href="'/board.view?id=' + board.id">
+      <a class="ui left labeled icon button" :href="'/board.view?id=' + board.id">
         <i class="book icon"></i>
         読む
       </a>
