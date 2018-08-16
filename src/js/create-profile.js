@@ -31,12 +31,16 @@ onClick("#submit", () => {
             mottoes: mottoes
         })
         .onSuccess(profile => {
-            $("#created-profile")
+            $("#created-profile").clone().prop("id", "created-profile-instance").appendTo("body");
+            $("#created-profile-instance")
                 .modal({
                     closable: false,
                     onApprove: () => {
                         showLoader();
                         move(URI("/mypage.view", location.href));
+                    },
+                    onHidden: () => {
+                        $("body > div:last-child").remove();
                     }
                 })
                 .modal("show");

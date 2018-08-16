@@ -26,12 +26,16 @@ onClick("#submit", () => {
                     document: document.id
                 })
                 .onSuccess(board => {
-                    $("#created-board")
+                    $("#created-board").clone().prop("id", "created-board-instance").appendTo("body");
+                    $("#created-board-instance")
                         .modal({
                             closable: false,
                             onApprove: () => {
                                 showLoader();
                                 move(URI("/board.view?id=" + board.id, location.href));
+                            },
+                            onHidden: () => {
+                                $("body > div:last-child").remove();
                             }
                         })
                         .modal("show");

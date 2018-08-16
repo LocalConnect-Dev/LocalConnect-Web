@@ -26,20 +26,24 @@ onClick("#submit", () => {
                     document: document.id
                 })
                 .onSuccess(post => {
+                    $("#created-post").clone().prop("id", "created-post-instance").appendTo("body");
+
+                    const selector = "#created-post-instance";
                     new Vue({
-                        el: "#created-post",
+                        el: selector,
                         data: post
                     });
 
-                    $("#created-post")
-                        .modal({
-                            closable: false,
-                            onApprove: () => {
-                                showLoader();
-                                move(URI("/posts.view", location.href));
-                            }
-                        })
-                        .modal("show");
+                    const element = $(selector);
+                    element.modal({
+                        closable: false,
+                        onApprove: () => {
+                            move(URI("/posts.view", location.href));
+                        },
+                        onHidden: () => {
+                            $("body > div:last-child").remove();
+                        }
+                    }).modal("show");
 
                     hideLoader();
                 })
