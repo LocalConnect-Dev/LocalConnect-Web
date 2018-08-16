@@ -146,6 +146,10 @@ const hideLoader = () => {
     $("#loader").removeClass("active");
 };
 
+Vue.filter('replaceLineBreaks', str => {
+    return str.split("\n").join("<br>");
+});
+
 $(document).ajaxError(() => {
     hideLoader();
     fetchError("ページを読み込めませんでした");

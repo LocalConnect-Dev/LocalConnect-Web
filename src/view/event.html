@@ -24,7 +24,7 @@
             {{ created_at | moment }}
           </div>
           <div class="description">
-            <p class="pre">{{ document.content }}</p>
+            <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
           </div>
         </div>
       </article>
