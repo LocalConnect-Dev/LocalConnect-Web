@@ -92,6 +92,38 @@ const onClick = (selector, callback) => {
     $("body").on("click", selector, callback);
 };
 
+const commonOnClick = () => {
+    onClick("a", e => {
+        e.preventDefault();
+
+        let uri;
+        if (Cookies.get("LocalConnect-Session")) {
+            const path = $(e.currentTarget).attr("href");
+            uri = URI(path, location.href);
+        } else {
+            uri = URI("/login.view", location.href);
+        }
+
+        showLoader();
+        move(uri);
+
+        return false;
+    });
+
+    onClick("#go-top", () => {
+        $("html, body").animate({ scrollTop: 0 }, "ease");
+    });
+};
+
+const offClick = () => {
+    $("body").off("click");
+};
+
+const resetClick = () => {
+    offClick();
+    commonOnClick();
+};
+
 const loadView = uri => {
     console.log("Loading view");
     if (uri.suffix() === "view") {
@@ -101,6 +133,7 @@ const loadView = uri => {
 };
 
 const move = uri => {
+    resetClick();
     loadView(uri);
     window.history.pushState(null, null, uri.toString());
 };
@@ -143,6 +176,7 @@ $(() => {
         });
 
     showLoader();
+    commonOnClick();
 
     if (Cookies.get("LocalConnect-Session")) {
         if (location.href.endsWith("/")) {
@@ -153,25 +187,4 @@ $(() => {
     } else {
         move(URI("/login.view", location.href));
     }
-});
-
-onClick("a", e => {
-    e.preventDefault();
-
-    let uri;
-    if (Cookies.get("LocalConnect-Session")) {
-        const path = $(e.currentTarget).attr("href");
-        uri = URI(path, location.href);
-    } else {
-        uri = URI("/login.view", location.href);
-    }
-
-    showLoader();
-    move(uri);
-
-    return false;
-});
-
-onClick("#go-top", () => {
-    $("html, body").animate({ scrollTop: 0 }, "ease");
 });

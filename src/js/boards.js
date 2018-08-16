@@ -19,3 +19,8 @@ $(() => {
             .execute();
     });
 });
+
+onClick("#create", () => {
+    showLoader();
+    move(URI("/create-board.view", location.href));
+});
