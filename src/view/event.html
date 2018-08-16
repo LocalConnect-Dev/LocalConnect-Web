@@ -1,0 +1,63 @@
+<div class="ui breadcrumb">
+  <a class="section"><i class="home icon"></i> ホーム</a>
+  <i class="right angle icon divider"></i>
+  <a class="section"><i class="calendar alternate icon"></i> イベント</a>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="book icon"></i> イベントの詳細</div>
+</div>
+<br>
+<br>
+<a href="/events.view" class="ui primary left labeled icon button">
+  <i class="backward icon"></i>
+  一覧へ戻る
+</a>
+<section id="event">
+  <div class="ui stackable grid">
+    <div class="eleven wide column">
+      <article class="ui fluid card">
+        <div class="content">
+          <div class="header">{{ document.title }}</div>
+          <div class="meta">
+            <i class="user icon"></i>
+            {{ document.author.name }},
+            <i class="clock outline icon"></i>
+            {{ created_at | moment }}
+          </div>
+          <div class="description">
+            <p class="pre">{{ document.content }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="five wide column">
+      <div class="ui card">
+        <div class="content event-date">
+          <div class="header">開催日時</div>
+          <br>
+          <p>{{ date | year }} 年</p>
+          <h1>
+            {{ date | month }}
+            <small>月</small>
+            {{ date | day }}
+            <small>日</small>
+          </h1>
+          <p>({{ date | dayOfWeek }}) {{ date | time }}～</p>
+        </div>
+        <div class="extra content">
+          <a class="ui positive left labeled icon button">
+            <i class="user plus icon"></i>
+            参加登録する
+          </a>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content event-date">
+          <div class="header">
+            参加者
+            <span class="ui circular label">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,7 +9,7 @@
   <article class="ui fluid card event-card" v-for="event in events">
     <div class="content">
       <div class="ui stackable grid">
-        <div class="three wide column event-date">
+        <div class="three wide column event-date event-date-right">
           <p>{{ event.date | year }} 年</p>
           <h1>
             {{ event.date | month }}
@@ -24,7 +24,7 @@
             <h3>{{ event.document.title }}</h3>
           </div>
           <div class="description">
-            <p>{{ event.document.content }}</p>
+            <p>{{ event.document.content | summary }}</p>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
         <i class="user plus icon"></i>
         参加登録する
       </a>
-      <a class="ui left labeled icon button">
+      <a :href="'/event.view?id=' + event.id" class="ui left labeled icon button">
         <i class="book icon"></i>
         詳細を見る
       </a>
