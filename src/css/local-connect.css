@@ -38,6 +38,10 @@ h3 {
     margin-bottom: 0;
 }
 
+p.pre {
+    white-space: pre;
+}
+
 #profile, #posts {
     padding: 20px 7px 5px;
 }

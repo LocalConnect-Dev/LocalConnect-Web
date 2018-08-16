@@ -10,7 +10,8 @@ $(() => {
                         boards: boards
                     },
                     filters: {
-                        moment: date => moment.unix(date).fromNow()
+                        moment: date => moment.unix(date).fromNow(),
+                        summary: str => str.substr(0, 32) + "…"
                     }
                 });
 

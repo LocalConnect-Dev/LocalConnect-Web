@@ -20,7 +20,7 @@
         {{ board.created_at | moment }}
       </div>
       <div class="description">
-        <p>{{ board.document.content }}</p>
+        <p>{{ board.document.content | summary }}</p>
       </div>
     </div>
     <div class="extra content">
