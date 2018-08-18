@@ -11,27 +11,27 @@
   <i class="backward icon"></i>
   一覧へ戻る
 </a>
-<section id="event">
+<section>
   <div class="ui stackable grid">
-    <div class="eleven wide column">
+    <div id="document" class="eleven wide column">
       <article class="ui fluid card">
         <div class="content">
-          <div class="header">{{ document.title }}</div>
+          <div class="header">{{ title }}</div>
           <div class="meta">
             <i class="user icon"></i>
-            {{ document.author.name }},
+            {{ author.name }},
             <i class="clock outline icon"></i>
             {{ created_at | moment }}
           </div>
           <div class="description">
-            <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
+            <p v-html="$options.filters.replaceLineBreaks(content)"></p>
           </div>
         </div>
       </article>
     </div>
     <div class="five wide column">
       <div class="ui card">
-        <div class="content event-date">
+        <div id="event" class="content event-date">
           <div class="header">開催日時</div>
           <br>
           <p>{{ date | year }} 年</p>
@@ -44,17 +44,25 @@
           <p>({{ date | dayOfWeek }}) {{ date | time }}～</p>
         </div>
         <div class="extra content">
-          <a class="ui positive left labeled icon button">
+          <button id="join" class="ui positive left labeled icon button"
+                  :data-event="id">
             <i class="user plus icon"></i>
             参加登録する
-          </a>
+          </button>
         </div>
       </div>
-      <div class="ui card">
+      <div id="attendances" class="ui card">
         <div class="content event-date">
           <div class="header">
             参加者
-            <span class="ui circular label">0</span>
+            <span class="ui circular label">
+              {{ count }}
+            </span>
+          </div>
+          <br>
+          <div v-for="attendance in attendances">
+            <i class="large user icon"></i>
+            {{ attendance.user.name }}
           </div>
         </div>
       </div>
