@@ -138,11 +138,13 @@ h3 {
     font-family: inherit;
 }
 
-.event-date h1 {
+.event-date h1,
+.event-attendances h1 {
     margin: 0;
 }
 
-.event-date p {
+.event-date p,
+.event-attendances p {
     margin-bottom: 0 !important;
 }
 
