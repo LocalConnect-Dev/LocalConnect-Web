@@ -2,6 +2,40 @@ body {
     background-color: #dcdcdc;
 }
 
+body.font-medium p,
+body.font-medium li,
+body.font-medium h3,
+body.font-medium h4,
+body.font-medium label,
+body.font-medium input,
+body.font-medium textarea,
+body.font-medium #keyboard,
+body.font-medium .breadcrumb,
+body.font-medium .meta,
+body.font-medium .button,
+body.font-medium .event-date > div,
+body.font-medium .header {
+    font-size: 1.2em !important;
+    line-height: 1.4em !important;
+}
+
+body.font-large p,
+body.font-large li,
+body.font-large h3,
+body.font-large h4,
+body.font-large label,
+body.font-large input,
+body.font-large textarea,
+body.font-large #keyboard,
+body.font-large .breadcrumb,
+body.font-large .meta,
+body.font-large .button,
+body.font-large .event-date > div,
+body.font-large .header {
+    font-size: 1.5em !important;
+    line-height: 1.5em !important;
+}
+
 header {
     text-align: center;
     padding: 40px 15px 5px;
@@ -76,8 +110,8 @@ h3 {
     width: 197px !important;
 }
 
-#go-top {
-    margin: 1rem 0;
+#footer > button {
+    margin: 1rem 5px 2rem;
 }
 
 .nav-grid-left {

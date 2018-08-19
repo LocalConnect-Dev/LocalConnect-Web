@@ -113,6 +113,23 @@ const commonOnClick = () => {
     onClick("#go-top", () => {
         $("html, body").animate({ scrollTop: 0 }, "ease");
     });
+    onClick("#font-small", () => {
+        $("body").attr("class", "");
+        $(".font-control").removeClass("active");
+        $("#font-small").addClass("active");
+    });
+
+    onClick("#font-medium", () => {
+        $("body").attr("class", "font-medium");
+        $(".font-control").removeClass("active");
+        $("#font-medium").addClass("active");
+    });
+
+    onClick("#font-large", () => {
+        $("body").attr("class", "font-large");
+        $(".font-control").removeClass("active");
+        $("#font-large").addClass("active");
+    });
 
     onClick(".join-event", e => {
         $("#joining-event").clone().prop("id", "joining-event-instance").appendTo("body");

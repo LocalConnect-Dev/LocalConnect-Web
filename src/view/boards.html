@@ -14,7 +14,9 @@
 <section id="boards">
   <article class="ui fluid card" v-for="board in boards">
     <div class="content">
-      <div class="header">{{ board.document.title }}</div>
+      <div class="header">
+        <h3>{{ board.document.title }}</h3>
+      </div>
       <div class="meta">
         <i class="clock outline icon"></i>
         {{ board.created_at | moment }}

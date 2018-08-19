@@ -16,7 +16,9 @@
     <div id="document" class="eleven wide column">
       <article class="ui fluid card">
         <div class="content">
-          <div class="header">{{ title }}</div>
+          <div class="header">
+            <h3>{{ title }}</h3>
+          </div>
           <div class="meta">
             <i class="user icon"></i>
             {{ author.name }},
@@ -32,7 +34,9 @@
     <div class="five wide column">
       <div id="event" class="ui card">
         <div class="content event-date">
-          <div class="header">開催日時</div>
+          <div class="header">
+            <h3>開催日時</h3>
+          </div>
           <br>
           <p>{{ date | year }} 年</p>
           <h1>
@@ -54,10 +58,12 @@
       <div id="attendances" class="ui card">
         <div class="content event-date">
           <div class="header">
-            参加者
-            <span class="ui circular label">
-              {{ count }}
-            </span>
+            <h3>
+              参加者
+              <span class="ui large circular label">
+                {{ count }}
+              </span>
+            </h3>
           </div>
           <br>
           <div v-for="attendance in attendances">
