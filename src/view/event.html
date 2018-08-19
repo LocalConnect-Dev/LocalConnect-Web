@@ -30,8 +30,8 @@
       </article>
     </div>
     <div class="five wide column">
-      <div class="ui card">
-        <div id="event" class="content event-date">
+      <div id="event" class="ui card">
+        <div class="content event-date">
           <div class="header">開催日時</div>
           <br>
           <p>{{ date | year }} 年</p>
@@ -44,7 +44,7 @@
           <p>({{ date | dayOfWeek }}) {{ date | time }}～</p>
         </div>
         <div class="extra content">
-          <button id="join" class="ui positive left labeled icon button"
+          <button class="ui positive left labeled icon button join-event"
                   :data-event="id">
             <i class="user plus icon"></i>
             参加登録する

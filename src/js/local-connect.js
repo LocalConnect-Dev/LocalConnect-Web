@@ -113,6 +113,48 @@ const commonOnClick = () => {
     onClick("#go-top", () => {
         $("html, body").animate({ scrollTop: 0 }, "ease");
     });
+
+    onClick(".join-event", e => {
+        $("#joining-event").clone().prop("id", "joining-event-instance").appendTo("body");
+        $("#joining-event-instance")
+            .modal({
+                closable: false,
+                onApprove: () => {
+                    showLoader();
+                    window.isApproved = true;
+                },
+                onHidden: () => {
+                    $("body > div:last-child").remove();
+
+                    if (!window.isApproved) return;
+                    new APICall("events/join")
+                        .authorize()
+                        .post()
+                        .params({
+                            event: $(e.currentTarget).data("event")
+                        })
+                        .onSuccess(attendance => {
+                            hideLoader();
+
+                            $("#joined-event").clone().prop("id", "joined-event-instance").appendTo("body");
+                            $("#joined-event-instance")
+                                .modal({
+                                    closable: false,
+                                    onApprove: () => {
+                                        showLoader();
+                                        move(URI("/event.view?id=" + attendance.event.id, location.href));
+                                    },
+                                    onHidden: () => {
+                                        $("body > div:last-child").remove();
+                                    }
+                                })
+                                .modal("show");
+                        })
+                        .execute();
+                }
+            })
+            .modal("show");
+    });
 };
 
 const offClick = () => {
