@@ -187,6 +187,9 @@ const commonOnClick = () => {
                 button.removeClass("loading");
                 button.removeClass("red");
                 button.children("i").attr("class", "check icon");
+
+                const label = button.parent().children("label");
+                label.text(parseInt(label.text()) + 1);
             })
             .execute();
     });
