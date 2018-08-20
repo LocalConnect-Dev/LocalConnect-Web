@@ -11,34 +11,34 @@
   <i class="backward icon"></i>
   一覧へ戻る
 </a>
-<section>
+<section id="event">
   <div class="ui stackable grid">
-    <div id="document" class="eleven wide column">
+    <div class="eleven wide column">
       <article class="ui fluid card">
         <div class="content">
           <div class="header">
-            <h3>{{ title }}</h3>
+            <h3>{{ document.title }}</h3>
           </div>
           <div class="meta">
             <i class="user icon"></i>
             {{ author.name }},
             <i class="clock outline icon"></i>
-            {{ created_at | moment }}
+            {{ document.created_at | moment }}
           </div>
           <div class="description">
-            <p v-html="$options.filters.replaceLineBreaks(content)"></p>
+            <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
           </div>
         </div>
       </article>
     </div>
     <div class="five wide column">
-      <div id="event" class="ui card">
+      <div class="ui card">
         <div class="content event-date">
           <div class="header">
             <h3>開催日時</h3>
           </div>
           <br>
-          <p>{{ date | year }} 年</p>
+          <p>{{date | year }} 年</p>
           <h1>
             {{ date | month }}
             <small>月</small>
@@ -55,13 +55,13 @@
           </button>
         </div>
       </div>
-      <div id="attendances" class="ui card">
+      <div class="ui card">
         <div class="content event-attendances">
           <div class="header">
             <h3>
               参加者
               <span class="ui large circular label">
-                {{ count }}
+                {{ attendances | count }}
               </span>
             </h3>
           </div>

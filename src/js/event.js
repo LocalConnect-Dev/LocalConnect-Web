@@ -8,42 +8,20 @@ $(() => {
             })
             .onSuccess(event => {
                 new Vue({
-                    el: "#document",
-                    data: event.document,
-                    filters: {
-                        moment: date => moment.unix(date).fromNow()
-                    }
-                });
-
-                new Vue({
                     el: "#event",
                     data: event,
                     filters: {
+                        moment: date => moment.unix(date).fromNow(),
                         year: date => moment.unix(date).format("Y"),
                         month: date => moment.unix(date).format("MM"),
                         day: date => moment.unix(date).format("DD"),
                         dayOfWeek: date => moment.unix(date).format("dd"),
-                        time: date => moment.unix(date).format("kk:mm")
+                        time: date => moment.unix(date).format("kk:mm"),
+                        count: attendances => attendances.length
                     }
                 });
 
-                new APICall("events/attendances")
-                    .authorize()
-                    .params({
-                        event: event.id
-                    })
-                    .onSuccess(attendances => {
-                        new Vue({
-                            el: "#attendances",
-                            data: {
-                                attendances: attendances,
-                                count: attendances.length
-                            }
-                        });
-
-                        hideLoader();
-                    })
-                    .execute();
+                hideLoader();
             })
             .execute();
     });
