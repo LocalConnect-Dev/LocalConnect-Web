@@ -8,6 +8,19 @@ $(() => {
                     el: "#posts",
                     data: {
                         posts: posts
+                    },
+                    filters: {
+                        count: likes => likes.length
+                    }
+                });
+
+                $(".like-post").each((index, element) => {
+                    const button = $(element);
+                    const post = posts.filter(post => post.id === button.data("post"))[0];
+                    if (post.likes.filter(like => like.user.id === window.user.id).length > 0) {
+                        button.addClass("disabled");
+                        button.removeClass("red");
+                        button.children("i").attr("class", "check icon");
                     }
                 });
 

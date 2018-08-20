@@ -172,6 +172,24 @@ const commonOnClick = () => {
             })
             .modal("show");
     });
+
+    onClick(".like-post", e => {
+        const button = $(e.currentTarget);
+        button.addClass("loading disabled");
+
+        new APICall("posts/like")
+            .authorize()
+            .post()
+            .params({
+                post: button.data("post")
+            })
+            .onSuccess(() => {
+                button.removeClass("loading");
+                button.removeClass("red");
+                button.children("i").attr("class", "check icon");
+            })
+            .execute();
+    });
 };
 
 const offClick = () => {
@@ -241,13 +259,20 @@ $(() => {
     showLoader();
     commonOnClick();
 
-    if (Cookies.get("LocalConnect-Session")) {
-        if (location.href.endsWith("/")) {
-            move(URI("/boards.view", location.href));
-        } else {
-            loadView(URI(location.href));
-        }
-    } else {
-        move(URI("/login.view", location.href));
-    }
+    new APICall("users/me")
+        .authorize()
+        .onSuccess(user => {
+            window.user = user;
+
+            if (Cookies.get("LocalConnect-Session")) {
+                if (location.href.endsWith("/")) {
+                    move(URI("/boards.view", location.href));
+                } else {
+                    loadView(URI(location.href));
+                }
+            } else {
+                move(URI("/login.view", location.href));
+            }
+        })
+        .execute();
 });

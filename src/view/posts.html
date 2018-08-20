@@ -27,6 +27,19 @@
             <p>{{ post.document.content }}</p>
           </div>
         </div>
+        <div class="extra content">
+          <div class="ui labeled button">
+            <button class="ui left icon labeled red button like-post"
+                    :class="post.likes | count"
+                    :data-post="post.id">
+              <i class="heart icon"></i>
+              いいね！
+            </button>
+            <label class="ui basic left pointing label">
+              {{ post.likes | count }}
+            </label>
+          </div>
+        </div>
       </article>
     </div>
   </div>
