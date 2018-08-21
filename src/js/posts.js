@@ -1,5 +1,5 @@
 $(() => {
-    console.log("Loading template of login");
+    console.log("Loading template of posts");
     $("#wrapper").load("view/posts.html", () => {
         new APICall("posts/list_group")
             .authorize()
