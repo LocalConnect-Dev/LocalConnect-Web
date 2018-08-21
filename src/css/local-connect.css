@@ -12,7 +12,7 @@ body.font-medium textarea,
 body.font-medium #keyboard,
 body.font-medium .breadcrumb,
 body.font-medium .meta,
-body.font-medium .button,
+body.font-medium .button:not(.font-control-ignore),
 body.font-medium .event-date > div,
 body.font-medium .header {
     font-size: 1.2em !important;
@@ -29,7 +29,7 @@ body.font-large textarea,
 body.font-large #keyboard,
 body.font-large .breadcrumb,
 body.font-large .meta,
-body.font-large .button,
+body.font-large .button:not(.font-control-ignore),
 body.font-large .event-date > div,
 body.font-large .header {
     font-size: 1.5em !important;
