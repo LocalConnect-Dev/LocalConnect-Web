@@ -65,6 +65,28 @@ class APICall {
     }
 }
 
+const setCookieForever = (key, value) => {
+    Cookies.set(key, value, { expires: 9999999 });
+};
+
+const setFontSmall = () => {
+    $("body").attr("class", "");
+    $(".font-control").removeClass("active");
+    $("#font-small").addClass("active");
+};
+
+const setFontMedium = () => {
+    $("body").attr("class", "font-medium");
+    $(".font-control").removeClass("active");
+    $("#font-medium").addClass("active");
+};
+
+const setFontLarge = () => {
+    $("body").attr("class", "font-large");
+    $(".font-control").removeClass("active");
+    $("#font-large").addClass("active");
+};
+
 const fetchError = error => {
     $("#error").clone().prop("id", "error-instance").appendTo("body");
 
@@ -116,22 +138,20 @@ const commonOnClick = () => {
     onClick("#go-top", () => {
         $("html, body").animate({ scrollTop: 0 }, "ease");
     });
+
     onClick("#font-small", () => {
-        $("body").attr("class", "");
-        $(".font-control").removeClass("active");
-        $("#font-small").addClass("active");
+        setFontSmall();
+        setCookieForever("LocalConnect-FontControl", "font-small");
     });
 
     onClick("#font-medium", () => {
-        $("body").attr("class", "font-medium");
-        $(".font-control").removeClass("active");
-        $("#font-medium").addClass("active");
+        setFontMedium();
+        setCookieForever("LocalConnect-FontControl", "font-medium");
     });
 
     onClick("#font-large", () => {
-        $("body").attr("class", "font-large");
-        $(".font-control").removeClass("active");
-        $("#font-large").addClass("active");
+        setFontLarge();
+        setCookieForever("LocalConnect-FontControl", "font-large");
     });
 
     onClick(".join-event", e => {
@@ -247,6 +267,14 @@ $(() => {
             rel: "stylesheet",
             href: "css/migu.css"
         }).appendTo("head");
+    }
+
+    console.log("Applying font control");
+    const fontControl = Cookies.get("LocalConnect-FontControl");
+    if (fontControl === "font-medium") {
+        setFontMedium();
+    } else if (fontControl === "font-large") {
+        setFontLarge();
     }
 
     console.log("Loading modals");
