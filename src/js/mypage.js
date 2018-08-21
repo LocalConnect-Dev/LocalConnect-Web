@@ -8,7 +8,7 @@ $(() => {
                     .authorize()
                     .onSuccess(posts => {
                         new Vue({
-                            el: "#wrapper",
+                            el: "#mypage",
                             data: {
                                 profile: profile,
                                 posts: posts
