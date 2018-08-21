@@ -73,6 +73,9 @@ const fetchError = error => {
         el: selector,
         data: {
             error: error
+        },
+        filters: {
+            i18n: error => window.errorDb[error]
         }
     });
 
@@ -248,6 +251,16 @@ $(() => {
 
     console.log("Loading modals");
     $("#modals").load("view/modals.html");
+
+    console.log("Loading error database");
+    fetch("/resources/errors.json")
+        .then(response => response.json())
+        .then(json => {
+            window.errorDb = json;
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
     console.log("Loading kana database");
     fetch("/resources/kana.json")

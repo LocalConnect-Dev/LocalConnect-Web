@@ -1,0 +1,22 @@
+{
+  "INVALID_NUMBER": "不正な数値です。数値以外の文字がないこと、半角で入力していることを確認してください。",
+
+  "INVALID_URI": "不正なURLです。",
+  "INVALID_METHOD": "不正なメソッドでリクエストされました。",
+  "INVALID_PARAMETER": "パラメータが足りないか、不正です。",
+
+  "INVALID_SESSION_SECRET": "不正なセッションです。ログインし直してください。",
+  "INVALID_USER_SECRET": "不正なトークンです。入力に間違いがないか、無効なトークンでないかを確認してください。",
+
+  "ENDPOINT_NOT_FOUND": "エンドポイントが見つかりません。サーバ側でまだ機能が実装されていない可能性があります。",
+
+  "REGION_NOT_FOUND": "地域が見つかりませんでした。",
+  "GROUP_NOT_FOUND": "グループが見つかりませんでした。",
+  "USER_NOT_FOUND": "ユーザが見つかりませんでした。",
+  "BOARD_NOT_FOUND": "回覧板が見つかりませんでした。",
+  "EVENT_NOT_FOUND": "イベントが見つかりませんでした。",
+  "POST_NOT_FOUND": "投稿が見つかりませんでした。",
+  "PROFILE_NOT_FOUND": "プロフィールが見つかりませんでした。",
+
+  "UNKNOWN_ERROR": "不明なエラーです。開発者に連絡してください。"
+}
