@@ -4,9 +4,9 @@
     <i class="right angle icon divider"></i>
     <div class="section"><i class="address card icon"></i> マイページ</div>
     <i class="right angle icon divider"></i>
-    <div class="active section"><i class="user icon"></i> {{ profile.user.name }}</div>
+    <div class="active section" v-cloak><i class="user icon"></i> {{ profile.user.name }}</div>
   </div>
-  <section id="profile">
+  <section id="profile" v-cloak>
     <div class="ui stackable one column grid">
       <div class="column">
         <article class="ui fluid card">
@@ -36,8 +36,8 @@
       </div>
     </div>
   </section>
-  <h3>{{ profile.user.name }} さんの投稿</h3>
-  <section id="posts">
+  <h3 v-cloak>{{ profile.user.name }} さんの投稿</h3>
+  <section id="posts" v-cloak>
     <div class="ui stackable two column grid">
       <div class="column" v-for="post in posts">
         <article class="ui fluid card post-card user-post">
