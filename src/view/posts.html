@@ -12,8 +12,8 @@
   新しい投稿を作成する
 </a>
 <h3>最近の投稿</h3>
-<section id="posts" v-cloak>
-  <div class="ui stackable two column grid">
+<section id="posts">
+  <div id="posts-block" class="ui stackable two column grid objects-block" v-cloak>
     <div class="column" v-for="post in posts">
       <article class="ui fluid card post-card">
         <div class="content">
@@ -46,4 +46,4 @@
     </div>
   </div>
 </section>
-</div>
+<div id="extra-loader" class="ui centered inline loader"></div>

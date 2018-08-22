@@ -11,25 +11,28 @@
   <i class="plus icon"></i>
   新しい回覧板を作成する
 </a>
-<section id="boards" v-cloak="">
-  <article class="ui fluid card" v-for="board in boards">
-    <div class="content">
-      <div class="header">
-        <h3>{{ board.document.title }}</h3>
+<section id="boards">
+  <div id="boards-block" class="objects-block" v-cloak>
+    <article class="ui fluid card" v-for="board in boards">
+      <div class="content">
+        <div class="header">
+          <h3>{{ board.document.title }}</h3>
+        </div>
+        <div class="meta">
+          <i class="clock outline icon"></i>
+          {{ board.created_at | moment }}
+        </div>
+        <div class="description">
+          <p>{{ board.document.content | summary }}</p>
+        </div>
       </div>
-      <div class="meta">
-        <i class="clock outline icon"></i>
-        {{ board.created_at | moment }}
+      <div class="extra content">
+        <a class="ui left labeled icon button" :href="'/board.view?id=' + board.id">
+          <i class="book icon"></i>
+          読む
+        </a>
       </div>
-      <div class="description">
-        <p>{{ board.document.content | summary }}</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <a class="ui left labeled icon button" :href="'/board.view?id=' + board.id">
-        <i class="book icon"></i>
-        読む
-      </a>
-    </div>
-  </article>
+    </article>
+  </div>
 </section>
+<div id="extra-loader" class="ui centered inline loader"></div>

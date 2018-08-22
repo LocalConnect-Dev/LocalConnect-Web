@@ -117,6 +117,16 @@ const onClick = (selector, callback) => {
     $("body").on("click", selector, callback);
 };
 
+const onScrollToEnd = callback => {
+    $(window).on("scroll", () => {
+        const scrollHeight = $(document).height();
+        const scrollPosition = $(window).height() + $(window).scrollTop();
+        if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+            callback();
+        }
+    });
+};
+
 const commonOnClick = () => {
     onClick("a", e => {
         e.preventDefault();
@@ -222,9 +232,19 @@ const offClick = () => {
     $("body").off("click");
 };
 
-const resetClick = () => {
+const offScroll = () => {
+    $(window).off("scroll");
+};
+
+const resetEvents = () => {
     offClick();
+    offScroll();
     commonOnClick();
+};
+
+const resetVariables = () => {
+    window.allLoaded = false;
+    window.lastObject = undefined;
 };
 
 const loadView = uri => {
@@ -236,7 +256,8 @@ const loadView = uri => {
 };
 
 const move = uri => {
-    resetClick();
+    resetEvents();
+    resetVariables();
     loadView(uri);
     window.history.pushState(null, null, uri.toString());
 };

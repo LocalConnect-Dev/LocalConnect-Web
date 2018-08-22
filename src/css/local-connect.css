@@ -1,5 +1,5 @@
 [v-cloak] {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -114,6 +114,10 @@ h3 {
     width: 197px !important;
 }
 
+#extra-loader {
+    margin-top: 1rem;
+}
+
 #footer > button {
     margin: 1rem 5px 2rem;
 }
@@ -140,6 +144,14 @@ h3 {
 
 .ui.cards > .card > .content > .header, .ui.card > .content > .header {
     font-family: inherit;
+}
+
+.objects-block {
+    margin: 0 0 1rem !important;
+}
+
+.objects-block:last-child {
+    margin-bottom: 0;
 }
 
 .event-date h1,
