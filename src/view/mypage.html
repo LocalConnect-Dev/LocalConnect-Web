@@ -1,4 +1,4 @@
-<div id="mypage">
+<div id="profile">
   <div class="ui breadcrumb">
     <div class="section"><i class="home icon"></i> ホーム</div>
     <i class="right angle icon divider"></i>
@@ -6,7 +6,7 @@
     <i class="right angle icon divider"></i>
     <div class="active section" v-cloak><i class="user icon"></i> {{ profile.user.name }}</div>
   </div>
-  <section id="profile" v-cloak>
+  <section v-cloak>
     <div class="ui stackable one column grid">
       <div class="column">
         <article class="ui fluid card">
@@ -37,18 +37,31 @@
     </div>
   </section>
   <h3 v-cloak>{{ profile.user.name }} さんの投稿</h3>
-  <section id="posts" v-cloak>
-    <div class="ui stackable two column grid">
-      <div class="column" v-for="post in posts">
-        <article class="ui fluid card post-card user-post">
-          <div class="content">
-            <div class="description">
-              <h4>{{ post.document.title }}</h4>
-              <p>{{ post.document.content }}</p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
 </div>
+<section id="posts">
+  <div id="posts-block" class="ui stackable two column grid objects-block" v-cloak>
+    <div class="column" v-for="post in posts">
+      <article class="ui fluid card post-card user-post">
+        <div class="content">
+          <div class="description">
+            <h4>{{ post.document.title }}</h4>
+            <p>{{ post.document.content }}</p>
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui labeled button font-control-ignore">
+            <button class="ui left icon labeled red button like-post"
+                    :class="post.likes | count"
+                    :data-post="post.id">
+              <i class="heart icon"></i>
+              いいね！
+            </button>
+            <label class="ui basic left pointing label">
+              {{ post.likes | count }}
+            </label>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
