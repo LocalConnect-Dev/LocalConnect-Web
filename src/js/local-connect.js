@@ -113,6 +113,98 @@ const fetchError = error => {
     hideLoader();
 };
 
+const renderBoards = boards => {
+    if (boards.length === 0) {
+        window.allLoaded = true;
+    } else {
+        window.lastObject = boards[boards.length - 1];
+
+        $("#boards-block")
+            .clone()
+            .attr("id", "boards-block-instance")
+            .appendTo("#boards");
+
+        new Vue({
+            el: "#boards-block-instance",
+            data: {
+                boards: boards
+            },
+            filters: {
+                moment: date => moment.unix(date).fromNow(),
+                summary: str => str.substr(0, 32) + "…"
+            }
+        });
+
+        $("#boards-block-instance").removeAttr("id");
+    }
+};
+
+const renderEvents = events => {
+    if (events.length === 0) {
+        window.allLoaded = true;
+    } else {
+        window.lastObject = events[events.length - 1];
+
+        $("#events-block")
+            .clone()
+            .attr("id", "events-block-instance")
+            .appendTo("#events");
+
+        new Vue({
+            el: "#events-block-instance",
+            data: {
+                events: events
+            },
+            filters: {
+                year: date => moment.unix(date).format("Y"),
+                month: date => moment.unix(date).format("MM"),
+                day: date => moment.unix(date).format("DD"),
+                dayOfWeek: date => moment.unix(date).format("dd"),
+                time: date => moment.unix(date).format("kk:mm"),
+                summary: str => str.substr(0, 32) + "…"
+            }
+        });
+
+        $("#events-block-instance").removeAttr("id");
+    }
+};
+
+const renderPosts = posts => {
+    if (posts.length === 0) {
+        window.allLoaded = true;
+    } else {
+        window.lastObject = posts[posts.length - 1];
+
+        $("#posts-block")
+            .clone()
+            .attr("id", "posts-block-instance")
+            .appendTo("#posts");
+
+        new Vue({
+            el: "#posts-block-instance",
+            data: {
+                posts: posts
+            },
+            filters: {
+                count: likes => likes.length
+            }
+        });
+
+        $(".like-post").each((index, element) => {
+            const button = $(element);
+            const post = posts.filter(post => post.id === button.data("post"))[0];
+            if (!post) return;
+            if (post.likes.filter(like => like.user.id === window.user.id).length > 0) {
+                button.addClass("disabled");
+                button.removeClass("red");
+                button.children("i").attr("class", "check icon");
+            }
+        });
+
+        $("#posts-block-instance").removeAttr("id");
+    }
+};
+
 const onClick = (selector, callback) => {
     $("body").on("click", selector, callback);
 };
