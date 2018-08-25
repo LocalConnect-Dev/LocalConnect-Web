@@ -10,6 +10,7 @@ $(() => {
                         new Vue({
                             el: "#profile",
                             data: {
+                                avatar: window.user.avatar,
                                 profile: profile
                             }
                         });
