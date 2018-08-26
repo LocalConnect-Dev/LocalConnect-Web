@@ -25,6 +25,13 @@
       </div>
       <div class="description">
         <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
+        <div class="attachments" v-if="document.attachments">
+          <div class="attachment" v-for="attachment in document.attachments">
+            <img class="ui fluid image"
+                 :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                 v-if="attachment.type == 'Image'">
+          </div>
+        </div>
       </div>
     </div>
   </article>
