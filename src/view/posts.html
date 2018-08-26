@@ -27,6 +27,13 @@
           <div class="description">
             <h4>{{ post.document.title }}</h4>
             <p>{{ post.document.content }}</p>
+            <div class="attachments" v-if="post.document.attachments">
+              <div class="attachment" v-for="attachment in post.document.attachments">
+                <img class="ui fluid image"
+                     :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                     v-if="attachment.type == 'Image'">
+              </div>
+            </div>
           </div>
         </div>
         <div class="extra content">

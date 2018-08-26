@@ -150,6 +150,10 @@ h3 {
     margin-bottom: 0;
 }
 
+.attachments {
+    margin-top: 15px;
+}
+
 .event-date h1,
 .event-attendances h1 {
     margin: 0;
