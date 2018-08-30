@@ -362,6 +362,17 @@ const hideLoader = () => {
     $("#loader").removeClass("active");
 };
 
+const encodeToken = token => {
+    let result = "";
+
+    [].forEach.call(token, ch => {
+        result = result.concat(window.kanaDb[ch]);
+    });
+
+    console.log(result);
+    return result;
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -416,20 +427,20 @@ $(() => {
     showLoader();
     commonOnClick();
 
-    new APICall("users/me")
-        .authorize()
-        .onSuccess(user => {
-            window.user = user;
+    if (Cookies.get("LocalConnect-Session")) {
+        new APICall("users/me")
+            .authorize()
+            .onSuccess(user => {
+                window.user = user;
 
-            if (Cookies.get("LocalConnect-Session")) {
                 if (location.href.endsWith("/")) {
                     move(URI("/boards.view", location.href));
                 } else {
                     loadView(URI(location.href));
                 }
-            } else {
-                move(URI("/login.view", location.href));
-            }
-        })
-        .execute();
+            })
+            .execute();
+    } else {
+        move(URI("/login.view", location.href));
+    }
 });

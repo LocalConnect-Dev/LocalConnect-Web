@@ -1,14 +1,3 @@
-const encodeToken = token => {
-    let result = "";
-
-    [].forEach.call(token, ch => {
-        result = result.concat(window.kanaDb[ch]);
-    });
-
-    console.log(result);
-    return result;
-};
-
 $(() => {
     console.log("Loading template of login");
     $("#wrapper").load("view/login.html", () => {
@@ -64,8 +53,10 @@ onClick("#login", () => {
     new APICall("sessions/create")
         .post()
         .body("token=" + encodeToken($("#token").val()))
-        .onSuccess(json => {
-            Cookies.set("LocalConnect-Session", json.secret, { expires: 9999999 });
+        .onSuccess(session => {
+            window.user = session.user;
+            Cookies.set("LocalConnect-Session", session.secret, { expires: 9999999 });
+
             move(URI("/mypage.view", location.href));
         })
         .execute();
