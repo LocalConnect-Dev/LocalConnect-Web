@@ -18,7 +18,8 @@ body.font-medium .breadcrumb,
 body.font-medium .meta,
 body.font-medium .button:not(.font-control-ignore),
 body.font-medium .event-date > div,
-body.font-medium .header {
+body.font-medium .header,
+body.font-medium .ui.list > .item > .content {
     font-size: 1.2em !important;
     line-height: 1.4em !important;
 }
@@ -35,7 +36,8 @@ body.font-large .breadcrumb,
 body.font-large .meta,
 body.font-large .button:not(.font-control-ignore),
 body.font-large .event-date > div,
-body.font-large .header {
+body.font-large .header,
+body.font-large .ui.list > .item > .content {
     font-size: 1.5em !important;
     line-height: 1.5em !important;
 }
@@ -79,6 +81,14 @@ h3 {
 #profile > .grid > .column,
 #posts > .grid > .column {
     padding: 0.5rem;
+}
+
+#regions .ui.list {
+    padding: 10px 15px;
+}
+
+#regions .ui.list > .item > .content {
+    line-height: 1.4em !important;
 }
 
 #keyboard .grid {
