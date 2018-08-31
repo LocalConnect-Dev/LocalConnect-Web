@@ -84,12 +84,14 @@ h3 {
 }
 
 #regions .ui.list,
-#groups .ui.list {
+#groups .ui.list,
+#users .ui.list {
     padding: 10px 15px;
 }
 
 #regions .ui.list > .item > .content,
-#groups .ui.list > .item > .content {
+#groups .ui.list > .item > .content,
+#users .ui.list > .item > .content {
     line-height: 1.4em !important;
 }
 

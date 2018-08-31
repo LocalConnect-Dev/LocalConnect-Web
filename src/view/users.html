@@ -1,0 +1,29 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="group icon"></i> 団体管理パネル</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="user icon"></i> ユーザの一覧</div>
+</div>
+<br>
+<br>
+<a href="/groups.view" class="ui primary left labeled icon button">
+  <i class="backward icon"></i>
+  団体管理パネルへ戻る
+</a>
+<a href="/create-user.view" class="ui positive left labeled icon button">
+  <i class="plus icon"></i>
+  新しいユーザを作成する
+</a>
+<section id="users" v-cloak>
+  <article class="ui fluid card">
+    <div class="ui list">
+      <div class="item" v-for="user in users">
+        <i class="large group middle aligned icon"></i>
+        <div class="content">
+          <span class="user-name">{{ user.name }}</span>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
