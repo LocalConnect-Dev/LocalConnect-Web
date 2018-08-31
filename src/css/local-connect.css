@@ -83,11 +83,13 @@ h3 {
     padding: 0.5rem;
 }
 
-#regions .ui.list {
+#regions .ui.list,
+#groups .ui.list {
     padding: 10px 15px;
 }
 
-#regions .ui.list > .item > .content {
+#regions .ui.list > .item > .content,
+#groups .ui.list > .item > .content {
     line-height: 1.4em !important;
 }
 
@@ -200,6 +202,16 @@ h3 {
 
 .large.user.icon {
     margin: 5px 5px 5px 0;
+}
+
+.region-name,
+.group-name {
+    margin-right: 10px;
+}
+
+.go-to-region,
+.go-to-group {
+    margin: 5px 0 !important;
 }
 
 @media only screen and (min-width: 768px) {

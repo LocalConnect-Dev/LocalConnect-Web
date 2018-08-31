@@ -11,13 +11,18 @@
   <i class="plus icon"></i>
   新しい地域を作成する
 </a>
-<section id="regions">
+<section id="regions" v-cloak>
   <article class="ui fluid card">
     <div class="ui list">
       <div class="item" v-for="region in regions">
         <i class="large globe middle aligned icon"></i>
         <div class="content">
-          {{ region.name }}
+          <span class="region-name">{{ region.name }}</span>
+          <a class="ui right labeled icon button go-to-group"
+             :href="'/groups.view?region=' + region.id">
+            地域管理パネルへ
+            <i class="right angle icon"></i>
+          </a>
         </div>
       </div>
     </div>
