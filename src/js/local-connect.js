@@ -241,6 +241,10 @@ const commonOnClick = () => {
         $("html, body").animate({ scrollTop: 0 }, "ease");
     });
 
+    onClick("#go-to-panel", () => {
+        move(URI("/regions.view", location.href));
+    });
+
     onClick("#font-small", () => {
         setFontSmall();
         setCookieForever("LocalConnect-FontControl", "font-small");
