@@ -19,9 +19,14 @@
   <article class="ui fluid card">
     <div class="ui list">
       <div class="item" v-for="user in users">
-        <i class="large group middle aligned icon"></i>
+        <i class="large user middle aligned icon"></i>
         <div class="content">
           <span class="user-name">{{ user.name }}</span>
+          <a class="ui right labeled icon button go-to-user"
+             :href="'/user.view?id=' + user.id">
+            ユーザのページへ
+            <i class="right angle icon"></i>
+          </a>
         </div>
       </div>
     </div>

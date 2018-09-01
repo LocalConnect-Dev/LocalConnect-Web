@@ -207,12 +207,14 @@ h3 {
 }
 
 .region-name,
-.group-name {
+.group-name,
+.user-name {
     margin-right: 10px;
 }
 
 .go-to-region,
-.go-to-group {
+.go-to-group,
+.go-to-user {
     margin: 5px 0 !important;
 }
 
