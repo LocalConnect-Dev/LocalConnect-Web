@@ -38,9 +38,45 @@
         </div>
       </div>
     </div>
+    <div class="ui small modal" id="settings">
+      <div class="header">
+        設定
+      </div>
+      <div class="content">
+        <p class="description">
+          <button id="go-to-panel" class="ui basic button">
+            <i class="cog icon"></i>
+            管理パネルを開く
+          </button>
+          <br>
+          <br>
+          <h4>文字サイズ</h4>
+          <button id="font-small" class="ui basic button font-control active">小</button>
+          <button id="font-medium" class="ui basic button font-control">中</button>
+          <button id="font-large" class="ui basic button font-control">大</button>
+        </p>
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          確定して閉じる
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </div>
     <div id="modals"></div>
-    <header>
-      <img class="ui image centered" src="/img/logo.png">
+    <header class="ui stackable grid container">
+      <div class="three wide column">
+      </div>
+      <div class="ten wide column">
+        <img class="ui image centered" src="/img/logo.png">
+      </div>
+      <div class="three wide column">
+        <button id="open-settings"
+                class="ui basic button">
+          <i class="wrench icon"></i>
+          設定
+        </button>
+      </div>
     </header>
     <nav>
       <div class="ui container">
@@ -80,13 +116,6 @@
           <i class="up angle icon"></i>
           一番上へ戻る
         </button>
-        <button id="go-to-panel" class="ui left floated basic button">
-          <i class="cog icon"></i>
-          管理パネルを開く
-        </button>
-        <button id="font-large" class="ui right floated basic button font-control">大</button>
-        <button id="font-medium" class="ui right floated basic button font-control">中</button>
-        <button id="font-small" class="ui right floated basic button font-control active">小</button>
       </div>
     </main>
 

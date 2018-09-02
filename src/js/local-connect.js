@@ -237,11 +237,24 @@ const commonOnClick = () => {
         return false;
     });
 
+    onClick("#open-settings", () => {
+        $("#settings").clone().prop("id", "settings-instance").appendTo("body");
+        $("#settings-instance")
+            .modal({
+                closable: false,
+                onHidden: () => {
+                    $("body > div:last-child").remove();
+                }
+            })
+            .modal("show");
+    });
+
     onClick("#go-top", () => {
         $("html, body").animate({ scrollTop: 0 }, "ease");
     });
 
     onClick("#go-to-panel", () => {
+        $("#settings-instance").modal("hide");
         move(URI("/regions.view", location.href));
     });
 

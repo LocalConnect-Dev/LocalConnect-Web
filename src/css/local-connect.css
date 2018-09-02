@@ -44,7 +44,7 @@ body.font-large .ui.list > .item > .content {
 
 header {
     text-align: center;
-    padding: 40px 15px 5px;
+    padding: 40px 15px 5px !important;
 }
 
 nav {
