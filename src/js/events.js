@@ -4,8 +4,28 @@ $(() => {
         new APICall("events/list")
             .authorize()
             .onSuccess(events => {
-                renderEvents(events);
-                hideLoader();
+                new APICall("events/list_joined")
+                    .authorize()
+                    .onSuccess(joined => {
+                        new Vue({
+                            el: "#joined-events",
+                            data: {
+                                events: joined
+                            },
+                            filters: {
+                                year: date => moment.unix(date).format("Y"),
+                                month: date => moment.unix(date).format("MM"),
+                                day: date => moment.unix(date).format("DD"),
+                                dayOfWeek: date => moment.unix(date).format("dd"),
+                                time: date => moment.unix(date).format("kk:mm"),
+                                summary: str => str.substr(0, 32) + "…"
+                            }
+                        });
+
+                        renderEvents(events);
+                        hideLoader();
+                    })
+                    .execute();
             })
             .execute();
     });
