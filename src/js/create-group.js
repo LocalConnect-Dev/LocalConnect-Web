@@ -9,6 +9,7 @@ onClick("#submit", () => {
     showLoader();
 
     const name = $("#name").val();
+    let regionId = URI(location.href).search(true).region;
     let call =
         new APICall("groups/create")
             .authorize()
@@ -24,7 +25,7 @@ onClick("#submit", () => {
                 element.modal({
                     closable: false,
                     onApprove: () => {
-                        move(URI("/groups.view", location.href));
+                        move(URI("/groups.view?region=" + regionId, location.href));
                     },
                     onHidden: () => {
                         $("body > div:last-child").remove();
@@ -34,11 +35,12 @@ onClick("#submit", () => {
                 hideLoader();
             });
 
-    const regionId = URI(location.href).search(true).region;
     if (regionId) {
-        call = call.params({
-            region: regionId
-        })
+        let params = call.getParams();
+        params.region = regionId;
+        call = call.params(params);
+    } else {
+        regionId = window.user.group.region.id;
     }
 
     call.execute();
