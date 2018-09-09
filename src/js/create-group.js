@@ -9,28 +9,37 @@ onClick("#submit", () => {
     showLoader();
 
     const name = $("#name").val();
-    new APICall("groups/create")
-        .authorize()
-        .post()
-        .params({
-            name: name
-        })
-        .onSuccess(group => {
-            $("#created-group").clone().prop("id", "created-group-instance").appendTo("body");
+    let call =
+        new APICall("groups/create")
+            .authorize()
+            .post()
+            .params({
+                name: name
+            })
+            .onSuccess(group => {
+                $("#created-group").clone().prop("id", "created-group-instance").appendTo("body");
 
-            const selector = "#created-group-instance";
-            const element = $(selector);
-            element.modal({
-                closable: false,
-                onApprove: () => {
-                    move(URI("/groups.view", location.href));
-                },
-                onHidden: () => {
-                    $("body > div:last-child").remove();
-                }
-            }).modal("show");
+                const selector = "#created-group-instance";
+                const element = $(selector);
+                element.modal({
+                    closable: false,
+                    onApprove: () => {
+                        move(URI("/groups.view", location.href));
+                    },
+                    onHidden: () => {
+                        $("body > div:last-child").remove();
+                    }
+                }).modal("show");
 
-            hideLoader();
+                hideLoader();
+            });
+
+    const regionId = URI(location.href).search(true).region;
+    if (regionId) {
+        call = call.params({
+            region: regionId
         })
-        .execute();
+    }
+
+    call.execute();
 });

@@ -1,10 +1,16 @@
 $(() => {
     console.log("Loading template of groups");
     $("#wrapper").load("view/groups.html", () => {
+        let region;
         let call =
             new APICall("groups/list")
                 .authorize()
                 .onSuccess(groups => {
+                    new Vue({
+                        el: "#region-wrapper",
+                        data: region
+                    });
+
                     new Vue({
                         el: "#groups",
                         data: {
@@ -15,13 +21,25 @@ $(() => {
                     hideLoader();
                 });
 
-        const region = URI(location.href).search(true).region;
-        if (region) {
-            call = call.params({
-                region: region
-            });
-        }
+        const regionId = URI(location.href).search(true).region;
+        if (regionId) {
+            new APICall("regions/show")
+                .authorize()
+                .params({
+                    id: regionId
+                })
+                .onSuccess(r => {
+                    region = r;
 
-        call.execute();
+                    call = call.params({
+                        region: region.id
+                    });
+                    call.execute();
+                })
+                .execute();
+        } else {
+            region = window.user.group.region;
+            call.execute();
+        }
     });
 });

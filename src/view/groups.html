@@ -7,14 +7,16 @@
 </div>
 <br>
 <br>
-<a href="/regions.view" class="ui primary left labeled icon button">
-  <i class="backward icon"></i>
-  地域管理パネルへ戻る
-</a>
-<a href="/create-group.view" class="ui positive left labeled icon button">
-  <i class="plus icon"></i>
-  新しい団体を作成する
-</a>
+<div id="region-wrapper" v-cloak>
+  <a :href="'/regions.view' + id" class="ui primary left labeled icon button">
+    <i class="backward icon"></i>
+    サービス管理パネルへ戻る
+  </a>
+  <a :href="'/create-group.view?region=' + id" class="ui positive left labeled icon button">
+    <i class="plus icon"></i>
+    新しい団体を作成する
+  </a>
+</div>
 <section id="groups" v-cloak>
   <article class="ui fluid card">
     <div class="ui list">
