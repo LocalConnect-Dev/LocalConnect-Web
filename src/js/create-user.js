@@ -9,31 +9,42 @@ onClick("#submit", () => {
     showLoader();
 
     const name = $("#name").val();
-    new APICall("users/create")
-        .authorize()
-        .post()
-        .params({
-            name: name
-        })
-        .onSuccess(user => {
-            $("#created-user").clone().prop("id", "created-user-instance").appendTo("body");
+    let groupId = URI(location.href).search(true).group;
+    let call =
+        new APICall("users/create")
+            .authorize()
+            .post()
+            .params({
+                name: name
+            })
+            .onSuccess(user => {
+                $("#created-user").clone().prop("id", "created-user-instance").appendTo("body");
 
-            const selector = "#created-user-instance";
-            new Vue({
-                el: selector,
-                data: user
+                const selector = "#created-user-instance";
+                new Vue({
+                    el: selector,
+                    data: user
+                });
+
+                const element = $(selector);
+                element.modal({
+                    closable: false,
+                    onApprove: () => {
+                        move(URI("/users.view?group=" + groupId, location.href));
+                    },
+                    onHidden: () => {
+                        $("body > div:last-child").remove();
+                    }
+                }).modal("show");
             });
 
-            const element = $(selector);
-            element.modal({
-                closable: false,
-                onApprove: () => {
-                    move(URI("/users.view", location.href));
-                },
-                onHidden: () => {
-                    $("body > div:last-child").remove();
-                }
-            }).modal("show");
-        })
-        .execute();
+    if (groupId) {
+        let params = call.getParams();
+        params.group = groupId;
+        call = call.params(params);
+    } else {
+        groupId = window.user.group.id;
+    }
+
+    call.execute();
 });

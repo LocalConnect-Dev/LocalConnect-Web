@@ -7,14 +7,16 @@
 </div>
 <br>
 <br>
-<a href="/groups.view" class="ui primary left labeled icon button">
-  <i class="backward icon"></i>
-  団体管理パネルへ戻る
-</a>
-<a href="/create-user.view" class="ui positive left labeled icon button">
-  <i class="plus icon"></i>
-  新しいユーザを作成する
-</a>
+<div id="group-wrapper" v-cloak>
+  <a :href="'/groups.view?id=' + id" class="ui primary left labeled icon button">
+    <i class="backward icon"></i>
+    団体管理パネルへ戻る
+  </a>
+  <a :href="'/create-user.view?group=' + id" class="ui positive left labeled icon button">
+    <i class="plus icon"></i>
+    新しいユーザを作成する
+  </a>
+</div>
 <section id="users" v-cloak>
   <article class="ui fluid card">
     <div class="ui list">

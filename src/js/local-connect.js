@@ -4,6 +4,7 @@ class APICall {
     }
 
     constructor(path) {
+        this.tmp = {};
         this.path = path;
         this.options = {
             mode: "cors",
@@ -31,6 +32,7 @@ class APICall {
     }
 
     params(params) {
+        this.tmp.params = params;
         const str = Object
             .keys(params)
             .map(key => key + "=" + encodeURIComponent(params[key]))
@@ -62,6 +64,10 @@ class APICall {
 
                 this.callback(obj);
             });
+    }
+
+    getParams() {
+        return this.tmp.params;
     }
 }
 
