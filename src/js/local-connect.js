@@ -298,7 +298,7 @@ const commonOnClick = () => {
                         .params({
                             event: $(e.currentTarget).data("event")
                         })
-                        .onSuccess(attendance => {
+                        .onSuccess(event => {
                             hideLoader();
 
                             $("#joined-event").clone().prop("id", "joined-event-instance").appendTo("body");
@@ -307,7 +307,7 @@ const commonOnClick = () => {
                                     closable: false,
                                     onApprove: () => {
                                         showLoader();
-                                        move(URI("/event.view?id=" + attendance.event.id, location.href));
+                                        move(URI("/event.view?id=" + event.id, location.href));
                                     },
                                     onHidden: () => {
                                         $("body > div:last-child").remove();
