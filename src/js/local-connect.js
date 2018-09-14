@@ -250,6 +250,11 @@ const commonOnClick = () => {
                 closable: false,
                 onHidden: () => {
                     $("body > div:last-child").remove();
+
+                    if (window.reloadAfterModalClosed) {
+                        showLoader();
+                        location.reload();
+                    }
                 }
             })
             .modal("show");
@@ -267,16 +272,19 @@ const commonOnClick = () => {
     onClick("#font-small", () => {
         setFontSmall();
         setCookieForever("LocalConnect-FontControl", "font-small");
+        window.reloadAfterModalClosed = true;
     });
 
     onClick("#font-medium", () => {
         setFontMedium();
         setCookieForever("LocalConnect-FontControl", "font-medium");
+        window.reloadAfterModalClosed = true;
     });
 
     onClick("#font-large", () => {
         setFontLarge();
         setCookieForever("LocalConnect-FontControl", "font-large");
+        window.reloadAfterModalClosed = true;
     });
 
     onClick(".join-event", e => {
