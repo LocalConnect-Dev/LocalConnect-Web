@@ -93,6 +93,15 @@ const setFontLarge = () => {
     $("#font-large").addClass("active");
 };
 
+const finalizeModal = () => {
+    $("body > div:last-child").remove();
+
+    $("body").removeClass("dimmable");
+    window.addEventListener("touchmove", event => {
+        event.stopPropagation();
+    }, true);
+};
+
 const fetchError = error => {
     $("#error").clone().prop("id", "error-instance").appendTo("body");
 
@@ -111,7 +120,7 @@ const fetchError = error => {
     element.modal({
             closable: false,
             onHidden: () => {
-                $("body > div:last-child").remove();
+                finalizeModal();
             }
         })
         .modal("show");
@@ -249,7 +258,7 @@ const commonOnClick = () => {
             .modal({
                 closable: false,
                 onHidden: () => {
-                    $("body > div:last-child").remove();
+                    finalizeModal();
 
                     if (window.reloadAfterModalClosed) {
                         showLoader();
@@ -297,7 +306,7 @@ const commonOnClick = () => {
                     window.isApproved = true;
                 },
                 onHidden: () => {
-                    $("body > div:last-child").remove();
+                    finalizeModal();
 
                     if (!window.isApproved) return;
                     new APICall("events/join")
@@ -318,7 +327,7 @@ const commonOnClick = () => {
                                         move(URI("/event.view?id=" + event.id, location.href));
                                     },
                                     onHidden: () => {
-                                        $("body > div:last-child").remove();
+                                        finalizeModal();
                                     }
                                 })
                                 .modal("show");

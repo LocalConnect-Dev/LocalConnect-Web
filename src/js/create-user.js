@@ -33,7 +33,7 @@ onClick("#submit", () => {
                         move(URI("/users.view?group=" + groupId, location.href));
                     },
                     onHidden: () => {
-                        $("body > div:last-child").remove();
+                        finalizeModal();
                     }
                 }).modal("show");
             });

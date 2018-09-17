@@ -28,7 +28,7 @@ onClick("#submit", () => {
                         move(URI("/groups.view?region=" + regionId, location.href));
                     },
                     onHidden: () => {
-                        $("body > div:last-child").remove();
+                        finalizeModal();
                     }
                 }).modal("show");
 

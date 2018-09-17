@@ -40,7 +40,7 @@ onClick("#submit", () => {
                         move(URI("/mypage.view", location.href));
                     },
                     onHidden: () => {
-                        $("body > div:last-child").remove();
+                        finalizeModal();
                     }
                 })
                 .modal("show");

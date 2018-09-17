@@ -35,7 +35,7 @@ onClick("#submit", () => {
                                 move(URI("/board.view?id=" + board.id, location.href));
                             },
                             onHidden: () => {
-                                $("body > div:last-child").remove();
+                                finalizeModal();
                             }
                         })
                         .modal("show");
