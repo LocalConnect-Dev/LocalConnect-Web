@@ -382,7 +382,7 @@ const resetVariables = () => {
 const loadView = uri => {
     console.log("Loading view");
     if (uri.suffix() === "view") {
-        const name = uri.filename().split(".")[0];
+        const name = uri.pathname().split(".")[0];
         $.getScript("/js/" + name + ".js");
     }
 };
