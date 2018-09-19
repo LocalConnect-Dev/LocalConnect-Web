@@ -33,7 +33,15 @@ $(() => {
             "class": "column"
         }).appendTo("#keyboard > .grid");
 
-        hideLoader();
+        const token = URI(location.href).search(true).token;
+        if (token) {
+            console.log("Trying to login automatically by provided token via URL");
+
+            $("#token").val(decodeToken(token));
+            $("#login").click();
+        } else {
+            hideLoader();
+        }
     });
 });
 

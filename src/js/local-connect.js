@@ -496,6 +496,11 @@ $(() => {
             })
             .execute();
     } else {
-        move(URI("/login.view", location.href));
+        const name = URI(location.href).pathname().split(".")[0];
+        if (name === "/login") {
+            loadView(URI(location.href));
+        } else {
+            move(URI("/login.view", location.href));
+        }
     }
 });
