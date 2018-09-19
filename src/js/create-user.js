@@ -23,7 +23,10 @@ onClick("#submit", () => {
                 const selector = "#created-user-instance";
                 new Vue({
                     el: selector,
-                    data: user
+                    data: user,
+                    filters: {
+                        token: token => decodeToken(token)
+                    }
                 });
 
                 const element = $(selector);

@@ -413,6 +413,21 @@ const encodeToken = token => {
     return result;
 };
 
+const decodeToken = token => {
+    let result = "";
+
+    [].forEach.call(token, ch => {
+        Object.keys(window.kanaDb).forEach(key => {
+            if (window.kanaDb[key] === ch) {
+                result = result.concat(key);
+            }
+        });
+    });
+
+    console.log(result);
+    return result;
+}
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
