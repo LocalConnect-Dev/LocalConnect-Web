@@ -53,12 +53,26 @@ class APICall {
         return this;
     }
 
+    onError(errorCallback) {
+        this.errorCallback = errorCallback;
+
+        return this;
+    }
+
     execute() {
         return fetch(APICall.BASE_URI + this.path, this.options)
             .then(response => response.json())
             .then(obj => {
                 if (obj.error) {
-                    fetchError(obj.error);
+                    let result;
+                    if (this.errorCallback) {
+                        result = this.errorCallback(obj.error);
+                    }
+
+                    if (!result) {
+                        fetchError(obj.error);
+                    }
+
                     return;
                 }
 
@@ -218,6 +232,24 @@ const renderPosts = posts => {
 
         $("#posts-block-instance").removeAttr("id");
     }
+};
+
+const renderMypage = profile => {
+    new APICall("posts/list_user")
+        .authorize()
+        .onSuccess(posts => {
+            new Vue({
+                el: "#profile",
+                data: {
+                    avatar: window.user.avatar,
+                    profile: profile
+                }
+            });
+
+            renderPosts(posts);
+            hideLoader();
+        })
+        .execute();
 };
 
 const onClick = (selector, callback) => {

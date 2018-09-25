@@ -4,21 +4,27 @@ $(() => {
         new APICall("profiles/mine")
             .authorize()
             .onSuccess(profile => {
-                new APICall("posts/list_user")
-                    .authorize()
-                    .onSuccess(posts => {
-                        new Vue({
-                            el: "#profile",
-                            data: {
-                                avatar: window.user.avatar,
-                                profile: profile
-                            }
-                        });
+                renderMypage(profile);
+            })
+            .onError(error => {
+                if (error !== "PROFILE_NOT_FOUND") {
+                    return false;
+                }
 
-                        renderPosts(posts);
-                        hideLoader();
+                new APICall("profiles/create")
+                    .authorize()
+                    .post()
+                    .params({
+                        hobbies: "(未設定)",
+                        favorites: "(未設定)",
+                        mottoes: "(未設定)"
+                    })
+                    .onSuccess(profile => {
+                        renderMypage(profile);
                     })
                     .execute();
+
+                return true;
             })
             .execute();
     });
