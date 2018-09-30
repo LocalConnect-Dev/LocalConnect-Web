@@ -160,7 +160,10 @@ const renderBoards = boards => {
             },
             filters: {
                 moment: date => moment.unix(date).fromNow(),
-                summary: str => str.substr(0, 32) + "…"
+                summary: str => {
+                    const striped = str.replace(/<(?:.|\n)*?>/gm, '');
+                    return striped.length > 32 ? striped.substr(0, 32) + "…" : striped;
+                }
             }
         });
 
