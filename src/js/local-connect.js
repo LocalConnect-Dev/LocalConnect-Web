@@ -161,7 +161,7 @@ const renderBoards = boards => {
             filters: {
                 moment: date => moment.unix(date).fromNow(),
                 summary: str => {
-                    const striped = str.replace(/<(?:.|\n)*?>/gm, '');
+                    const striped = $("<div>").html(str.replace(/<(?:.|\n)*?>/gm, '')).text();
                     return striped.length > 32 ? striped.substr(0, 32) + "…" : striped;
                 }
             }
