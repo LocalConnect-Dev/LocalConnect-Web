@@ -18,16 +18,29 @@
       <form class="ui form">
         <div class="field">
           <label>趣味</label>
-          <input id="hobbies" type="text" placeholder="クリックまたはタップして入力" :value="hobbies">
+          <input id="hobbies" type="text" placeholder="クリックまたはタップして入力" :value="profile.hobbies">
         </div>
         <div class="field">
           <label>好物</label>
-          <input id="favorites" type="text" placeholder="クリックまたはタップして入力" :value="favorites">
+          <input id="favorites" type="text" placeholder="クリックまたはタップして入力" :value="profile.favorites">
         </div>
         <div class="field">
           <label>座右の銘</label>
-          <input id="mottoes" type="text" placeholder="クリックまたはタップして入力" :value="mottoes">
+          <input id="mottoes" type="text" placeholder="クリックまたはタップして入力" :value="profile.mottoes">
         </div>
+        <div class="field">
+          <label>顔写真</label>
+          <button id="open" class="ui primary left labeled icon button" type="button">
+            <i class="picture icon"></i>
+            既存の写真から選択
+          </button>
+          <br>
+          <br>
+          <p v-if="avatar == null">まだ顔写真は設定されていません。</p>
+          <img id="preview" class="ui avatar medium circular image" :src="'//api.local-connect.ga/images/show?id=' + avatar.id" v-else>
+        </div>
+        <br>
+        <br>
         <button id="submit" class="ui positive left labeled icon button" type="button">
           <i class="send icon"></i>
           送信する
