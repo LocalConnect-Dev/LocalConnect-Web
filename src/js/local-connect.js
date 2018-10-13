@@ -126,7 +126,10 @@ const fetchError = error => {
             error: error
         },
         filters: {
-            i18n: error => window.errorDb[error]
+            i18n: error => {
+                const localized = window.errorDb[error];
+                return localized ? localized : "エラーコード: " + error;
+            }
         }
     });
 
