@@ -255,6 +255,18 @@ const renderMypage = profile => {
         .execute();
 };
 
+const renderGroup = group => {
+    new Vue({
+        el: "#group",
+        data: group,
+        filters: {
+            moment: date => moment.unix(date).fromNow()
+        }
+    });
+
+    hideLoader();
+};
+
 const onClick = (selector, callback) => {
     $("body").on("click", selector, callback);
 };
