@@ -78,6 +78,10 @@ h3 {
     margin-bottom: 0;
 }
 
+#templates {
+    display: none;
+}
+
 #profile > .grid > .column,
 #posts > .grid > .column {
     padding: 0.5rem;

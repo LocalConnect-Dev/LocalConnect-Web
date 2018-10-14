@@ -1,6 +1,10 @@
 $(() => {
     console.log("Loading template of create-board");
     $("#wrapper").load("view/create-board.html", () => {
+        if (window.attachments) {
+            window.attachments = [];
+        }
+
         createEditor("#editor", () => {
             hideLoader();
         });
@@ -13,12 +17,18 @@ onClick("#submit", () => {
     const title = $("#title").val();
     const content = window.ckeditor.getData();
 
+    const attachmentIds = [];
+    window.attachments.forEach(attachment => {
+        attachmentIds.push(attachment.id);
+    });
+
     new APICall("documents/create")
         .authorize()
         .post()
         .params({
             title: title,
-            content: content
+            content: content,
+            attachments: attachmentIds.join(",")
         })
         .onSuccess(document => {
             new APICall("boards/create")
@@ -47,4 +57,52 @@ onClick("#submit", () => {
                 .execute();
         })
         .execute();
+});
+
+onClick("#open", () => {
+    $("<input>")
+        .attr("type", "file")
+        .attr("accept", ".jpg, image/jpeg")
+        .on("change", event => {
+            showLoader();
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                new APICall("images/create")
+                    .authorize()
+                    .post()
+                    .body(reader.result)
+                    .onSuccess(image => {
+                        new APICall("attachments/create")
+                            .authorize()
+                            .post()
+                            .params({
+                                type: "Image",
+                                object_id: image.id
+                            })
+                            .onSuccess(attachment => {
+                                window.attachments.push(attachment);
+
+                                const element =
+                                    $("#attachment-template")
+                                        .clone()
+                                        .removeAttr("id")
+                                        .data("id", attachment.id);
+                                element.appendTo("#attachments");
+
+                                new Vue({
+                                    el: element.get(0),
+                                    data: attachment
+                                });
+
+                                hideLoader();
+                            })
+                            .execute();
+                    })
+                    .execute();
+            };
+
+            reader.readAsArrayBuffer(event.target.files[0]);
+        })
+        .click();
 });

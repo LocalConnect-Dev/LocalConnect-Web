@@ -560,6 +560,9 @@ $(() => {
     console.log("Loading modals");
     $("#modals").load("view/modals.html");
 
+    console.log("Loading templates");
+    $("#templates").load("view/templates.html");
+
     console.log("Loading error database");
     fetch("/resources/errors.json")
         .then(response => response.json())
