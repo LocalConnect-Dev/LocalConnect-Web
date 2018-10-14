@@ -476,7 +476,33 @@ const decodeToken = token => {
 
     console.log(result);
     return result;
-}
+};
+
+const createEditor = (selector, callback) => {
+    if (window.ckeditor) {
+        window.ckeditor.destroy()
+            .then(() => {
+                window.ckeditor = null;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    ClassicEditor
+        .create(document.querySelector(selector), {
+            language: "ja"
+        })
+        .then(editor => {
+            console.log(editor);
+            window.ckeditor = editor;
+
+            callback(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+};
 
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");

@@ -1,29 +1,9 @@
 $(() => {
     console.log("Loading template of create-board");
     $("#wrapper").load("view/create-board.html", () => {
-        if (window.ckeditor) {
-            window.ckeditor.destroy()
-                .then(() => {
-                    window.ckeditor = null;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-
-        ClassicEditor
-            .create(document.querySelector("#editor"), {
-                language: "ja"
-            })
-            .then(editor => {
-                console.log(editor);
-                window.ckeditor = editor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-        hideLoader();
+        createEditor("#editor", () => {
+            hideLoader();
+        });
     });
 });
 
