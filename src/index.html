@@ -81,7 +81,7 @@
       </div>
     </header>
     <nav>
-      <div class="ui container">
+      <div id="logged-in" class="ui container nav-hidden">
         <div class="ui stackable two column grid">
           <div class="column">
             <div class="ui two column grid nav-grid-left">
@@ -107,6 +107,14 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
+      <div id="not-logged-in" class="ui container nav-hidden">
+        <div class="ui stackable one column grid">
+          <a href="/login.view" class="column nav-column">
+            <h1><i class="sign-in icon"></i></h1>
+            <p>ログイン</p>
+          </a>
         </div>
       </div>
     </nav>

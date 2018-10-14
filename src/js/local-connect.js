@@ -559,6 +559,8 @@ $(() => {
     commonOnClick();
 
     if (Cookies.get("LocalConnect-Session")) {
+        $("#logged-in").removeClass("nav-hidden");
+
         new APICall("users/me")
             .authorize()
             .onSuccess(user => {
@@ -572,6 +574,8 @@ $(() => {
             })
             .execute();
     } else {
+        $("#not-logged-in").removeClass("nav-hidden");
+
         const name = URI(location.href).pathname().split(".")[0];
         if (name === "/login" || name === "/over") {
             loadView(URI(location.href));

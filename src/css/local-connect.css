@@ -147,6 +147,10 @@ h3 {
     text-align: center;
 }
 
+.nav-hidden {
+    display: none !important;
+}
+
 .ui.breadcrumb {
     line-height: 1.5em;
     padding: 5px;

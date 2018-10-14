@@ -65,6 +65,9 @@ onClick("#login", () => {
             window.user = session.user;
             Cookies.set("LocalConnect-Session", session.secret, { expires: 9999999 });
 
+            $("#not-logged-in").addClass("nav-hidden");
+            $("#logged-in").removeClass("nav-hidden");
+
             move(URI("/mypage.view", location.href));
         })
         .execute();
