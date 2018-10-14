@@ -18,7 +18,10 @@ $(() => {
                                 day: date => moment.unix(date).format("D"),
                                 dayOfWeek: date => moment.unix(date).format("dd"),
                                 time: date => moment.unix(date).format("H時 m分"),
-                                summary: str => str.substr(0, 32) + "…"
+                                summary: str => {
+                                    const striped = $("<div>").html(str.replace(/<(?:.|\n)*?>/gm, '')).text();
+                                    return striped.length > 32 ? striped.substr(0, 32) + "…" : striped;
+                                }
                             }
                         });
 
