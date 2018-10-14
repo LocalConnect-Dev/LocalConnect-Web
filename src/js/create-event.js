@@ -1,7 +1,9 @@
 $(() => {
     console.log("Loading template of create-event");
     $("#wrapper").load("view/create-event.html", () => {
-        hideLoader();
+        createEditor("#editor", () => {
+            hideLoader();
+        });
     });
 });
 
@@ -9,11 +11,11 @@ onClick("#submit", () => {
     showLoader();
 
     const title = $("#title").val();
-    const content = $("#content").val();
+    const content = window.ckeditor.getData();
     const date = Math.floor(
         new Date(
             $("#year").val(),
-            $("#month").val(),
+            $("#month").val() - 1,
             $("#day").val(),
             $("#hour").val(),
             $("#minute").val(),

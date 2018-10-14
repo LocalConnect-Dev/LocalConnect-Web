@@ -14,10 +14,10 @@ $(() => {
                             },
                             filters: {
                                 year: date => moment.unix(date).format("Y"),
-                                month: date => moment.unix(date).format("MM"),
-                                day: date => moment.unix(date).format("DD"),
+                                month: date => moment.unix(date).format("M"),
+                                day: date => moment.unix(date).format("D"),
                                 dayOfWeek: date => moment.unix(date).format("dd"),
-                                time: date => moment.unix(date).format("kk:mm"),
+                                time: date => moment.unix(date).format("H時 m分"),
                                 summary: str => str.substr(0, 32) + "…"
                             }
                         });

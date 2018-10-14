@@ -13,10 +13,10 @@ $(() => {
                     filters: {
                         moment: date => moment.unix(date).fromNow(),
                         year: date => moment.unix(date).format("Y"),
-                        month: date => moment.unix(date).format("MM"),
-                        day: date => moment.unix(date).format("DD"),
+                        month: date => moment.unix(date).format("M"),
+                        day: date => moment.unix(date).format("D"),
                         dayOfWeek: date => moment.unix(date).format("dd"),
-                        time: date => moment.unix(date).format("kk:mm"),
+                        time: date => moment.unix(date).format("H時 m分"),
                         count: attendances => attendances.length
                     }
                 });
