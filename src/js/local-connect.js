@@ -446,6 +446,7 @@ const loadView = uri => {
     if (uri.suffix() === "view") {
         const name = uri.pathname().split(".")[0];
         $.getScript("/js/" + name + ".js");
+        window.scrollTo(0, 0);
     }
 };
 
