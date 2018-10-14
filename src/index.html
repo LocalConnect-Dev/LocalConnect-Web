@@ -143,8 +143,8 @@
     <script>
         moment.locale("ja");
 
-        window.addEventListener('load', () => {
-            if ('serviceWorker' in navigator) {
+        window.addEventListener("load", () => {
+            if ("serviceWorker" in navigator) {
                 navigator.serviceWorker.register("/worker.js")
                     .then(registration => {
                         console.log("Registered ServiceWorker successfully");
