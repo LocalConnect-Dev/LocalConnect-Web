@@ -547,10 +547,10 @@ $(() => {
             .execute();
     } else {
         const name = URI(location.href).pathname().split(".")[0];
-        if (name === "/login") {
+        if (name === "/login" || name === "/over") {
             loadView(URI(location.href));
         } else {
-            move(URI("/login.view", location.href));
+            move(URI("/over.view", location.href));
         }
     }
 });
