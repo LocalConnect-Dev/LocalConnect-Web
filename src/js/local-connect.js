@@ -596,3 +596,10 @@ $(() => {
         }
     }
 });
+
+window.onpopstate = event => {
+    if (event) {
+        showLoader();
+        loadView(URI(location.href));
+    }
+};
