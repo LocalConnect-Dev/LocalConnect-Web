@@ -200,6 +200,18 @@ const renderEvents = events => {
             }
         });
 
+        $(".join-event").each((index, element) => {
+            const button = $(element);
+            const event = events.filter(event => event.id === button.data("event"))[0];
+            if (!event) return;
+            if (event.attendances.filter(attendance => attendance.user.id === window.user.id).length > 0) {
+                button.addClass("disabled");
+                button.removeClass("positive");
+                button.children("i").attr("class", "check icon");
+                button.children("span").text("参加登録済み");
+            }
+        });
+
         $("#events-block-instance").removeAttr("id");
     }
 };

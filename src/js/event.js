@@ -21,6 +21,14 @@ $(() => {
                     }
                 });
 
+                const button = $(".join-event");
+                if (event.attendances.filter(attendance => attendance.user.id === window.user.id).length > 0) {
+                    button.addClass("disabled");
+                    button.removeClass("positive");
+                    button.children("i").attr("class", "check icon");
+                    button.children("span").text("参加登録済み");
+                }
+
                 hideLoader();
             })
             .execute();
