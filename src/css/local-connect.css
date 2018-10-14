@@ -147,6 +147,14 @@ h3 {
     text-align: center;
 }
 
+.nav-column:hover {
+    color: #fff;
+}
+
+.nav-column.active {
+    color: #ffc042;
+}
+
 .nav-hidden {
     display: none !important;
 }

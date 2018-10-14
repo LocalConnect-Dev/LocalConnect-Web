@@ -447,6 +447,15 @@ const loadView = uri => {
         const name = uri.pathname().split(".")[0];
         $.getScript("/js/" + name + ".js");
         window.scrollTo(0, 0);
+
+        const nav = $(".nav-column");
+        nav.removeClass("active");
+        nav.each((index, element) => {
+            const column = $(element);
+            if (column.attr("href").indexOf(name) === 0) {
+                column.addClass("active");
+            }
+        });
     }
 };
 
