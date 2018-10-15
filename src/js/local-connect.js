@@ -25,6 +25,12 @@ class APICall {
         return this;
     }
 
+    delete() {
+        this.options.method = "DELETE";
+
+        return this;
+    }
+
     body(body) {
         this.options.body = body;
 
@@ -61,9 +67,9 @@ class APICall {
 
     execute() {
         return fetch(APICall.BASE_URI + this.path, this.options)
-            .then(response => response.json())
+            .then(response => response.status === 204 ? null : response.json())
             .then(obj => {
-                if (obj.error) {
+                if (obj && obj.error) {
                     let result;
                     if (this.errorCallback) {
                         result = this.errorCallback(obj.error);
@@ -356,6 +362,22 @@ const commonOnClick = () => {
         $("#settings-instance").modal("hide");
         showLoader();
         move(URI("/regions.view", location.href));
+    });
+
+    onClick("#logout", () => {
+        $("#settings-instance").modal("hide");
+        showLoader();
+        new APICall("sessions/destroy")
+            .authorize()
+            .delete()
+            .onSuccess(() => {
+                Cookies.remove("LocalConnect-Session");
+                $("#logged-in").addClass("nav-hidden");
+                $("#not-logged-in").removeClass("nav-hidden");
+
+                move(URI("/over.view", location.href));
+            })
+            .execute();
     });
 
     onClick("#font-small", () => {
