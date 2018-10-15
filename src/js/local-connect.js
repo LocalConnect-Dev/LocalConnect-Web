@@ -354,6 +354,7 @@ const commonOnClick = () => {
 
     onClick("#go-to-panel", () => {
         $("#settings-instance").modal("hide");
+        showLoader();
         move(URI("/regions.view", location.href));
     });
 
