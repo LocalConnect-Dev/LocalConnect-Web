@@ -573,7 +573,7 @@ const notify = (title, body, onclick) => {
     });
     notification.onclick = onclick;
 
-    setTimeout(notification.close.bind(notification), 5000);
+    setTimeout(notification.close.bind(notification), 60000);
 };
 
 const speech = message => {
