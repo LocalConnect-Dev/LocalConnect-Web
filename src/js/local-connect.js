@@ -92,7 +92,7 @@ class APICall {
 }
 
 const setCookieForever = (key, value) => {
-    Cookies.set(key, value, { expires: 9999999 });
+    Cookies.set(key, value, {expires: 9999999});
 };
 
 const setFontSmall = () => {
@@ -141,11 +141,11 @@ const fetchError = error => {
 
     const element = $(selector);
     element.modal({
-            closable: false,
-            onHidden: () => {
-                finalizeModal();
-            }
-        })
+        closable: false,
+        onHidden: () => {
+            finalizeModal();
+        }
+    })
         .modal("show");
 
     hideLoader();
@@ -355,7 +355,7 @@ const commonOnClick = () => {
     });
 
     onClick("#go-top", () => {
-        $("html, body").animate({ scrollTop: 0 }, "ease");
+        $("html, body").animate({scrollTop: 0}, "ease");
     });
 
     onClick("#go-to-panel", () => {
@@ -566,6 +566,16 @@ const createEditor = (selector, callback) => {
         });
 };
 
+const notify = (title, body, onclick) => {
+    const notification = new Notification(title, {
+        body: body,
+        icon: "/img/icon-shadow.png"
+    });
+    notification.onclick = onclick;
+
+    setTimeout(notification.close.bind(notification), 5000);
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -622,6 +632,58 @@ $(() => {
 
     showLoader();
     commonOnClick();
+
+    Notification
+        .requestPermission()
+        .then(result => {
+            if (result !== "default" && result !== "denied") {
+                console.log("Notification enabled");
+
+                const connection = new WebSocket("wss://api.local-connect.ga/socket", [Cookies.get("LocalConnect-Session")]);
+                connection.onopen = event => {
+                    console.log("Connected to WebSocket server");
+                };
+                connection.onmessage = event => {
+                    const notification = JSON.parse(event.data);
+                    const type = notification.type;
+                    const object = notification.object;
+                    if (type === "KeepAlive") {
+                        console.log("Keep-Alive");
+                        return;
+                    }
+
+                    console.log("Notification received");
+                    if (type === "Board") {
+                        notify(
+                            "新しい回覧板が配信されました",
+                            object.document.title,
+                            () => {
+                                showLoader();
+                                move(URI("/board.view?id=" + object.id, location.href));
+                            }
+                        );
+                    } else if (type === "Event") {
+                        notify(
+                            "新しいイベントが公開されました",
+                            object.document.title,
+                            () => {
+                                showLoader();
+                                move(URI("/event.view?id=" + object.id, location.href));
+                            }
+                        )
+                    }
+                };
+                connection.onclose = event => {
+                    notify(
+                        "サーバから切断されました",
+                        "クリックまたはタップしてサーバへ再接続してください。",
+                        () => {
+                            location.reload();
+                        }
+                    );
+                }
+            }
+        });
 
     if (Cookies.get("LocalConnect-Session")) {
         $("#logged-in").removeClass("nav-hidden");
