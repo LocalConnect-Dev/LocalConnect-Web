@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of create-event");
     $("#wrapper").load("view/create-event.html", () => {
+        window.isWritingMode = true;
+
         createEditor("#editor", () => {
             hideLoader();
         });
@@ -9,6 +11,7 @@ $(() => {
 
 onClick("#submit", () => {
     showLoader();
+    window.isWritingMode = false;
 
     const title = $("#title").val();
     const content = window.ckeditor.getData();

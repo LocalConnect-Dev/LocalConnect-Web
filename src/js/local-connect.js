@@ -500,6 +500,32 @@ const loadView = uri => {
 };
 
 const move = uri => {
+    if (window.isWritingMode) {
+        hideLoader();
+
+        $("#moving-page").clone().prop("id", "moving-page-instance").appendTo("body");
+        $("#moving-page-instance")
+            .modal({
+                closable: false,
+                onDeny: () => {
+                    window.isWritingMode = false;
+
+                    showLoader();
+                    moveConfirm(uri);
+                },
+                onHidden: () => {
+                    finalizeModal();
+                }
+            })
+            .modal("show");
+
+        return;
+    }
+
+    moveConfirm(uri);
+};
+
+const moveConfirm = uri => {
     resetEvents();
     resetVariables();
     loadView(uri);

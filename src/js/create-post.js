@@ -1,12 +1,14 @@
 $(() => {
     console.log("Loading template of create-post");
     $("#wrapper").load("view/create-post.html", () => {
+        window.isWritingMode = true;
         hideLoader();
     });
 });
 
 onClick("#submit", () => {
     showLoader();
+    window.isWritingMode = false;
 
     const title = $("#title").val();
     const content = $("#content").val();

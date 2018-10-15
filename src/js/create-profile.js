@@ -1,6 +1,7 @@
 $(() => {
     console.log("Loading template of create-profile");
     $("#wrapper").load("view/create-profile.html", () => {
+        window.isWritingMode = true;
         new APICall("profiles/mine")
             .authorize()
             .onSuccess(profile => {
@@ -20,6 +21,7 @@ $(() => {
 
 onClick("#submit", () => {
     showLoader();
+    window.isWritingMode = false;
 
     const hobbies = $("#hobbies").val();
     const favorites = $("#favorites").val();

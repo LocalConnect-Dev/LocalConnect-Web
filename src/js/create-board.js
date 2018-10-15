@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of create-board");
     $("#wrapper").load("view/create-board.html", () => {
+        window.isWritingMode = true;
+
         if (window.attachments) {
             window.attachments = [];
         }
@@ -13,6 +15,7 @@ $(() => {
 
 onClick("#submit", () => {
     showLoader();
+    window.isWritingMode = false;
 
     const title = $("#title").val();
     const content = window.ckeditor.getData();
