@@ -576,6 +576,14 @@ const notify = (title, body, onclick) => {
     setTimeout(notification.close.bind(notification), 5000);
 };
 
+const speech = message => {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = message;
+    utterance.lang = "ja-JP";
+
+    speechSynthesis.speak(utterance);
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -654,6 +662,7 @@ $(() => {
 
                     console.log("Notification received");
                     if (type === "Board") {
+                        speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
                         notify(
                             "新しい回覧板が配信されました",
                             object.document.title,
@@ -663,6 +672,7 @@ $(() => {
                             }
                         );
                     } else if (type === "Event") {
+                        speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
                         notify(
                             "新しいイベントが公開されました",
                             object.document.title,
@@ -674,6 +684,7 @@ $(() => {
                     }
                 };
                 connection.onclose = event => {
+                    speech("エラーが発生しました。通知をクリックまたはタップして読み込み直してください。");
                     notify(
                         "サーバから切断されました",
                         "クリックまたはタップしてサーバへ再接続してください。",
