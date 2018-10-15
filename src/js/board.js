@@ -8,14 +8,38 @@ $(() => {
             })
             .onSuccess(board => {
                 new Vue({
-                    el: "#board",
+                    el: "#board-contents",
                     data: board,
                     filters: {
                         moment: date => moment.unix(date).fromNow()
                     }
                 });
 
-                hideLoader();
+                new APICall("boards/reads")
+                    .authorize()
+                    .params({
+                        id: board.id
+                    })
+                    .onSuccess(reads => {
+                        if (!reads.filter(read => read.user.id === window.user.id)[0]) {
+                            new APICall("boards/read")
+                                .authorize()
+                                .post()
+                                .params({
+                                    board: board.id
+                                })
+                                .onSuccess(read => {
+                                    reads.push(read);
+                                    renderBoardReads(reads);
+                                })
+                                .execute();
+                        } else {
+                            renderBoardReads(reads);
+                        }
+
+                        hideLoader();
+                    })
+                    .execute();
             })
             .execute();
     });

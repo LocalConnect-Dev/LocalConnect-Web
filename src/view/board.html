@@ -11,28 +11,53 @@
   <i class="backward icon"></i>
   一覧へ戻る
 </a>
-<section id="board" v-cloak>
-  <article class="ui fluid card">
-    <div class="content">
-      <div class="header">
-        <h3>{{ document.title }}</h3>
-      </div>
-      <div class="meta">
-        <i class="user icon"></i>
-        {{ document.author.name }},
-        <i class="clock outline icon"></i>
-        {{ created_at | moment }}
-      </div>
-      <div class="description">
-        <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
-        <div class="attachments" v-if="document.attachments">
-          <div class="attachment" v-for="attachment in document.attachments">
-            <img class="ui fluid image"
-                 :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
-                 v-if="attachment.type == 'Image'">
+<section id="board">
+  <div class="ui stackable grid">
+    <div id="board-contents" class="eleven wide column" v-cloak>
+      <article class="ui fluid card">
+        <div class="content">
+          <div class="header">
+            <h3>{{ document.title }}</h3>
+          </div>
+          <div class="meta">
+            <i class="user icon"></i>
+            {{ document.author.name }},
+            <i class="clock outline icon"></i>
+            {{ created_at | moment }}
+          </div>
+          <div class="description">
+            <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
+            <div class="attachments" v-if="document.attachments">
+              <div class="attachment" v-for="attachment in document.attachments">
+                <img class="ui fluid image"
+                     :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                     v-if="attachment.type == 'Image'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div id="board-reads" class="five wide column" v-cloak>
+      <div class="ui card">
+        <div class="content board-reads">
+          <div class="header">
+            <h3>
+              既読
+              <span class="ui large circular label">
+                {{ reads | count }}
+              </span>
+            </h3>
+          </div>
+          <br>
+          <div class="board-read" v-for="read in reads">
+            <i class="large user icon" v-if="read.user.avatar == null"></i>
+            <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + read.user.avatar.id"
+                 v-else>
+            {{ read.user.name }}
           </div>
         </div>
       </div>
     </div>
-  </article>
+  </div>
 </section>

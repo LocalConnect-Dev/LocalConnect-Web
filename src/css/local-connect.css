@@ -184,16 +184,19 @@ h3 {
     margin-top: 15px;
 }
 
+.board-reads h1,
 .event-date h1,
 .event-attendances h1 {
     margin: 0;
 }
 
+.board-reads h1,
 .event-date p,
 .event-attendances p {
     margin-bottom: 0 !important;
 }
 
+.board-read,
 .event-attendance {
     margin-bottom: 5px;
 }

@@ -174,6 +174,20 @@ const renderBoards = boards => {
     }
 };
 
+const renderBoardReads = reads => {
+    new Vue({
+        el: "#board-reads",
+        data: {
+            reads: reads
+        },
+        filters: {
+            count: reads => reads.length
+        }
+    });
+
+    hideLoader();
+};
+
 const renderEvents = events => {
     if (events.length === 0) {
         window.allLoaded = true;
