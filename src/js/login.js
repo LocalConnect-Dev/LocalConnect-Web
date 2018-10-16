@@ -68,6 +68,7 @@ onClick("#login", () => {
             $("#not-logged-in").addClass("nav-hidden");
             $("#logged-in").removeClass("nav-hidden");
 
+            connectSocket();
             move(URI("/mypage.view", location.href));
         })
         .execute();

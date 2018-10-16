@@ -388,6 +388,8 @@ const commonOnClick = () => {
             .authorize()
             .delete()
             .onSuccess(() => {
+                disconnectSocket();
+
                 Cookies.remove("LocalConnect-Session");
                 $("#logged-in").addClass("nav-hidden");
                 $("#not-logged-in").removeClass("nav-hidden");
@@ -646,6 +648,74 @@ const checkPermissions = () => {
     });
 };
 
+const connectSocket = () => {
+    if ("Notification" in window) {
+        Notification
+            .requestPermission()
+            .then(result => {
+                if (result !== "default" && result !== "denied") {
+                    console.log("Notification enabled");
+
+                    const connection = new WebSocket("wss://api.local-connect.ga/socket", [Cookies.get("LocalConnect-Session")]);
+                    connection.onopen = event => {
+                        console.log("Connected to WebSocket server");
+                    };
+                    connection.onmessage = event => {
+                        const notification = JSON.parse(event.data);
+                        const type = notification.type;
+                        const object = notification.object;
+                        if (type === "KeepAlive") {
+                            console.log("Keep-Alive");
+                            return;
+                        }
+
+                        console.log("Notification received");
+                        if (type === "Board") {
+                            speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
+                            notify(
+                                "新しい回覧板が配信されました",
+                                object.document.title,
+                                () => {
+                                    showLoader();
+                                    move(URI("/board.view?id=" + object.id, location.href));
+                                }
+                            );
+                        } else if (type === "Event") {
+                            speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
+                            notify(
+                                "新しいイベントが公開されました",
+                                object.document.title,
+                                () => {
+                                    showLoader();
+                                    move(URI("/event.view?id=" + object.id, location.href));
+                                }
+                            )
+                        }
+                    };
+                    connection.onclose = event => {
+                        if (event.code !== 1006) {
+                            return;
+                        }
+
+                        notify(
+                            "サーバから切断されました",
+                            "クリックまたはタップしてサーバへ再接続してください。",
+                            () => {
+                                location.reload();
+                            }
+                        );
+                    };
+
+                    window.connection = connection;
+                }
+            });
+    }
+};
+
+const disconnectSocket = () => {
+    window.connection.disconnect();
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -704,63 +774,8 @@ $(() => {
     showLoader();
     commonOnClick();
 
-    if ("Notification" in window) {
-        Notification
-            .requestPermission()
-            .then(result => {
-                if (result !== "default" && result !== "denied") {
-                    console.log("Notification enabled");
-
-                    const connection = new WebSocket("wss://api.local-connect.ga/socket", [Cookies.get("LocalConnect-Session")]);
-                    connection.onopen = event => {
-                        console.log("Connected to WebSocket server");
-                    };
-                    connection.onmessage = event => {
-                        const notification = JSON.parse(event.data);
-                        const type = notification.type;
-                        const object = notification.object;
-                        if (type === "KeepAlive") {
-                            console.log("Keep-Alive");
-                            return;
-                        }
-
-                        console.log("Notification received");
-                        if (type === "Board") {
-                            speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
-                            notify(
-                                "新しい回覧板が配信されました",
-                                object.document.title,
-                                () => {
-                                    showLoader();
-                                    move(URI("/board.view?id=" + object.id, location.href));
-                                }
-                            );
-                        } else if (type === "Event") {
-                            speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
-                            notify(
-                                "新しいイベントが公開されました",
-                                object.document.title,
-                                () => {
-                                    showLoader();
-                                    move(URI("/event.view?id=" + object.id, location.href));
-                                }
-                            )
-                        }
-                    };
-                    connection.onclose = event => {
-                        notify(
-                            "サーバから切断されました",
-                            "クリックまたはタップしてサーバへ再接続してください。",
-                            () => {
-                                location.reload();
-                            }
-                        );
-                    }
-                }
-            });
-    }
-
     if (Cookies.get("LocalConnect-Session")) {
+        connectSocket();
         $("#logged-in").removeClass("nav-hidden");
 
         new APICall("users/me")
