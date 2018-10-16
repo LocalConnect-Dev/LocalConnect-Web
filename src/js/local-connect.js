@@ -679,60 +679,62 @@ $(() => {
     showLoader();
     commonOnClick();
 
-    Notification
-        .requestPermission()
-        .then(result => {
-            if (result !== "default" && result !== "denied") {
-                console.log("Notification enabled");
+    if ("Notification" in window) {
+        Notification
+            .requestPermission()
+            .then(result => {
+                if (result !== "default" && result !== "denied") {
+                    console.log("Notification enabled");
 
-                const connection = new WebSocket("wss://api.local-connect.ga/socket", [Cookies.get("LocalConnect-Session")]);
-                connection.onopen = event => {
-                    console.log("Connected to WebSocket server");
-                };
-                connection.onmessage = event => {
-                    const notification = JSON.parse(event.data);
-                    const type = notification.type;
-                    const object = notification.object;
-                    if (type === "KeepAlive") {
-                        console.log("Keep-Alive");
-                        return;
-                    }
+                    const connection = new WebSocket("wss://api.local-connect.ga/socket", [Cookies.get("LocalConnect-Session")]);
+                    connection.onopen = event => {
+                        console.log("Connected to WebSocket server");
+                    };
+                    connection.onmessage = event => {
+                        const notification = JSON.parse(event.data);
+                        const type = notification.type;
+                        const object = notification.object;
+                        if (type === "KeepAlive") {
+                            console.log("Keep-Alive");
+                            return;
+                        }
 
-                    console.log("Notification received");
-                    if (type === "Board") {
-                        speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
+                        console.log("Notification received");
+                        if (type === "Board") {
+                            speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
+                            notify(
+                                "新しい回覧板が配信されました",
+                                object.document.title,
+                                () => {
+                                    showLoader();
+                                    move(URI("/board.view?id=" + object.id, location.href));
+                                }
+                            );
+                        } else if (type === "Event") {
+                            speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
+                            notify(
+                                "新しいイベントが公開されました",
+                                object.document.title,
+                                () => {
+                                    showLoader();
+                                    move(URI("/event.view?id=" + object.id, location.href));
+                                }
+                            )
+                        }
+                    };
+                    connection.onclose = event => {
+                        speech("エラーが発生しました。通知をクリックまたはタップして読み込み直してください。");
                         notify(
-                            "新しい回覧板が配信されました",
-                            object.document.title,
+                            "サーバから切断されました",
+                            "クリックまたはタップしてサーバへ再接続してください。",
                             () => {
-                                showLoader();
-                                move(URI("/board.view?id=" + object.id, location.href));
+                                location.reload();
                             }
                         );
-                    } else if (type === "Event") {
-                        speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
-                        notify(
-                            "新しいイベントが公開されました",
-                            object.document.title,
-                            () => {
-                                showLoader();
-                                move(URI("/event.view?id=" + object.id, location.href));
-                            }
-                        )
                     }
-                };
-                connection.onclose = event => {
-                    speech("エラーが発生しました。通知をクリックまたはタップして読み込み直してください。");
-                    notify(
-                        "サーバから切断されました",
-                        "クリックまたはタップしてサーバへ再接続してください。",
-                        () => {
-                            location.reload();
-                        }
-                    );
                 }
-            }
-        });
+            });
+    }
 
     if (Cookies.get("LocalConnect-Session")) {
         $("#logged-in").removeClass("nav-hidden");
