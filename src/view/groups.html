@@ -12,7 +12,9 @@
     <i class="backward icon"></i>
     サービス管理パネルへ戻る
   </a>
-  <a :href="'/create-group.view?region=' + id" class="ui positive left labeled icon button">
+  <a :href="'/create-group.view?region=' + id"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="write_groups">
     <i class="plus icon"></i>
     新しい団体を作成する
   </a>
