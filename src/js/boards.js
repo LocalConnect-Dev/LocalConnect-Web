@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of boards");
     $("#wrapper").load("view/boards.html", () => {
+        checkPermissions();
+
         new APICall("boards/list")
             .authorize()
             .onSuccess(boards => {
