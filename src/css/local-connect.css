@@ -261,6 +261,11 @@ img.avatar {
     color: #333;
 }
 
+.user-link,
+.user-link:hover {
+    color: inherit;
+}
+
 @media only screen and (min-width: 768px) {
     .event-date-right {
         text-align: right;

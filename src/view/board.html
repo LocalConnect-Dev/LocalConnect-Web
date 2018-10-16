@@ -87,10 +87,12 @@
           </div>
           <br>
           <div class="board-read" v-for="read in reads">
-            <i class="large user icon" v-if="read.user.avatar == null"></i>
-            <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + read.user.avatar.id"
-                 v-else>
-            {{ read.user.name }}
+            <a class="user-link" :href="'/user.view?id=' + read.user.id">
+              <i class="large user icon" v-if="read.user.avatar == null"></i>
+              <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + read.user.avatar.id"
+                   v-else>
+              {{ read.user.name }}
+            </a>
           </div>
         </div>
       </div>

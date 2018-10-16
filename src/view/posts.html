@@ -19,9 +19,12 @@
         <div class="content">
           <div class="header">
             <h3>
-              <i class="large user icon" v-if="post.author.avatar == null"></i>
-              <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + post.author.avatar.id" v-else>
-              {{ post.author.name }}
+              <a class="user-link" :href="'/user.view?id=' + post.author.id">
+                <i class="large user icon" v-if="post.author.avatar == null"></i>
+                <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + post.author.avatar.id"
+                     v-else>
+                {{ post.author.name }}
+              </a>
             </h3>
           </div>
           <div class="description">
