@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of mypage");
     $("#wrapper").load("view/mypage.html", () => {
+        checkPermissions();
+
         new APICall("profiles/mine")
             .authorize()
             .onSuccess(profile => {
