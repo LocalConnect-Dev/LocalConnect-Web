@@ -7,6 +7,13 @@ $(() => {
         createEditor("#editor", () => {
             hideLoader();
         });
+
+        const now = new Date();
+        $("#year").val(now.getFullYear());
+        $("#month").val(now.getMonth());
+        $("#day").val(now.getDate());
+        $("#hour").val(now.getHours());
+        $("#minute").val(now.getMinutes());
     });
 });
 
@@ -19,7 +26,7 @@ onClick("#submit", () => {
     const date = Math.floor(
         new Date(
             $("#year").val(),
-            $("#month").val() - 1,
+            $("#month").val(),
             $("#day").val(),
             $("#hour").val(),
             $("#minute").val(),
