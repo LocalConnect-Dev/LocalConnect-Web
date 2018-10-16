@@ -2,4 +2,30 @@
   <img class="ui fluid image"
        :src="'//api.local-connect.ga/images/show?id=' + object.id"
        v-if="type === 'Image'">
+  <div v-if="type === 'Event'">
+    <article class="ui fluid card event-card">
+      <div class="content">
+        <div class="ui stackable grid">
+          <div class="three wide column event-date event-date-right">
+            <p>{{ object.date | year }} 年</p>
+            <h1>
+              {{ object.date | month }}
+              <small>月</small>
+              {{ object.date | day }}
+              <small>日</small>
+            </h1>
+            <p>({{ object.date | dayOfWeek }}) {{ object.date | time }}～</p>
+          </div>
+          <div class="thirteen wide column">
+            <div class="header">
+              <h3>{{ object.document.title }}</h3>
+            </div>
+            <div class="description">
+              <p>{{ object.document.content | summary }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
 </div>

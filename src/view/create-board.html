@@ -30,6 +30,21 @@
             <i class="picture icon"></i>
             既存の画像を開く
           </button>
+          <div class="ui primary buttons">
+            <div class="ui left labeled icon button">
+              <i class="calendar alternate icon"></i>
+              イベントを追加
+            </div>
+            <div class="ui floating dropdown icon button">
+              <i class="dropdown icon"></i>
+              <div id="attachable-events" class="menu">
+                <div class="item" :data-value="event.id" v-for="event in events">
+                  <i class="calendar alternate icon"></i>
+                  {{ event.document.title }}
+                </div>
+              </div>
+            </div>
+          </div>
           <br>
           <br>
           <div id="attachments">

@@ -2,13 +2,66 @@ $(() => {
     console.log("Loading template of create-board");
     $("#wrapper").load("view/create-board.html", () => {
         window.isWritingMode = true;
-
-        if (window.attachments) {
-            window.attachments = [];
-        }
+        window.attachments = [];
 
         createEditor("#editor", () => {
-            hideLoader();
+            new APICall("events/list")
+                .authorize()
+                .onSuccess(events => {
+                    new Vue({
+                        el: "#attachable-events",
+                        data: {
+                            events: events
+                        }
+                    });
+
+                    $('.ui.dropdown').dropdown({
+                        onChange: eventId => {
+                            showLoader();
+
+                            new APICall("attachments/create")
+                                .authorize()
+                                .post()
+                                .params({
+                                    type: "Event",
+                                    object_id: eventId
+                                })
+                                .onSuccess(attachment => {
+                                    window.attachments.push(attachment);
+
+                                    const element =
+                                        $("#attachment-template")
+                                            .clone()
+                                            .removeAttr("id")
+                                            .data("id", attachment.id);
+                                    element.appendTo("#attachments");
+
+                                    new Vue({
+                                        el: element.get(0),
+                                        data: attachment,
+                                        filters: {
+                                            moment: date => moment.unix(date).fromNow(),
+                                            year: date => moment.unix(date).format("Y"),
+                                            month: date => moment.unix(date).format("M"),
+                                            day: date => moment.unix(date).format("D"),
+                                            dayOfWeek: date => moment.unix(date).format("dd"),
+                                            time: date => moment.unix(date).format("H時 m分"),
+                                            summary: str => {
+                                                const striped = $("<div>").html(str.replace(/<(?:.|\n)*?>/gm, '')).text();
+                                                return striped.length > 32 ? striped.substr(0, 32) + "…" : striped;
+                                            }
+                                        }
+                                    });
+
+                                    hideLoader();
+                                })
+                                .execute();
+                        }
+                    });
+
+                    hideLoader();
+                })
+                .execute();
         });
     });
 });

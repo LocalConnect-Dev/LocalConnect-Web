@@ -78,6 +78,12 @@ h3 {
     margin-bottom: 0;
 }
 
+hr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 25px 0;
+}
+
 #templates {
     display: none;
 }
@@ -202,7 +208,7 @@ h3 {
 }
 
 .event-card h3 {
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
 }
 
 .post-card h4 {
@@ -244,6 +250,11 @@ img.avatar {
 .ui.medium.image {
     width: 256px;
     height: 256px;
+}
+
+.ui.cards > .card > .content > .description,
+.ui.card > .content > .description {
+    color: #333;
 }
 
 @media only screen and (min-width: 768px) {
