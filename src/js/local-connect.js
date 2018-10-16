@@ -366,7 +366,19 @@ const commonOnClick = () => {
     onClick("#go-to-panel", () => {
         $("#settings-instance").modal("hide");
         showLoader();
-        move(URI("/regions.view", location.href));
+
+        let path;
+        if (hasPermission("read_regions")) {
+            path = "/regions.view";
+        } else if (hasPermission("read_groups")) {
+            path = "/groups.view";
+        } else if (hasPermission("read_users")) {
+            path = "/users.view";
+        } else {
+            return;
+        }
+
+        move(URI(path, location.href));
     });
 
     onClick("#logout", () => {
@@ -621,6 +633,19 @@ const speech = message => {
     speechSynthesis.speak(utterance);
 };
 
+const hasPermission = name => {
+    return !!window.user.type.permissions.filter(permission => permission.name === name)[0];
+};
+
+const checkPermissions = () => {
+    $(".require-permission").each((index, element) => {
+        const object = $(element);
+        if (hasPermission(object.data("permission"))) {
+            object.removeClass("require-permission");
+        }
+    });
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -743,6 +768,12 @@ $(() => {
             .authorize()
             .onSuccess(user => {
                 window.user = user;
+
+                if (hasPermission("read_regions") ||
+                    hasPermission("read_groups") ||
+                    hasPermission("read_users")) {
+                    $("go-to-panel").removeClass("require-permission");
+                }
 
                 if (location.href.endsWith("/")) {
                     move(URI("/boards.view", location.href));

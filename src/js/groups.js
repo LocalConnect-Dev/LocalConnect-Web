@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of groups");
     $("#wrapper").load("view/groups.html", () => {
+        checkPermissions();
+
         let region;
         let call =
             new APICall("groups/list")
@@ -18,6 +20,7 @@ $(() => {
                         }
                     });
 
+                    checkPermissions();
                     hideLoader();
                 });
 

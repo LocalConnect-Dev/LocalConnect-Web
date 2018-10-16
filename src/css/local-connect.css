@@ -95,13 +95,15 @@ hr {
 
 #regions .ui.list,
 #groups .ui.list,
-#users .ui.list {
+#users .ui.list,
+#types .ui.list {
     padding: 10px 15px;
 }
 
 #regions .ui.list > .item > .content,
 #groups .ui.list > .item > .content,
-#users .ui.list > .item > .content {
+#users .ui.list > .item > .content,
+#types .ui.list > .item > .content {
     line-height: 1.4em !important;
 }
 
@@ -140,6 +142,14 @@ hr {
 
 #footer > button {
     margin: 1rem 5px 2rem;
+}
+
+#permissions {
+    padding: 5px;
+}
+
+.permission {
+    padding: 5px 0;
 }
 
 .nav-grid-left {
@@ -264,6 +274,10 @@ img.avatar {
 .user-link,
 .user-link:hover {
     color: inherit;
+}
+
+.require-permission {
+    display: none !important;
 }
 
 @media only screen and (min-width: 768px) {

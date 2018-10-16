@@ -8,11 +8,15 @@
 <br>
 <br>
 <div id="group-wrapper" v-cloak>
-  <a :href="'/groups.view?region=' + region.id" class="ui primary left labeled icon button">
+  <a :href="'/groups.view?region=' + region.id"
+     class="ui primary left labeled icon button require-permission"
+     data-permission="read_groups">
     <i class="backward icon"></i>
     団体管理パネルへ戻る
   </a>
-  <a :href="'/create-user.view?group=' + id" class="ui positive left labeled icon button">
+  <a :href="'/create-user.view?group=' + id"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="write_users">
     <i class="plus icon"></i>
     新しいユーザを作成する
   </a>
@@ -24,8 +28,9 @@
         <i class="large user middle aligned icon"></i>
         <div class="content">
           <span class="user-name">{{ user.name }}</span>
-          <a class="ui right labeled icon button go-to-user"
-             :href="'/user.view?id=' + user.id">
+          <a :href="'/user.view?id=' + user.id"
+             class="ui right labeled icon button go-to-user require-permission"
+             data-permission="read_users">
             ユーザのページへ
             <i class="right angle icon"></i>
           </a>

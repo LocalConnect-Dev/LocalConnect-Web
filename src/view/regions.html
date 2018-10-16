@@ -7,11 +7,15 @@
 </div>
 <br>
 <br>
-<a href="/create-region.view" class="ui positive left labeled icon button">
+<a href="/create-region.view"
+   class="ui positive left labeled icon button require-permission"
+   data-permission="write_regions">
   <i class="plus icon"></i>
   新しい地域を作成する
 </a>
-<a href="/edit-service.view" class="ui positive left labeled icon button">
+<a href="/edit-service.view"
+   class="ui positive left labeled icon button require-permission"
+   data-permission="write_service">
   <i class="pencil icon"></i>
   サービスを編集する
 </a>
@@ -22,8 +26,9 @@
         <i class="large globe middle aligned icon"></i>
         <div class="content">
           <span class="region-name">{{ region.name }}</span>
-          <a class="ui right labeled icon button go-to-group"
-             :href="'/groups.view?region=' + region.id">
+          <a :href="'/groups.view?region=' + region.id"
+             class="ui right labeled icon button go-to-group require-permission"
+             data-permission="read_groups">
             地域管理パネルへ
             <i class="right angle icon"></i>
           </a>

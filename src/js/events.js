@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of events");
     $("#wrapper").load("view/events.html", () => {
+        checkPermissions();
+
         new APICall("events/list")
             .authorize()
             .onSuccess(events => {

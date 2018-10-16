@@ -24,8 +24,9 @@
         <i class="large group middle aligned icon"></i>
         <div class="content">
           <span class="group-name">{{ group.name }}</span>
-          <a class="ui right labeled icon button go-to-region"
-             :href="'/users.view?group=' + group.id">
+          <a :href="'/users.view?group=' + group.id"
+             class="ui right labeled icon button go-to-region require-permission"
+             data-permission="read_users">
             団体管理パネルへ
             <i class="right angle icon"></i>
           </a>
