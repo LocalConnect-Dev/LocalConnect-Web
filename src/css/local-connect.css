@@ -178,6 +178,10 @@ hr {
     font-family: inherit;
 }
 
+.ui.cards > .card > .content, .ui.card > .content {
+    border: none;
+}
+
 .objects-block {
     margin: 0 0 1rem !important;
 }

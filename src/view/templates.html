@@ -1,9 +1,17 @@
-<div id="attachment-template" class="attachment">
-  <img class="ui fluid image"
-       :src="'//api.local-connect.ga/images/show?id=' + object.id"
-       v-if="type === 'Image'">
+<div id="attachment-template" class="attachment" :data-id="id">
+  <div class="ui fluid image" v-if="type === 'Image'">
+    <a class="ui red right corner label delete-attachment disable-link"
+       :data-id="id">
+      <i class="cancel icon"></i>
+    </a>
+    <img :src="'//api.local-connect.ga/images/show?id=' + object.id">
+  </div>
   <div v-if="type === 'Event'">
     <article class="ui fluid card event-card">
+      <a class="ui red right corner label delete-attachment disable-link"
+         :data-id="id">
+        <i class="cancel icon"></i>
+      </a>
       <div class="content">
         <div class="ui stackable grid">
           <div class="three wide column event-date event-date-right">
@@ -28,4 +36,5 @@
       </div>
     </article>
   </div>
+  <br>
 </div>

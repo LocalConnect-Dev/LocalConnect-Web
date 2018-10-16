@@ -323,9 +323,14 @@ const commonOnClick = () => {
     onClick("a", e => {
         e.preventDefault();
 
+        const target = $(e.currentTarget);
+        if (target.hasClass("disable-link")) {
+            return false;
+        }
+
         let uri;
         if (Cookies.get("LocalConnect-Session")) {
-            const path = $(e.currentTarget).attr("href");
+            const path = target.attr("href");
             uri = URI(path, location.href);
         } else {
             uri = URI("/login.view", location.href);

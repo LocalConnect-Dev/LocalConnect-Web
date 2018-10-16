@@ -162,3 +162,17 @@ onClick("#open", () => {
         })
         .click();
 });
+
+onClick(".delete-attachment", event => {
+    const id = $(event.currentTarget).data("id");
+    window.attachments = window.attachments.filter(attachment => attachment.id !== id);
+
+    $("#attachments")
+        .children()
+        .each((index, element) => {
+            const attachment = $(element);
+            if (attachment.data("id") === id) {
+                attachment.remove();
+            }
+        });
+});
