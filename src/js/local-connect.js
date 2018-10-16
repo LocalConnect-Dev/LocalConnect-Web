@@ -487,6 +487,8 @@ const resetVariables = () => {
 };
 
 const loadView = uri => {
+    window.previousUri = uri.toString();
+
     console.log("Loading view");
     if (uri.suffix() === "view") {
         const name = uri.pathname().split(".")[0];
@@ -507,27 +509,31 @@ const loadView = uri => {
 const move = uri => {
     if (window.isWritingMode) {
         hideLoader();
-
-        $("#moving-page").clone().prop("id", "moving-page-instance").appendTo("body");
-        $("#moving-page-instance")
-            .modal({
-                closable: false,
-                onDeny: () => {
-                    window.isWritingMode = false;
-
-                    showLoader();
-                    moveConfirm(uri);
-                },
-                onHidden: () => {
-                    finalizeModal();
-                }
-            })
-            .modal("show");
+        checkMoving(() => {
+            showLoader();
+            moveConfirm(uri);
+        });
 
         return;
     }
 
     moveConfirm(uri);
+};
+
+const checkMoving = callback => {
+    $("#moving-page").clone().prop("id", "moving-page-instance").appendTo("body");
+    $("#moving-page-instance")
+        .modal({
+            closable: false,
+            onDeny: () => {
+                window.isWritingMode = false;
+                callback();
+            },
+            onHidden: () => {
+                finalizeModal();
+            }
+        })
+        .modal("show");
 };
 
 const moveConfirm = uri => {
@@ -625,6 +631,7 @@ $(document).ajaxError(() => {
 });
 
 $(() => {
+    window.previousUri = location.href;
     console.log("Hello, Local Connect!");
 
     if (navigator.appVersion.indexOf("Win") === -1) {
@@ -756,7 +763,19 @@ $(() => {
 
 window.onpopstate = event => {
     if (event) {
+        const uri = URI(location.href);
+        if (window.isWritingMode) {
+            window.history.pushState(null, null, window.previousUri);
+
+            checkMoving(() => {
+                showLoader();
+                moveConfirm(uri);
+            });
+
+            return;
+        }
+
         showLoader();
-        loadView(URI(location.href));
+        loadView(uri);
     }
 };
