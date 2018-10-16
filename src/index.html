@@ -52,16 +52,18 @@
       </div>
       <div class="content">
         <p class="description">
-          <button id="go-to-panel" class="ui basic button require-permission">
-            <i class="cog icon"></i>
-            管理パネルを開く
-          </button>
-          <button id="logout" class="ui basic button">
-            <i class="sign-out icon"></i>
-            ログアウト
-          </button>
-          <br>
-          <br>
+          <div class="logged-in hidden">
+            <button id="go-to-panel" class="ui basic button require-permission">
+              <i class="cog icon"></i>
+              管理パネルを開く
+            </button>
+            <button id="logout" class="ui basic button logged-in hidden">
+              <i class="sign-out icon"></i>
+              ログアウト
+            </button>
+            <br>
+            <br>
+          </div>
           <h4>文字サイズ</h4>
           <button id="font-small" class="ui basic button font-control active">小</button>
           <button id="font-medium" class="ui basic button font-control">中</button>
@@ -94,7 +96,7 @@
       </div>
     </header>
     <nav>
-      <div id="logged-in" class="ui container nav-hidden">
+      <div class="ui container logged-in hidden">
         <div class="ui stackable two column grid">
           <div class="column">
             <div class="ui two column grid nav-grid-left">
@@ -122,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div id="not-logged-in" class="ui container nav-hidden">
+      <div class="ui container not-logged-in hidden">
         <div class="ui stackable one column grid">
           <a href="/login.view" class="column nav-column">
             <h1><i class="sign-in icon"></i></h1>

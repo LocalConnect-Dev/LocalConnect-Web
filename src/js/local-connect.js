@@ -390,9 +390,15 @@ const commonOnClick = () => {
             .onSuccess(() => {
                 disconnectSocket();
 
+                window.user = undefined;
                 Cookies.remove("LocalConnect-Session");
-                $("#logged-in").addClass("nav-hidden");
-                $("#not-logged-in").removeClass("nav-hidden");
+
+                const approved = $(".permission-approved");
+                approved.addClass("require-permission");
+                approved.removeClass("permission-approved");
+
+                $(".logged-in").addClass("hidden");
+                $(".not-logged-in").removeClass("hidden");
 
                 move(URI("/over.view", location.href));
             })
@@ -636,6 +642,7 @@ const speech = message => {
 };
 
 const hasPermission = name => {
+    if (!window.user) return false;
     return !!window.user.type.permissions.filter(permission => permission.name === name)[0];
 };
 
@@ -644,6 +651,7 @@ const checkPermissions = () => {
         const object = $(element);
         if (hasPermission(object.data("permission"))) {
             object.removeClass("require-permission");
+            object.addClass("permission-approved");
         }
     });
 };
@@ -713,7 +721,7 @@ const connectSocket = () => {
 };
 
 const disconnectSocket = () => {
-    window.connection.disconnect();
+    window.connection.close();
 };
 
 Vue.filter('replaceLineBreaks', str => {
@@ -776,7 +784,7 @@ $(() => {
 
     if (Cookies.get("LocalConnect-Session")) {
         connectSocket();
-        $("#logged-in").removeClass("nav-hidden");
+        $(".logged-in").removeClass("hidden");
 
         new APICall("users/me")
             .authorize()
@@ -797,7 +805,7 @@ $(() => {
             })
             .execute();
     } else {
-        $("#not-logged-in").removeClass("nav-hidden");
+        $(".not-logged-in").removeClass("hidden");
 
         const name = URI(location.href).pathname().split(".")[0];
         if (name === "/login" || name === "/over") {
