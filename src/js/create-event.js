@@ -2,6 +2,7 @@ $(() => {
     console.log("Loading template of create-event");
     $("#wrapper").load("view/create-event.html", () => {
         window.isWritingMode = true;
+        window.attachments = [];
 
         createEditor("#editor", () => {
             hideLoader();
@@ -26,12 +27,18 @@ onClick("#submit", () => {
         ).getTime() / 1000
     );
 
+    const attachmentIds = [];
+    window.attachments.forEach(attachment => {
+        attachmentIds.push(attachment.id);
+    });
+
     new APICall("documents/create")
         .authorize()
         .post()
         .params({
             title: title,
-            content: content
+            content: content,
+            attachments: attachmentIds
         })
         .onSuccess(document => {
             new APICall("events/create")
@@ -61,4 +68,66 @@ onClick("#submit", () => {
                 .execute();
         })
         .execute();
+});
+
+onClick("#open", () => {
+    $("<input>")
+        .attr("type", "file")
+        .attr("accept", ".jpg, image/jpeg")
+        .on("change", event => {
+            showLoader();
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                new APICall("images/create")
+                    .authorize()
+                    .post()
+                    .body(reader.result)
+                    .onSuccess(image => {
+                        new APICall("attachments/create")
+                            .authorize()
+                            .post()
+                            .params({
+                                type: "Image",
+                                object_id: image.id
+                            })
+                            .onSuccess(attachment => {
+                                window.attachments.push(attachment);
+
+                                const element =
+                                    $("#attachment-template")
+                                        .clone()
+                                        .removeAttr("id")
+                                        .data("id", attachment.id);
+                                element.appendTo("#attachments");
+
+                                new Vue({
+                                    el: element.get(0),
+                                    data: attachment
+                                });
+
+                                hideLoader();
+                            })
+                            .execute();
+                    })
+                    .execute();
+            };
+
+            reader.readAsArrayBuffer(event.target.files[0]);
+        })
+        .click();
+});
+
+onClick(".delete-attachment", event => {
+    const id = $(event.currentTarget).data("id");
+    window.attachments = window.attachments.filter(attachment => attachment.id !== id);
+
+    $("#attachments")
+        .children()
+        .each((index, element) => {
+            const attachment = $(element);
+            if (attachment.data("id") === id) {
+                attachment.remove();
+            }
+        });
 });
