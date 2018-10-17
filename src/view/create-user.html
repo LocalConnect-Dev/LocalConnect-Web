@@ -7,7 +7,9 @@
 </div>
 <br>
 <br>
-<a href="/groups.view" class="ui primary left labeled icon button">
+<a href="/groups.view"
+   class="ui primary left labeled icon button require-permission"
+   data-permission="read_users">
   <i class="backward icon"></i>
   団体管理パネルへ戻る
 </a>
@@ -20,6 +22,21 @@
           <label>名前</label>
           <input id="name" type="text" placeholder="クリックまたはタップして入力">
         </div>
+        <div class="field">
+          <label>種類</label>
+          <div class="ui selection dropdown">
+            <input type="hidden" id="type">
+            <i class="dropdown icon"></i>
+            <div class="default text">クリックまたはタップして選択</div>
+            <div id="types" class="menu">
+              <div class="item" :data-value="type.id" v-for="type in types">
+                <i class="tag icon"></i>
+                {{ type.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
         <button id="submit" class="ui positive left labeled icon button" type="button">
           <i class="send icon"></i>
           作成する

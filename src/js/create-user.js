@@ -1,7 +1,22 @@
 $(() => {
     console.log("Loading template of create-user");
     $("#wrapper").load("view/create-user.html", () => {
-        hideLoader();
+        checkPermissions();
+
+        new APICall("types/list")
+            .authorize()
+            .onSuccess(types => {
+                new Vue({
+                    el: "#types",
+                    data: {
+                        types: types
+                    }
+                });
+
+                $('.ui.dropdown').dropdown();
+                hideLoader();
+            })
+            .execute();
     });
 });
 
@@ -15,7 +30,8 @@ onClick("#submit", () => {
             .authorize()
             .post()
             .params({
-                name: name
+                name: name,
+                type: $("#type").val()
             })
             .onSuccess(user => {
                 $("#created-user").clone().prop("id", "created-user-instance").appendTo("body");
