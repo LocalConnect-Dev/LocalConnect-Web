@@ -1,6 +1,7 @@
 $(() => {
     console.log("Loading template of edit-group");
     $("#wrapper").load("view/edit-group.html", () => {
+        checkPermissions();
         window.isWritingMode = true;
 
         new APICall("groups/show")
