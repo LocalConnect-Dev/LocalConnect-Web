@@ -363,6 +363,18 @@ const commonOnClick = () => {
         $("html, body").animate({scrollTop: 0}, "ease");
     });
 
+    onClick("#go-home", () => {
+        showLoader();
+
+        if (Cookies.get("LocalConnect-Session")) {
+            console.log("logged in");
+            move(URI("/group.view", location.href));
+        } else {
+            console.log("not logged in");
+            move(URI("/over.view", location.href));
+        }
+    });
+
     onClick("#go-to-panel", () => {
         $("#settings-instance").modal("hide");
         showLoader();
