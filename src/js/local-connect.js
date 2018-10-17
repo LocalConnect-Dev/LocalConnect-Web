@@ -142,6 +142,11 @@ const fetchError = error => {
     const element = $(selector);
     element.modal({
         closable: false,
+        onDeny: () => {
+            if (error === "INVALID_SESSION_SECRET") {
+                $("#logout").click();
+            }
+        },
         onHidden: () => {
             finalizeModal();
         }
@@ -396,25 +401,19 @@ const commonOnClick = () => {
     onClick("#logout", () => {
         $("#settings-instance").modal("hide");
         showLoader();
-        new APICall("sessions/destroy")
-            .authorize()
-            .delete()
-            .onSuccess(() => {
-                disconnectSocket();
 
-                window.user = undefined;
-                Cookies.remove("LocalConnect-Session");
-
-                const approved = $(".permission-approved");
-                approved.addClass("require-permission");
-                approved.removeClass("permission-approved");
-
-                $(".logged-in").addClass("hidden");
-                $(".not-logged-in").removeClass("hidden");
-
-                move(URI("/over.view", location.href));
-            })
-            .execute();
+        if (window.user) {
+            new APICall("sessions/destroy")
+                .authorize()
+                .delete()
+                .onSuccess(() => {
+                    disconnectSocket();
+                    finalizeLoggedOut();
+                })
+                .execute();
+        } else {
+            finalizeLoggedOut();
+        }
     });
 
     onClick("#font-small", () => {
@@ -742,6 +741,20 @@ const checkGoToPanel = () => {
         hasPermission("read_users")) {
         $("#go-to-panel").removeClass("require-permission");
     }
+};
+
+const finalizeLoggedOut = () => {
+    window.user = undefined;
+    Cookies.remove("LocalConnect-Session");
+
+    const approved = $(".permission-approved");
+    approved.addClass("require-permission");
+    approved.removeClass("permission-approved");
+
+    $(".logged-in").addClass("hidden");
+    $(".not-logged-in").removeClass("hidden");
+
+    move(URI("/over.view", location.href));
 };
 
 Vue.filter('replaceLineBreaks', str => {
