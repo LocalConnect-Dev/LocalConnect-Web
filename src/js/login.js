@@ -69,6 +69,7 @@ onClick("#login", () => {
             $(".logged-in").removeClass("hidden");
 
             checkPermissions();
+            checkGoToPanel();
             connectSocket();
             move(URI("/mypage.view", location.href));
         })

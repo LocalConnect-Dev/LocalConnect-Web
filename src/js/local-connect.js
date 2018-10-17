@@ -736,6 +736,14 @@ const disconnectSocket = () => {
     window.connection.close();
 };
 
+const checkGoToPanel = () => {
+    if (hasPermission("read_regions") ||
+        hasPermission("read_groups") ||
+        hasPermission("read_users")) {
+        $("#go-to-panel").removeClass("require-permission");
+    }
+};
+
 Vue.filter('replaceLineBreaks', str => {
     return str.split("\n").join("<br>");
 });
@@ -802,12 +810,7 @@ $(() => {
             .authorize()
             .onSuccess(user => {
                 window.user = user;
-
-                if (hasPermission("read_regions") ||
-                    hasPermission("read_groups") ||
-                    hasPermission("read_users")) {
-                    $("#go-to-panel").removeClass("require-permission");
-                }
+                checkGoToPanel();
 
                 if (location.href.endsWith("/")) {
                     move(URI("/boards.view", location.href));
