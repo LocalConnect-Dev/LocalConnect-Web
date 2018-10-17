@@ -1,6 +1,8 @@
 $(() => {
     console.log("Loading template of users");
     $("#wrapper").load("view/users.html", () => {
+        checkPermissions();
+
         let group;
         let call =
             new APICall("users/list")
@@ -18,6 +20,7 @@ $(() => {
                         }
                     });
 
+                    checkPermissions();
                     hideLoader();
                 });
 
