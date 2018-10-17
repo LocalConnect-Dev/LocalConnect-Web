@@ -20,6 +20,12 @@
     <i class="plus icon"></i>
     新しいユーザを作成する
   </a>
+  <a :href="'/edit-group.view?id=' + id"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="write_users">
+    <i class="pencil icon"></i>
+    団体を編集する
+  </a>
   <a href="/types.view"
      class="ui positive left labeled icon button require-permission"
      data-permission="read_types">
