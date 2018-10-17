@@ -794,7 +794,7 @@ $(() => {
                 if (hasPermission("read_regions") ||
                     hasPermission("read_groups") ||
                     hasPermission("read_users")) {
-                    $("go-to-panel").removeClass("require-permission");
+                    $("#go-to-panel").removeClass("require-permission");
                 }
 
                 if (location.href.endsWith("/")) {
