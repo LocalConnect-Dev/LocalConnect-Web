@@ -78,51 +78,56 @@ onClick("#submit", () => {
 });
 
 onClick("#open", () => {
-    $("<input>")
-        .attr("type", "file")
-        .attr("accept", ".jpg, image/jpeg")
-        .on("change", event => {
-            showLoader();
+    const input =
+        $("<input>")
+            .attr("type", "file")
+            .attr("accept", ".jpg, image/jpeg")
+            .on("change", event => {
+                showLoader();
 
-            const reader = new FileReader();
-            reader.onload = () => {
-                new APICall("images/create")
-                    .authorize()
-                    .post()
-                    .body(reader.result)
-                    .onSuccess(image => {
-                        new APICall("attachments/create")
-                            .authorize()
-                            .post()
-                            .params({
-                                type: "Image",
-                                object_id: image.id
-                            })
-                            .onSuccess(attachment => {
-                                window.attachments.push(attachment);
+                const reader = new FileReader();
+                reader.onload = () => {
+                    input.remove();
 
-                                const element =
-                                    $("#attachment-template")
-                                        .clone()
-                                        .removeAttr("id")
-                                        .data("id", attachment.id);
-                                element.appendTo("#attachments");
+                    new APICall("images/create")
+                        .authorize()
+                        .post()
+                        .body(reader.result)
+                        .onSuccess(image => {
+                            new APICall("attachments/create")
+                                .authorize()
+                                .post()
+                                .params({
+                                    type: "Image",
+                                    object_id: image.id
+                                })
+                                .onSuccess(attachment => {
+                                    window.attachments.push(attachment);
 
-                                new Vue({
-                                    el: element.get(0),
-                                    data: attachment
-                                });
+                                    const element =
+                                        $("#attachment-template")
+                                            .clone()
+                                            .removeAttr("id")
+                                            .data("id", attachment.id);
+                                    element.appendTo("#attachments");
 
-                                hideLoader();
-                            })
-                            .execute();
-                    })
-                    .execute();
-            };
+                                    new Vue({
+                                        el: element.get(0),
+                                        data: attachment
+                                    });
 
-            reader.readAsArrayBuffer(event.target.files[0]);
-        })
-        .click();
+                                    hideLoader();
+                                })
+                                .execute();
+                        })
+                        .execute();
+                };
+
+                reader.readAsArrayBuffer(event.target.files[0]);
+            });
+
+    input.appendTo("body");
+    input.click();
 });
 
 onClick(".delete-attachment", event => {

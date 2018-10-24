@@ -56,47 +56,53 @@ onClick("#submit", () => {
 });
 
 onClick("#open", () => {
-    $("<input>")
-        .attr("type", "file")
-        .attr("accept", ".jpg, image/jpeg")
-        .on("change", event => {
-            showLoader();
+    const input =
+        $("<input>")
+            .attr("class", "hidden")
+            .attr("type", "file")
+            .attr("accept", "image/*")
+            .on("change", event => {
+                showLoader();
 
-            const reader = new FileReader();
-            reader.onload = () => {
-                new APICall("images/create")
-                    .authorize()
-                    .post()
-                    .body(reader.result)
-                    .onSuccess(image => {
-                        $("#preview").attr("src", "//api.local-connect.ga/images/show?id=" + image.id);
+                const reader = new FileReader();
+                reader.onload = () => {
+                    input.remove();
 
-                        new APICall("users/set_avatar")
-                            .authorize()
-                            .post()
-                            .params({
-                                avatar: image.id
-                            })
-                            .onSuccess(user => {
-                                $("#set-avatar").clone().prop("id", "set-avatar-instance").appendTo("body");
+                    new APICall("images/create")
+                        .authorize()
+                        .post()
+                        .body(reader.result)
+                        .onSuccess(image => {
+                            $("#preview").attr("src", "//api.local-connect.ga/images/show?id=" + image.id);
 
-                                const selector = "#set-avatar-instance";
-                                const element = $(selector);
-                                element.modal({
-                                    closable: false,
-                                    onHidden: () => {
-                                        finalizeModal();
-                                    }
-                                }).modal("show");
+                            new APICall("users/set_avatar")
+                                .authorize()
+                                .post()
+                                .params({
+                                    avatar: image.id
+                                })
+                                .onSuccess(user => {
+                                    $("#set-avatar").clone().prop("id", "set-avatar-instance").appendTo("body");
 
-                                hideLoader();
-                            })
-                            .execute();
-                    })
-                    .execute();
-            };
+                                    const selector = "#set-avatar-instance";
+                                    const element = $(selector);
+                                    element.modal({
+                                        closable: false,
+                                        onHidden: () => {
+                                            finalizeModal();
+                                        }
+                                    }).modal("show");
 
-            reader.readAsArrayBuffer(event.target.files[0]);
-        })
-        .click();
+                                    hideLoader();
+                                })
+                                .execute();
+                        })
+                        .execute();
+                };
+
+                reader.readAsArrayBuffer(event.target.files[0]);
+            });
+
+    input.appendTo("body");
+    input.click();
 });
