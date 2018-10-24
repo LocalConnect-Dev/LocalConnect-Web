@@ -16,6 +16,9 @@ $(() => {
                     .onSuccess(profile => {
                         new APICall("posts/list_user")
                             .authorize()
+                            .params({
+                                user: id
+                            })
                             .onSuccess(posts => {
                                 new Vue({
                                     el: "#profile",
@@ -44,9 +47,11 @@ onScrollToEnd(() => {
     const extraLoader = $("#extra-loader");
     extraLoader.addClass("active");
 
+    const id = URI(location.href).search(true).id;
     new APICall("posts/list_user")
         .authorize()
         .params({
+            user: id,
             until: window.lastObject.id
         })
         .onSuccess(posts => {
