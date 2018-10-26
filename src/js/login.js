@@ -63,7 +63,7 @@ onClick("#login", () => {
         .body("token=" + encodeToken($("#token").val()))
         .onSuccess(session => {
             window.user = session.user;
-            Cookies.set("LocalConnect-Session", session.secret, { expires: 9999999 });
+            Cookies.set("LocalConnect-Session", session.secret, { expires: new Date("Tue, 31-Dec-2037 00:00:00 GMT") });
 
             $(".not-logged-in").addClass("hidden");
             $(".logged-in").removeClass("hidden");
