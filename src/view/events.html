@@ -18,7 +18,7 @@
   <article class="ui fluid card event-card" v-for="event in events" v-cloak>
     <div class="content">
       <div class="ui stackable grid">
-        <div class="three wide column event-date event-date-right">
+        <div class="four wide column event-date event-date-right">
           <p>{{ event.date | year }} 年</p>
           <h1>
             {{ event.date | month }}
@@ -28,7 +28,7 @@
           </h1>
           <p>({{ event.date | dayOfWeek }}) {{ event.date | time }}～</p>
         </div>
-        <div class="thirteen wide column">
+        <div class="twelve wide column">
           <div class="header">
             <h3>{{ event.document.title }}</h3>
           </div>
@@ -52,7 +52,7 @@
     <article class="ui fluid card event-card" v-for="event in events">
       <div class="content">
         <div class="ui stackable grid">
-          <div class="three wide column event-date event-date-right">
+          <div class="four wide column event-date event-date-right">
             <p>{{ event.date | year }} 年</p>
             <h1>
               {{ event.date | month }}
@@ -62,7 +62,7 @@
             </h1>
             <p>({{ event.date | dayOfWeek }}) {{ event.date | time }}～</p>
           </div>
-          <div class="thirteen wide column">
+          <div class="twelve wide column">
             <div class="header">
               <h3>{{ event.document.title }}</h3>
             </div>

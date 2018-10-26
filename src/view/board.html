@@ -35,7 +35,7 @@
                      v-if="attachment.type == 'Image'">
                 <div v-if="attachment.type === 'Event'">
                   <div class="ui stackable grid">
-                    <div class="three wide column event-date event-date-right">
+                    <div class="four wide column event-date event-date-right">
                       <p>{{ attachment.object.date | year }} 年</p>
                       <h1>
                         {{ attachment.object.date | month }}
@@ -45,7 +45,7 @@
                       </h1>
                       <p>({{ attachment.object.date | dayOfWeek }}) {{ attachment.object.date | time }}～</p>
                     </div>
-                    <div class="thirteen wide column">
+                    <div class="twelve wide column">
                       <div class="header">
                         <h3>{{ attachment.object.document.title }}</h3>
                       </div>
