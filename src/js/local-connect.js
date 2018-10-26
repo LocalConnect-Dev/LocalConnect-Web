@@ -692,7 +692,8 @@ const connectSocket = () => {
 
                         console.log("Notification received");
                         if (type === "Board") {
-                            speech("新しいかいらんばんが配信されました。通知をクリックまたはタップすると表示します。");
+                            $("#notification-board").get(0).play();
+
                             notify(
                                 "新しい回覧板が配信されました",
                                 object.document.title,
@@ -702,7 +703,8 @@ const connectSocket = () => {
                                 }
                             );
                         } else if (type === "Event") {
-                            speech("新しいイベントが公開されました。通知をクリックまたはタップすると表示します。");
+                            $("#notification-event").get(0).play();
+
                             notify(
                                 "新しいイベントが公開されました",
                                 object.document.title,
