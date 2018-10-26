@@ -353,7 +353,9 @@ const commonOnClick = () => {
             .modal({
                 closable: false,
                 onHidden: () => {
-                    finalizeModal();
+                    if (!window.isWritingMode) {
+                        finalizeModal();
+                    }
 
                     if (window.reloadAfterModalClosed) {
                         showLoader();
