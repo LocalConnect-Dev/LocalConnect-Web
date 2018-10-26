@@ -73,6 +73,16 @@ onClick("#open", () => {
                         .post()
                         .body(reader.result)
                         .onSuccess(image => {
+                            const avatarNotSet = $("#avatar-not-set");
+                            if (avatarNotSet.length) {
+                                $("<img>")
+                                    .attr("id", "preview")
+                                    .attr("class", "ui avatar medium circular image")
+                                    .appendTo(avatarNotSet.parent());
+
+                                avatarNotSet.remove();
+                            }
+
                             $("#preview").attr("src", "//api.local-connect.ga/images/show?id=" + image.id);
 
                             new APICall("users/set_avatar")

@@ -36,7 +36,7 @@
           </button>
           <br>
           <br>
-          <p v-if="avatar == null">まだ顔写真は設定されていません。</p>
+          <p id="avatar-not-set" v-if="avatar == null">まだ顔写真は設定されていません。</p>
           <img id="preview" class="ui avatar medium circular image" :src="'//api.local-connect.ga/images/show?id=' + avatar.id" v-else>
         </div>
         <br>
