@@ -5,7 +5,10 @@ $(() => {
             .onSuccess(service => {
                 new Vue({
                     el: "#service",
-                    data: service
+                    data: {
+                        service: service,
+                        loggedIn: Cookies.get("LocalConnect-Session")
+                    }
                 });
 
                 hideLoader();

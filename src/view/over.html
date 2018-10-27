@@ -1,12 +1,22 @@
-<div class="ui breadcrumb">
-  <div class="section"><i class="home icon"></i> ホーム</div>
-</div>
-<section id="service" v-cloak>
-  <article class="ui fluid card">
-    <div class="content">
-      <div class="description">
-        <p v-html="$options.filters.replaceLineBreaks(description)"></p>
+<div id="service">
+  <div class="ui breadcrumb">
+    <div class="section"><i class="home icon"></i> ホーム</div>
+  </div>
+  <br>
+  <br>
+  <a href="/group.view"
+     class="ui primary left labeled icon button"
+     v-if="loggedIn">
+    <i class="backward icon"></i>
+    グループのホームへ戻る
+  </a>
+  <section v-cloak>
+    <article class="ui fluid card">
+      <div class="content">
+        <div class="description">
+          <p v-html="$options.filters.replaceLineBreaks(service.description)"></p>
+        </div>
       </div>
-    </div>
-  </article>
-</section>
+    </article>
+  </section>
+</div>
