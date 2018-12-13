@@ -23,6 +23,8 @@ Web Application for Town Communities.
 4. Done!
 
 ## License
+Copyright (C) 2018 Hitoki Minami, Takashi Sakaguchi, Shuya Kawai, Naoki Ikeguchi, Kanato Shibata, Keita Tsuzuki.  
+  
 This project is released under the **GNU General Public License 3.0** .  
 For details, refer `LICENSE.md` .
 
