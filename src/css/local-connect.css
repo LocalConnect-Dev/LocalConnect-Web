@@ -1,0 +1,331 @@
+[v-cloak] {
+    display: none !important;
+}
+
+body {
+    background-color: #dcdcdc;
+}
+
+body.font-medium p,
+body.font-medium li,
+body.font-medium h3,
+body.font-medium h4,
+body.font-medium label,
+body.font-medium input,
+body.font-medium textarea,
+body.font-medium #keyboard,
+body.font-medium .breadcrumb,
+body.font-medium .meta,
+body.font-medium .button:not(.font-control-ignore),
+body.font-medium .event-date > div,
+body.font-medium .header,
+body.font-medium .ui.list > .item > .content {
+    font-size: 1.2em !important;
+    line-height: 1.4em !important;
+}
+
+body.font-large p,
+body.font-large li,
+body.font-large h3,
+body.font-large h4,
+body.font-large label,
+body.font-large input,
+body.font-large textarea,
+body.font-large #keyboard,
+body.font-large .breadcrumb,
+body.font-large .meta,
+body.font-large .button:not(.font-control-ignore),
+body.font-large .event-date > div,
+body.font-large .header,
+body.font-large .ui.list > .item > .content {
+    font-size: 1.5em !important;
+    line-height: 1.5em !important;
+}
+
+header {
+    text-align: center;
+    padding: 40px 15px 5px !important;
+}
+
+nav {
+    background-color: #228b22;
+    margin: 25px 0 40px;
+}
+
+nav a {
+    transition: color .2s;
+}
+
+nav a:hover {
+    color: #ffc042;
+    transition: color .2s;
+}
+
+main {
+    padding-bottom: 1rem;
+}
+
+main .ui.card {
+    background-color: #fff;
+    padding: 10px 15px;
+}
+
+section {
+    padding: 15px 0 5px;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin: 25px 0;
+}
+
+#templates {
+    display: none;
+}
+
+#profile > .grid > .column,
+#posts > .grid > .column {
+    padding: 0.5rem;
+}
+
+#regions .ui.list,
+#groups .ui.list,
+#users .ui.list,
+#types .ui.list {
+    padding: 10px 15px;
+}
+
+#regions .ui.list > .item > .content,
+#groups .ui.list > .item > .content,
+#users .ui.list > .item > .content,
+#types .ui.list > .item > .content {
+    line-height: 1.4em !important;
+}
+
+#keyboard .grid {
+    padding: 20px 0 !important;
+}
+
+#keyboard > .grid > .column {
+    text-align: center;
+    padding: 0 1rem !important;
+}
+
+#keyboard .button {
+    background-color: #EEE;
+    border: 1px solid #AAA;
+    border-radius: 0;
+    font-size: 24px;
+    padding: 0;
+    margin: -1px -1px 0 0;
+    width: 50px;
+    height: 50px;
+}
+
+#keyboard .button:hover {
+    background-color: #FFF;
+}
+
+#backspace {
+    border: 1px solid #F00 !important;
+    width: 197px !important;
+}
+
+#extra-loader {
+    margin-top: 1rem;
+}
+
+#footer > button {
+    margin: 1rem 5px 2rem;
+}
+
+#permissions {
+    padding: 5px;
+}
+
+.permission {
+    padding: 5px 0;
+}
+
+.nav-grid-left {
+    border-left: 1px solid #dcdcdc;
+}
+
+.nav-grid-right {
+    border-right: 1px solid #dcdcdc;
+}
+
+.nav-column {
+    border: solid #dcdcdc;
+    border-width: 0 1px;
+    color: #fff;
+    text-align: center;
+}
+
+.nav-column:hover {
+    color: #fff;
+}
+
+.nav-column.active {
+    color: #ffc042;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.ui.breadcrumb {
+    line-height: 1.5em;
+    padding: 5px;
+}
+
+.ui.cards > .card > .content > .header, .ui.card > .content > .header {
+    font-family: inherit;
+}
+
+.ui.cards > .card > .content, .ui.card > .content {
+    border: none;
+}
+
+.objects-block {
+    margin: 0 0 1rem !important;
+}
+
+.objects-block:last-child {
+    margin-bottom: 0;
+}
+
+.attachments {
+    margin-top: 15px;
+}
+
+.board-reads h1,
+.event-date h1,
+.event-attendances h1 {
+    margin: 0;
+}
+
+.board-reads h1,
+.event-date p,
+.event-attendances p {
+    margin-bottom: 0 !important;
+}
+
+.board-read,
+.event-attendance {
+    margin-bottom: 5px;
+}
+
+.event-card h3 {
+    margin-bottom: 5px !important;
+}
+
+.post-card h4 {
+    margin: 10px 0 5px;
+}
+
+.user-post h4 {
+    margin-top: 0;
+}
+
+.form.login {
+    padding: 20px 0 0;
+}
+
+.modal h4 {
+    margin: 10px 0 5px;
+}
+
+.large.user.icon {
+    margin: 5px 5px 5px 0;
+}
+
+.region-name,
+.group-name,
+.user-name {
+    margin-right: 10px;
+}
+
+.go-to-region,
+.go-to-group,
+.go-to-user {
+    margin: 5px 0 !important;
+}
+
+img.avatar {
+    object-fit: cover !important;
+}
+
+.ui.medium.image {
+    width: 256px;
+    height: 256px;
+}
+
+.ui.cards > .card > .content > .description,
+.ui.card > .content > .description {
+    color: #333;
+}
+
+.user-link,
+.user-link:hover {
+    color: inherit;
+}
+
+.require-permission {
+    display: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+    .event-date-right {
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #profile > .grid > .column,
+    #posts > .grid > .column {
+        padding: 0.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-grid-left {
+        border-left: none;
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+    .nav-grid-right {
+        border-right: none;
+        border-top: 1px solid #dcdcdc;
+    }
+}
+
+@media only screen and (max-width: 573px) {
+    #keyboard > .grid > .column {
+        width: 100% !important;
+        margin: 0 0 !important;
+    }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 574px) {
+    #keyboard > .grid > .column {
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+    #keyboard > .grid > .column {
+        width: 33.33% !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #keyboard > .grid > .column {
+        width: 25% !important;
+    }
+}

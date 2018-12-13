@@ -1,0 +1,31 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="sign in alternate icon"></i> ログイン</div>
+</div>
+<br>
+<form class="ui form login">
+  <div class="field">
+    <div class="ui action large input">
+      <textarea id="token" placeholder="トークン"></textarea>
+    </div>
+  </div>
+</form>
+<br>
+<div class="ui grid">
+  <div class="column">
+    <button class="ui right floated positive right labeled icon button" id="login">
+      ログイン
+      <i class="right angle icon"></i>
+    </button>
+  </div>
+</div>
+<br>
+<br>
+<div id="keyboard">
+  <div class="ui stackable centered grid">
+      <div class="column" v-for="block in blocks">
+        <button class="ui button" v-for="(alphabet, kana) in block">{{ kana }}</button>
+      </div>
+  </div>
+</div>

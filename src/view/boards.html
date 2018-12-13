@@ -1,0 +1,40 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="clipboard icon"></i> 電子回覧板</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="list icon"></i> 回覧板一覧</div>
+</div>
+<br>
+<br>
+<a href="/create-board.view"
+   class="ui positive left labeled icon button require-permission"
+   data-permission="write_boards">
+  <i class="plus icon"></i>
+  新しい回覧板を作成する
+</a>
+<section id="boards">
+  <div id="boards-block" class="objects-block" v-cloak>
+    <article class="ui fluid card" v-for="board in boards">
+      <div class="content">
+        <div class="header">
+          <h3>{{ board.document.title }}</h3>
+        </div>
+        <div class="meta">
+          <i class="clock outline icon"></i>
+          {{ board.created_at | moment }}
+        </div>
+        <div class="description">
+          <p>{{ board.document.content | summary }}</p>
+        </div>
+      </div>
+      <div class="extra content">
+        <a class="ui left labeled icon button" :href="'/board.view?id=' + board.id">
+          <i class="book icon"></i>
+          読む
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+<div id="extra-loader" class="ui centered inline loader"></div>

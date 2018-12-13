@@ -1,0 +1,62 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="clipboard icon"></i> 回覧板</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="plus icon"></i> 新しい回覧板</div>
+</div>
+<br>
+<br>
+<a href="/boards.view" class="ui primary left labeled icon button">
+  <i class="backward icon"></i>
+  一覧へ戻る
+</a>
+<h3>新しい回覧板</h3>
+<section id="create-post">
+  <div class="ui stackable one column grid">
+    <div class="column">
+      <form class="ui form">
+        <div class="field">
+          <label>タイトル</label>
+          <input id="title" type="text" placeholder="クリックまたはタップして入力">
+        </div>
+        <div class="field">
+          <label>内容</label>
+          <div id="editor" placeholder="クリックまたはタップして入力"></div>
+        </div>
+        <div class="field">
+          <label>添付</label>
+          <button id="open" class="ui primary left labeled icon button" type="button">
+            <i class="picture icon"></i>
+            写真を追加
+          </button>
+          <div class="ui primary buttons">
+            <div class="ui left labeled icon button">
+              <i class="calendar alternate icon"></i>
+              イベントを追加
+            </div>
+            <div class="ui floating dropdown icon button">
+              <i class="dropdown icon"></i>
+              <div id="attachable-events" class="menu">
+                <div class="item" :data-value="event.id" v-for="event in events">
+                  <i class="calendar alternate icon"></i>
+                  {{ event.document.title }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div id="attachments">
+          </div>
+        </div>
+        <br>
+        <br>
+        <button id="submit" class="ui positive left labeled icon button" type="button">
+          <i class="send icon"></i>
+          配信する
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+<div id="attachment-template" class="attachment" :data-id="id">
+  <div class="ui fluid image" v-if="type === 'Image'">
+    <a class="ui red right corner label delete-attachment disable-link"
+       :data-id="id">
+      <i class="cancel icon"></i>
+    </a>
+    <img :src="'//api.local-connect.ga/images/show?id=' + object.id">
+  </div>
+  <div v-if="type === 'Event'">
+    <article class="ui fluid card event-card">
+      <a class="ui red right corner label delete-attachment disable-link"
+         :data-id="id">
+        <i class="cancel icon"></i>
+      </a>
+      <div class="content">
+        <div class="ui stackable grid">
+          <div class="four wide column event-date event-date-right">
+            <p>{{ object.date | year }} 年</p>
+            <h1>
+              {{ object.date | month }}
+              <small>月</small>
+              {{ object.date | day }}
+              <small>日</small>
+            </h1>
+            <p>({{ object.date | dayOfWeek }}) {{ object.date | time }}～</p>
+          </div>
+          <div class="twelve wide column">
+            <div class="header">
+              <h3>{{ object.document.title }}</h3>
+            </div>
+            <div class="description">
+              <p>{{ object.document.content | summary }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <br>
+</div>

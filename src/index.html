@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-title" content="ローカルコネクト">
+    <meta name="application-name" content="ローカルコネクト">
+    <meta name="description" content="ローカルコネクトは高齢者の方にも優しい町内会向けウェブアプリケーションです。">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta property="og:title" content="ローカルコネクト">
+    <meta property="og:description" content="ローカルコネクトは高齢者の方にも優しい町内会向けウェブアプリケーションです。">
+    <meta property="og:site_name" content="ローカルコネクト">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/img/icon-shadow.png">
+    <meta property="og:url" content="https://www.local-connect.ga/">
+    <title>ローカルコネクト</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#48c0c0">
+    <link rel="stylesheet" href="/semantic/dist/semantic.css">
+    <link rel="stylesheet" href="/css/local-connect.css">
+    <link rel="shortcut icon" href="/icons/favicon.ico">
+  </head>
+  <body>
+    <div class="ui page dimmer" id="loader">
+      <div class="ui text loader">しばらくお待ちください</div>
+    </div>
+    <div class="ui basic modal" id="error">
+      <div class="ui icon header">
+        <i class="exclamation circle icon"></i>
+        エラーが発生しました
+      </div>
+      <div class="content">
+        <p>{{ error | i18n }}</p>
+      </div>
+      <div class="actions">
+        <div class="ui negative inverted button">
+          <i class="checkmark icon"></i>
+          OK
+        </div>
+      </div>
+    </div>
+    <div class="ui small modal" id="settings">
+      <div class="header">
+        設定
+      </div>
+      <div class="content">
+        <p class="description">
+          <div class="logged-in hidden">
+            <button id="go-to-panel" class="ui basic button require-permission">
+              <i class="cog icon"></i>
+              管理パネルを開く
+            </button>
+            <button id="logout" class="ui basic button logged-in hidden">
+              <i class="sign-out icon"></i>
+              ログアウト
+            </button>
+            <br>
+            <br>
+          </div>
+          <h4>文字サイズ</h4>
+          <button id="font-small" class="ui basic button font-control active">小</button>
+          <button id="font-medium" class="ui basic button font-control">中</button>
+          <button id="font-large" class="ui basic button font-control">大</button>
+        </p>
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          確定して閉じる
+          <i class="checkmark icon"></i>
+        </div>
+      </div>
+    </div>
+    <div id="modals"></div>
+    <div id="templates"></div>
+    <header class="ui stackable grid container">
+      <div class="three wide column">
+      </div>
+      <div class="ten wide column">
+        <a href="/over.view">
+          <img class="ui image centered" src="/img/logo-shadow.png">
+        </a>
+      </div>
+      <div class="three wide column">
+        <button id="open-settings"
+                class="ui basic button">
+          <i class="wrench icon"></i>
+          設定
+        </button>
+      </div>
+    </header>
+    <nav>
+      <div class="ui container logged-in hidden">
+        <div class="ui stackable two column grid">
+          <div class="column">
+            <div class="ui two column grid nav-grid-left">
+              <a href="/boards.view" class="column nav-column">
+                <h1><i class="clipboard icon"></i></h1>
+                <p>電子回覧板を見る</p>
+              </a>
+              <a href="/events.view" class="column nav-column">
+                <h1><i class="calendar alternate icon"></i></h1>
+                <p>イベントを見る・催す</p>
+              </a>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui two column grid nav-grid-right">
+              <a href="/posts.view" class="column nav-column">
+                <h1><i class="comments icon"></i></h1>
+                <p>掲示板を見る・書く</p>
+              </a>
+              <a href="/mypage.view" class="column nav-column">
+                <h1><i class="address card icon"></i></h1>
+                <p>マイページを見る</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui container not-logged-in hidden">
+        <div class="ui stackable one column grid">
+          <a href="/login.view" class="column nav-column">
+            <h1><i class="sign-in icon"></i></h1>
+            <p>ログイン</p>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <main class="ui container">
+      <div id="wrapper"></div>
+      <br>
+      <div id="footer">
+        <button id="go-top" class="ui left floated basic button">
+          <i class="up angle icon"></i>
+          一番上へ戻る
+        </button>
+      </div>
+    </main>
+
+    <audio id="notification-board">
+      <source src="/resources/notification-board.wav">
+    </audio>
+    <audio id="notification-event">
+      <source src="/resources/notification-event.wav">
+    </audio>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+    <script src="/semantic/dist/semantic.js"></script>
+    <script src="/js/ckeditor.ja.js"></script>
+    <script src="/js/js.cookie.js"></script>
+    <script src="/js/URI.js"></script>
+    <script src="/js/local-connect.js"></script>
+    <script>
+        moment.locale("ja");
+
+        window.addEventListener("load", () => {
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/worker.js")
+                    .then(registration => {
+                        console.log("Registered ServiceWorker successfully");
+                    })
+                    .catch(error => {
+                        console.warn("Failed to register ServiceWorker", error);
+                    });
+            }
+        });
+    </script>
+  </body>
+</html>

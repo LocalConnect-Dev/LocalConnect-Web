@@ -1,0 +1,89 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="calendar alternate icon"></i> イベント</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="list icon"></i> イベント一覧</div>
+</div>
+<br>
+<br>
+<a href="/create-event.view"
+   class="ui positive left labeled icon button require-permission"
+   data-permission="write_events">
+  <i class="plus icon"></i>
+  新しいイベントを作成する
+</a>
+<h3>参加予定のイベント</h3>
+<section id="joined-events">
+  <article class="ui fluid card event-card" v-for="event in events" v-cloak>
+    <div class="content">
+      <div class="ui stackable grid">
+        <div class="four wide column event-date event-date-right">
+          <p>{{ event.date | year }} 年</p>
+          <h1>
+            {{ event.date | month }}
+            <small>月</small>
+            {{ event.date | day }}
+            <small>日</small>
+          </h1>
+          <p>({{ event.date | dayOfWeek }}) {{ event.date | time }}～</p>
+        </div>
+        <div class="twelve wide column">
+          <div class="header">
+            <h3>{{ event.document.title }}</h3>
+          </div>
+          <div class="description">
+            <p>{{ event.document.content | summary }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="extra content">
+      <a :href="'/event.view?id=' + event.id" class="ui left labeled icon button">
+        <i class="book icon"></i>
+        詳細を見る
+      </a>
+    </div>
+  </article>
+</section>
+<h3>開催予定のイベント</h3>
+<section id="events">
+  <div id="events-block" class="objects-block" v-cloak>
+    <article class="ui fluid card event-card" v-for="event in events">
+      <div class="content">
+        <div class="ui stackable grid">
+          <div class="four wide column event-date event-date-right">
+            <p>{{ event.date | year }} 年</p>
+            <h1>
+              {{ event.date | month }}
+              <small>月</small>
+              {{ event.date | day }}
+              <small>日</small>
+            </h1>
+            <p>({{ event.date | dayOfWeek }}) {{ event.date | time }}～</p>
+          </div>
+          <div class="twelve wide column">
+            <div class="header">
+              <h3>{{ event.document.title }}</h3>
+            </div>
+            <div class="description">
+              <p>{{ event.document.content | summary }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="extra content">
+        <button class="ui positive left labeled icon button join-event"
+                :data-event="event.id">
+          <i class="user plus icon"></i>
+          <span>参加登録する</span>
+        </button>
+        <a :href="'/event.view?id=' + event.id" class="ui left labeled icon button">
+          <i class="book icon"></i>
+          詳細を見る
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+<div id="extra-loader" class="ui centered inline loader"></div>

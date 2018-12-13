@@ -1,0 +1,201 @@
+<div id="created-board" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    回覧板を配信しました
+  </div>
+  <div class="actions">
+    <div class="ui positive inverted button">
+      <i class="checkmark icon"></i>
+      OK
+    </div>
+  </div>
+</div>
+<div id="created-event" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    イベントを公開しました
+  </div>
+  <div class="actions">
+    <div class="ui positive inverted button">
+      <i class="checkmark icon"></i>
+      OK
+    </div>
+  </div>
+</div>
+<div id="joining-event" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="question icon"></i>
+    本当にこのイベントに参加登録しますか？
+  </div>
+  <div class="actions">
+    <div class="ui positive inverted button">
+      <i class="checkmark icon"></i>
+      する
+    </div>
+    <div class="ui negative inverted button">
+      <i class="close icon"></i>
+      しない
+    </div>
+  </div>
+</div>
+<div id="joined-event" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    イベントへ参加登録しました
+  </div>
+  <div class="actions">
+    <div class="ui positive inverted button">
+      <i class="checkmark icon"></i>
+      OK
+    </div>
+  </div>
+</div>
+<div id="created-post" class="ui mini modal">
+  <div class="header">
+    投稿が完了しました
+  </div>
+  <div class="content">
+    <div class="description">
+      <div class="header">
+        <h3>
+          <i class="large user icon"></i>
+          {{ document.author.name }}
+        </h3>
+      </div>
+      <h4>{{ document.title }}</h4>
+      <p>{{ document.content }}</p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      掲示板に戻る
+    </div>
+  </div>
+</div>
+<div id="created-profile" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    プロフィールを保存しました
+  </div>
+  <div class="actions">
+    <div class="ui positive inverted button">
+      <i class="checkmark icon"></i>
+      OK
+    </div>
+  </div>
+</div>
+<div id="created-user" class="ui mini modal">
+  <div class="header">
+    ユーザの作成が完了しました
+  </div>
+  <div class="content">
+    <div class="description">
+      <div class="header">
+        <h3>
+          <i class="large user icon"></i>
+          {{ name }}
+        </h3>
+      </div>
+      <p>
+        以下のトークンを必ずメモしてください。
+        <br>
+        <code>{{ token | token }}</code>
+      </p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      団体管理パネルに戻る
+    </div>
+  </div>
+</div>
+<div id="created-group" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    団体を作成しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      地域管理パネルに戻る
+    </div>
+  </div>
+</div>
+<div id="created-region" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    地域を作成しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      サービス管理パネルに戻る
+    </div>
+  </div>
+</div>
+<div id="created-type" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    ユーザの種類を作成しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      一覧に戻る
+    </div>
+  </div>
+</div>
+<div id="edited-group" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    団体を編集しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      団体管理パネルに戻る
+    </div>
+  </div>
+</div>
+<div id="edited-service" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    サービスを編集しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="backward icon"></i>
+      サービス管理パネルに戻る
+    </div>
+  </div>
+</div>
+<div id="set-avatar" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="check icon"></i>
+    顔写真を設定しました
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="check icon"></i>
+      OK
+    </div>
+  </div>
+</div>
+<div id="moving-page" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="exclamation triangle icon"></i>
+    別のページへ移動すると、現在編集中の内容は破棄されます
+  </div>
+  <div class="actions">
+    <div class="ui positive left labeled icon button">
+      <i class="cancel icon"></i>
+      とどまる
+    </div>
+    <div class="ui negative left labeled icon button">
+      <i class="check icon"></i>
+      移動する
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="clipboard icon"></i> 電子回覧板</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="book icon"></i> 回覧板の詳細</div>
+</div>
+<br>
+<br>
+<a href="/boards.view" class="ui primary left labeled icon button">
+  <i class="backward icon"></i>
+  一覧へ戻る
+</a>
+<section id="board">
+  <div class="ui stackable grid">
+    <div id="board-contents" class="eleven wide column" v-cloak>
+      <article class="ui fluid card">
+        <div class="content">
+          <div class="header">
+            <h3>{{ document.title }}</h3>
+          </div>
+          <div class="meta">
+            <i class="user icon"></i>
+            {{ document.author.name }},
+            <i class="clock outline icon"></i>
+            {{ created_at | moment }}
+          </div>
+          <div class="description">
+            <p v-html="$options.filters.replaceLineBreaks(document.content)"></p>
+            <div class="attachments" v-if="document.attachments">
+              <div class="attachment" v-for="attachment in document.attachments">
+                <hr>
+                <img class="ui fluid image"
+                     :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                     v-if="attachment.type == 'Image'">
+                <div v-if="attachment.type === 'Event'">
+                  <div class="ui stackable grid">
+                    <div class="four wide column event-date event-date-right">
+                      <p>{{ attachment.object.date | year }} 年</p>
+                      <h1>
+                        {{ attachment.object.date | month }}
+                        <small>月</small>
+                        {{ attachment.object.date | day }}
+                        <small>日</small>
+                      </h1>
+                      <p>({{ attachment.object.date | dayOfWeek }}) {{ attachment.object.date | time }}～</p>
+                    </div>
+                    <div class="twelve wide column">
+                      <div class="header">
+                        <h3>{{ attachment.object.document.title }}</h3>
+                      </div>
+                      <div class="description">
+                        <p>{{ attachment.object.document.content | summary }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div>
+                    <button class="ui positive left labeled icon button join-event"
+                            :data-event="attachment.object.id">
+                      <i class="user plus icon"></i>
+                      <span>参加登録する</span>
+                    </button>
+                    <a :href="'/event.view?id=' + attachment.object.id" class="ui left labeled icon button">
+                      <i class="book icon"></i>
+                      詳細を見る
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div id="board-reads" class="five wide column" v-cloak>
+      <div class="ui card">
+        <div class="content board-reads">
+          <div class="header">
+            <h3>
+              既読
+              <span class="ui large circular label">
+                {{ reads | count }}
+              </span>
+            </h3>
+          </div>
+          <br>
+          <div class="board-read" v-for="read in reads">
+            <a class="user-link" :href="'/user.view?id=' + read.user.id">
+              <i class="large user icon" v-if="read.user.avatar == null"></i>
+              <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + read.user.avatar.id"
+                   v-else>
+              {{ read.user.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

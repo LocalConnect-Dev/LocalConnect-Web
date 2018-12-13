@@ -1,0 +1,53 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="group icon"></i> 団体管理パネル</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="user icon"></i> ユーザの一覧</div>
+</div>
+<br>
+<br>
+<div id="group-wrapper" v-cloak>
+  <a :href="'/groups.view?region=' + region.id"
+     class="ui primary left labeled icon button require-permission"
+     data-permission="read_groups">
+    <i class="backward icon"></i>
+    地域管理パネルへ戻る
+  </a>
+  <a :href="'/create-user.view?group=' + id"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="write_users">
+    <i class="plus icon"></i>
+    新しいユーザを作成する
+  </a>
+  <a :href="'/edit-group.view?id=' + id"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="write_users">
+    <i class="pencil icon"></i>
+    団体を編集する
+  </a>
+  <a href="/types.view"
+     class="ui positive left labeled icon button require-permission"
+     data-permission="read_types">
+    <i class="tag icon"></i>
+    ユーザの種類の管理
+  </a>
+</div>
+<section id="users" v-cloak>
+  <article class="ui fluid card">
+    <div class="ui list">
+      <div class="item" v-for="user in users">
+        <i class="large user middle aligned icon"></i>
+        <div class="content">
+          <span class="user-name">{{ user.name }}</span>
+          <a :href="'/user.view?id=' + user.id"
+             class="ui right labeled icon button go-to-user require-permission"
+             data-permission="read_users">
+            ユーザのページへ
+            <i class="right angle icon"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

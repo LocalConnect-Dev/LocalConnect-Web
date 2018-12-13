@@ -1,0 +1,28 @@
+<div id="group">
+  <div class="ui breadcrumb">
+    <div class="active section"><i class="home icon"></i> ホーム</div>
+    <i class="right angle icon divider"></i>
+    <div class="section"><i class="group icon"></i> グループの詳細</div>
+    <i class="right angle icon divider"></i>
+    <div class="active section"><i class="list icon"></i> {{ name }}</div>
+  </div>
+  <br>
+  <br>
+  <a href="/over.view"
+     class="ui primary left labeled icon button">
+    <i class="backward icon"></i>
+    ローカルコネクトのホームへ戻る
+  </a>
+  <section v-cloak>
+    <article class="ui fluid card">
+      <div class="content">
+        <div class="header">
+          <h3>{{ name }}</h3>
+        </div>
+        <div class="description">
+          <p v-html="$options.filters.replaceLineBreaks(description)"></p>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>

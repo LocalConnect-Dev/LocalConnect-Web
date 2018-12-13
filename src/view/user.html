@@ -1,0 +1,67 @@
+<div id="profile">
+  <div class="ui breadcrumb">
+    <div class="section"><i class="home icon"></i> ホーム</div>
+    <i class="right angle icon divider"></i>
+    <div class="section"><i class="address card icon"></i> ユーザのページ</div>
+    <i class="right angle icon divider"></i>
+    <div class="active section" v-cloak><i class="user icon"></i> {{ profile.user.name }}</div>
+  </div>
+  <section v-cloak>
+    <div class="ui stackable one column grid">
+      <div class="column">
+        <article class="ui fluid card">
+          <div class="content">
+            <div class="header">
+              <h3>
+                <i class="large user icon" v-if="avatar == null"></i>
+                <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + avatar.id" v-else>
+                {{ profile.user.name }}
+              </h3>
+            </div>
+            <div class="description">
+              <ul class="ui list">
+                <li>趣味: {{ profile.hobbies }}</li>
+                <li>好物: {{ profile.favorites }}</li>
+                <li>座右の銘: {{ profile.mottoes }}</li>
+              </ul>
+            </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <h3 v-cloak>{{ profile.user.name }} さんの投稿</h3>
+</div>
+<section id="posts">
+  <div id="posts-block" class="ui stackable two column grid objects-block" v-cloak>
+    <div class="column" v-for="post in posts">
+      <article class="ui fluid card post-card user-post">
+        <div class="content">
+          <div class="description">
+            <h4>{{ post.document.title }}</h4>
+            <p>{{ post.document.content }}</p>
+            <div class="attachments" v-if="post.document.attachments">
+              <div class="attachment" v-for="attachment in post.document.attachments">
+                <img class="ui fluid image"
+                     :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                     v-if="attachment.type == 'Image'">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui labeled button font-control-ignore">
+            <button class="ui left icon labeled red button like-post"
+                    :class="post.likes | count"
+                    :data-post="post.id">
+              <i class="heart icon"></i>
+              いいね！
+            </button>
+            <label class="ui basic left pointing label">
+              {{ post.likes | count }}
+            </label>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<div class="ui breadcrumb">
+  <div class="section"><i class="home icon"></i> ホーム</div>
+  <i class="right angle icon divider"></i>
+  <div class="section"><i class="comments icon"></i> 掲示板</div>
+  <i class="right angle icon divider"></i>
+  <div class="active section"><i class="list icon"></i> 投稿一覧</div>
+</div>
+<br>
+<br>
+<a href="/create-post.view"
+   class="ui positive left labeled icon button require-permission"
+   data-permission="write_posts">
+  <i class="plus icon"></i>
+  新しい投稿を作成する
+</a>
+<h3>最近の投稿</h3>
+<section id="posts">
+  <div id="posts-block" class="ui stackable two column grid objects-block" v-cloak>
+    <div class="column" v-for="post in posts">
+      <article class="ui fluid card post-card">
+        <div class="content">
+          <div class="header">
+            <h3>
+              <a class="user-link" :href="'/user.view?id=' + post.author.id">
+                <i class="large user icon" v-if="post.author.avatar == null"></i>
+                <img class="ui avatar image" :src="'//api.local-connect.ga/images/show?id=' + post.author.avatar.id"
+                     v-else>
+                {{ post.author.name }}
+              </a>
+            </h3>
+          </div>
+          <div class="description">
+            <h4>{{ post.document.title }}</h4>
+            <p>{{ post.document.content }}</p>
+            <div class="attachments" v-if="post.document.attachments">
+              <div class="attachment" v-for="attachment in post.document.attachments">
+                <img class="ui fluid image"
+                     :src="'//api.local-connect.ga/images/show?id=' + attachment.object.id"
+                     v-if="attachment.type == 'Image'">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui labeled button font-control-ignore">
+            <button class="ui left icon labeled red button like-post"
+                    :class="post.likes | count"
+                    :data-post="post.id">
+              <i class="heart icon"></i>
+              いいね！
+            </button>
+            <label class="ui basic left pointing label">
+              {{ post.likes | count }}
+            </label>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<div id="extra-loader" class="ui centered inline loader"></div>
